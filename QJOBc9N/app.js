@@ -71,12 +71,32 @@ const App = {
         return `
             <div class="bg-deep-space-blue text-future-white/80">
                 <div class="container mx-auto px-4 py-12">
-                    <div class="flex flex-col md:flex-row justify-between items-center text-center md:text-left">
-                         <div class="mb-4 md:mb-0">
-                            <a href="index.html" class="font-sans-custom text-2xl font-bold">DY<span class="text-living-coral">AI</span></a>
-                            <p class="text-sm mt-1">Design Your Augmented Intelligence</p>
+                    <div class="grid gap-10 md:grid-cols-3">
+                        <div>
+                            <a href="index.html" class="font-sans-custom text-2xl font-bold text-future-white">DY<span class="text-living-coral">AI</span></a>
+                            <p class="text-sm mt-3 leading-relaxed">Design Your Augmented Intelligence – Beratung, Workshops und kuratierte Lernreisen rund um den bewussten Einsatz von KI.</p>
                         </div>
-                        <p class="text-sm">&copy; ${new Date().getFullYear()} DYAI. Alle Rechte vorbehalten.</p>
+                        <div>
+                            <h3 class="font-sans-custom text-lg font-semibold text-future-white mb-3">Rechtliches</h3>
+                            <ul class="space-y-2 text-sm">
+                                <li><a href="impressum.html" class="hover:text-living-coral transition-colors">Impressum</a></li>
+                                <li><a href="privacy.html" class="hover:text-living-coral transition-colors">Datenschutzerklärung</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="font-sans-custom text-lg font-semibold text-future-white mb-3">Kontakt</h3>
+                            <p class="text-sm leading-relaxed">
+                                Benjamin Poersch<br>
+                                Grazer Damm 207<br>
+                                15127 Berlin
+                            </p>
+                            <p class="text-sm mt-3">
+                                <a href="mailto:Ben.Poersch@DYAI.app" class="hover:text-living-coral transition-colors">Ben.Poersch@DYAI.app</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="border-t border-white/10 mt-10 pt-6 text-xs text-future-white/60 text-center md:text-left">
+                        &copy; ${new Date().getFullYear()} DYAI · Alle Rechte vorbehalten.
                     </div>
                 </div>
             </div>
