@@ -1,5 +1,5 @@
 # Setze den App-Namen nach dem Ausführen von "fly launch" auf deinen individuellen Projektnamen.
-app = "dyai-pro-page"
+app = "REPLACE_ME_WITH_APP_NAME"
 primary_region = "fra"
 
 [build]
