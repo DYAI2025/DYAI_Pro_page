@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DYAI - Design Your Augmented Intelligence</title>
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-future-white text-structure-grey font-serif-custom">
+    <div id="app" class="flex flex-col min-h-screen">
+        <header id="main-header" class="sticky top-0 z-50"></header>
+        
+        <main class="flex-grow">
+            <!-- Hero Section -->
+            <section class="hero-gradient relative overflow-hidden flex items-center justify-center min-h-[70vh] md:min-h-[80vh] px-4 py-20 text-center">
+                <div class="absolute inset-0 bg-deep-space-blue opacity-80"></div>
+                <div class="relative z-10 max-w-4xl mx-auto">
+                    <div data-initial-hidden class="animate-fade-in-up">
+                        <h1 class="font-sans-custom text-5xl md:text-7xl font-bold text-future-white mb-4">
+                            Design Your <br>Augmented Intelligence
+                        </h1>
+                        <p class="font-sans-custom text-xl md:text-2xl text-future-white opacity-80 max-w-2xl mx-auto">
+                            Menschen und Organisationen befähigen, durch eine bewusste und partnerschaftliche Integration von Künstlicher Intelligenz ihre Zukunft proaktiv zu gestalten.
+                        </p>
+                        <a href="philosophy.html" class="mt-8 inline-block bg-living-coral text-white font-sans-custom font-semibold py-3 px-8 rounded-lg shadow-lg hover:bg-opacity-90 transition-transform duration-300 hover:scale-105">
+                            Entdecken Sie die Philosophie
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Principles Section -->
+            <section class="py-20 md:py-32 bg-future-white">
+                <div class="container mx-auto px-4">
+                    <div class="text-center max-w-3xl mx-auto mb-16">
+                        <h2 class="font-sans-custom text-4xl md:text-5xl font-bold text-deep-space-blue mb-4">Unsere Kernprinzipien</h2>
+                        <p class="text-lg md:text-xl text-structure-grey">Die Philosophie von DYAI basiert auf vier fundamentalen Überzeugungen, die den Umgang mit Künstlicher Intelligenz leiten.</p>
+                    </div>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <!-- Principle 1 -->
+                        <div data-scroll-fade class="bg-white p-8 rounded-xl shadow-subtle hover:shadow-strong transition-shadow duration-300">
+                            <div class="flex items-center justify-center w-16 h-16 rounded-full bg-living-coral/10 mb-6">
+                                <i data-lucide="users-2" class="w-8 h-8 text-living-coral"></i>
+                            </div>
+                            <h3 class="font-sans-custom text-xl font-bold text-deep-space-blue mb-3">Partnerschaft statt Werkzeug</h3>
+                            <p class="text-base text-structure-grey">Wir betrachten KI nicht als bloßes Instrument, sondern als einen Partner für symbiotische Beziehungen und neue Formen der Zusammenarbeit.</p>
+                        </div>
+                        <!-- Principle 2 -->
+                        <div data-scroll-fade style="animation-delay: 150ms;" class="bg-white p-8 rounded-xl shadow-subtle hover:shadow-strong transition-shadow duration-300">
+                             <div class="flex items-center justify-center w-16 h-16 rounded-full bg-living-coral/10 mb-6">
+                                <i data-lucide="trending-up" class="w-8 h-8 text-living-coral"></i>
+                            </div>
+                            <h3 class="font-sans-custom text-xl font-bold text-deep-space-blue mb-3">Proaktive Zukunftsgestaltung</h3>
+                            <p class="text-base text-structure-grey">Wir ergreifen die Initiative und gestalten aktiv die Welt von morgen, anstatt passiv auf Entwicklungen zu reagieren.</p>
+                        </div>
+                        <!-- Principle 3 -->
+                        <div data-scroll-fade style="animation-delay: 300ms;" class="bg-white p-8 rounded-xl shadow-subtle hover:shadow-strong transition-shadow duration-300">
+                             <div class="flex items-center justify-center w-16 h-16 rounded-full bg-living-coral/10 mb-6">
+                                <i data-lucide="sparkles" class="w-8 h-8 text-living-coral"></i>
+                            </div>
+                            <h3 class="font-sans-custom text-xl font-bold text-deep-space-blue mb-3">Menschzentrierte Evolution</h3>
+                            <p class="text-base text-structure-grey">Die Integration von KI ist eine Chance für menschliches Wachstum, um Empathie neu zu lernen und Bewusstsein zu erweitern.</p>
+                        </div>
+                        <!-- Principle 4 -->
+                        <div data-scroll-fade style="animation-delay: 450ms;" class="bg-white p-8 rounded-xl shadow-subtle hover:shadow-strong transition-shadow duration-300">
+                             <div class="flex items-center justify-center w-16 h-16 rounded-full bg-living-coral/10 mb-6">
+                                <i data-lucide="search" class="w-8 h-8 text-living-coral"></i>
+                            </div>
+                            <h3 class="font-sans-custom text-xl font-bold text-deep-space-blue mb-3">Bewusste Auseinandersetzung</h3>
+                            <p class="text-base text-structure-grey">Wir fördern eine offene, kritische und neugierige Auseinandersetzung, um Potenziale zu nutzen und Risiken zu managen.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Vision Section -->
+            <section class="py-20 md:py-32 bg-deep-space-blue text-white">
+                <div class="container mx-auto px-4">
+                    <div data-scroll-fade class="max-w-4xl mx-auto text-center">
+                        <i data-lucide="quote" class="w-12 h-12 text-living-coral mx-auto mb-6"></i>
+                        <blockquote class="text-2xl md:text-3xl font-serif-custom italic leading-relaxed text-future-white/90">
+                            In der Zukunft, die DYAI anstrebt, ist Künstliche Intelligenz nahtlos und partnerschaftlich in unsere Gesellschaft und Arbeitswelt integriert. Menschen agieren nicht aus Angst oder Unterwerfung, sondern aus einem Zustand des erweiterten Bewusstseins und der Co-Kreation mit intelligenten Systemen.
+                        </blockquote>
+                        <a href="philosophy.html#vision" class="mt-8 text-living-coral font-sans-custom font-semibold group flex items-center justify-center gap-2">
+                            Lesen Sie die gesamte Vision
+                            <i data-lucide="arrow-right" class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <footer id="main-footer"></footer>
+    </div>
+    
+    <script type="module" src="app.js"></script>
+</body>
+</html>

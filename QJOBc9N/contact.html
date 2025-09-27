@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontakt - DYAI</title>
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-future-white text-structure-grey font-serif-custom">
+    <div id="app" class="flex flex-col min-h-screen">
+        <header id="main-header" class="sticky top-0 z-50"></header>
+        
+        <main class="flex-grow">
+            <!-- Page Header -->
+            <section class="bg-deep-space-blue text-center py-24 md:py-32">
+                <div class="container mx-auto px-4">
+                    <div data-initial-hidden class="animate-fade-in-up">
+                        <h1 class="font-sans-custom text-5xl md:text-6xl font-bold text-future-white mb-4">Kontaktieren Sie uns</h1>
+                        <p class="text-xl md:text-2xl text-future-white/80 max-w-3xl mx-auto">Wir freuen uns darauf, mit Ihnen über die Zukunft der Augmented Intelligence zu sprechen.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section class="py-20 md:py-28">
+                <div class="container mx-auto px-4">
+                    <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 md:gap-16 items-start">
+                        <!-- Contact Form -->
+                        <div data-scroll-fade class="bg-white p-8 md:p-10 rounded-xl shadow-subtle">
+                            <h2 class="font-sans-custom text-3xl font-bold text-deep-space-blue mb-6">Schreiben Sie uns eine Nachricht</h2>
+                            <form id="contact-form" class="space-y-6">
+                                <div>
+                                    <label for="name" class="block text-sm font-sans-custom font-medium text-structure-grey mb-2">Name</label>
+                                    <input type="text" id="name" name="name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-living-coral focus:border-living-coral transition-colors duration-300 bg-future-white/50">
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-sm font-sans-custom font-medium text-structure-grey mb-2">E-Mail</label>
+                                    <input type="email" id="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-living-coral focus:border-living-coral transition-colors duration-300 bg-future-white/50">
+                                </div>
+                                <div>
+                                    <label for="message" class="block text-sm font-sans-custom font-medium text-structure-grey mb-2">Ihre Nachricht</label>
+                                    <textarea id="message" name="message" rows="5" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-living-coral focus:border-living-coral transition-colors duration-300 bg-future-white/50"></textarea>
+                                </div>
+                                <div>
+                                    <button type="submit" class="w-full bg-living-coral text-white font-sans-custom font-semibold py-3 px-8 rounded-lg shadow-lg hover:bg-opacity-90 transition-transform duration-300 hover:scale-105">
+                                        Nachricht senden
+                                    </button>
+                                </div>
+                            </form>
+                            <div id="form-feedback" class="mt-4 text-center"></div>
+                        </div>
+
+                        <!-- Contact Info -->
+                        <div data-scroll-fade style="animation-delay: 150ms;" class="space-y-8 mt-4 md:mt-0">
+                             <h2 class="font-sans-custom text-3xl font-bold text-deep-space-blue mb-6">Direkter Kontakt</h2>
+                             <div class="flex items-start gap-4">
+                                <i data-lucide="mail" class="w-6 h-6 text-living-coral mt-1 flex-shrink-0"></i>
+                                <div>
+                                    <h3 class="font-sans-custom text-xl font-bold text-deep-space-blue">E-Mail</h3>
+                                    <p class="text-lg">kontakt@dyai.com</p>
+                                    <a href="mailto:kontakt@dyai.com" class="text-living-coral font-sans-custom">E-Mail senden</a>
+                                </div>
+                             </div>
+                             <div class="flex items-start gap-4">
+                                <i data-lucide="phone" class="w-6 h-6 text-living-coral mt-1 flex-shrink-0"></i>
+                                <div>
+                                    <h3 class="font-sans-custom text-xl font-bold text-deep-space-blue">Telefon</h3>
+                                    <p class="text-lg">+49 (0) 123 456 7890</p>
+                                </div>
+                             </div>
+                             <div class="flex items-start gap-4">
+                                <i data-lucide="map-pin" class="w-6 h-6 text-living-coral mt-1 flex-shrink-0"></i>
+                                <div>
+                                    <h3 class="font-sans-custom text-xl font-bold text-deep-space-blue">Standort</h3>
+                                    <p class="text-lg">Berlin, Deutschland<br><span class="text-base text-structure-grey/70">(Beratung & Workshops weltweit)</span></p>
+                                </div>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <footer id="main-footer"></footer>
+    </div>
+    
+    <script type="module" src="app.js"></script>
+</body>
+</html>
