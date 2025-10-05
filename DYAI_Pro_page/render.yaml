@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: dyai-website
+    env: static
+    buildCommand: npm run build
+    staticPublishPath: ./public
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    headers:
+      - path: /*
+        headers:
+          - key: Cache-Control
+            value: public, max-age=31536000, immutable
+      - path: /
+        headers:
+          - key: Cache-Control
+            value: public, max-age=0, must-revalidate
+      - path: /index.html
+        headers:
+          - key: Cache-Control
+            value: public, max-age=0, must-revalidate

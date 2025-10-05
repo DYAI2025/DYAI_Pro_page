@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Einblicke - DYAI</title>
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-future-white text-structure-grey font-serif-custom">
+    <div id="app" class="flex flex-col min-h-screen">
+        <header id="main-header" class="sticky top-0 z-50"></header>
+        
+        <main class="flex-grow">
+            <!-- Page Header -->
+            <section class="bg-deep-space-blue text-center py-24 md:py-32">
+                <div class="container mx-auto px-4">
+                    <div data-initial-hidden class="animate-fade-in-up">
+                        <h1 class="font-sans-custom text-5xl md:text-6xl font-bold text-future-white mb-4">Einblicke & Perspektiven</h1>
+                        <p class="text-xl md:text-2xl text-future-white/80 max-w-3xl mx-auto">Gedanken, Analysen und Visionen zur Zukunft der Mensch-KI-Partnerschaft.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Blog Posts Section -->
+            <section class="py-20 md:py-28">
+                <div class="container mx-auto px-4">
+                    <div id="insights-container" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Blog posts will be injected here by JavaScript -->
+                    </div>
+                    <div data-scroll-fade class="text-center mt-16 text-structure-grey">
+                        <p class="text-lg">Weitere Artikel und Analysen folgen in Kürze.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <footer id="main-footer"></footer>
+    </div>
+    
+    <script type="module" src="app.js"></script>
+</body>
+</html>

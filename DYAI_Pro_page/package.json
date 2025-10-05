@@ -1,9 +1,11 @@
 {
   "name": "dyai_pro_page",
   "version": "1.0.0",
-  "description": "Dieses Repository enthält die statische DYAI-Website und eine minimalistische Deploy-Konfiguration für [Fly.io](https://fly.io/). Die Seite wird über einen schlanken Nginx-Container ausgeliefert.",
-  "main": "app.js",
+  "description": "Dieses Repository enthält die statische DYAI-Website und eine Deploy-Konfiguration für Render.com. Die Seite wird als statische Website bereitgestellt.",
+  "main": "index.html",
   "scripts": {
+    "build": "mkdir -p public && cp *.html *.css *.js public/ 2>/dev/null || true && cp *.png *.jpg *.svg *.ico public/ 2>/dev/null || true",
+    "start": "python -m http.server 8080",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

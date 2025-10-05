@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a static website deployment project for DYAI (Dynamic AI), structured as a containerized web application deployed via Fly.io. The project contains a complete website with HTML, CSS, and JavaScript files, along with deployment configuration.
+This is a static website deployment project for DYAI (Dynamic AI), deployed as a static site on Render.com. The project contains a complete website with HTML, CSS, and JavaScript files, along with Render deployment configuration.
 
 ## Project Structure
 
@@ -14,9 +14,10 @@ This is a static website deployment project for DYAI (Dynamic AI), structured as
 │   ├── *.html              # Website pages (index, contact, services, etc.)
 │   ├── *.css               # Stylesheets
 │   ├── *.js                # JavaScript functionality
-│   ├── Dockerfile          # Caddy-based container configuration
-│   ├── Caddyfile          # Caddy web server configuration
-│   ├── fly.toml           # Fly.io deployment configuration
+│   ├── render.yaml        # Render.com deployment configuration
+│   ├── Dockerfile         # Legacy Caddy container (for local testing)
+│   ├── Caddyfile         # Legacy Caddy configuration (for local testing)
+│   ├── fly.toml          # Legacy Fly.io configuration (not used)
 │   ├── package.json       # Node.js project metadata
 │   ├── .mcp.json          # MCP server configuration
 │   ├── .claude/           # Claude-specific agent configurations
@@ -32,43 +33,51 @@ This is a static website deployment project for DYAI (Dynamic AI), structured as
 # Navigate to project directory
 cd DYAI_Pro_page
 
-# Local Docker testing
-docker build -t dyai-site .
-docker run --rm -p 8080:8080 dyai-site
+# Build for production (creates public/ directory)
+npm run build
+
+# Local testing with Python
+npm start
 # Access at http://localhost:8080
 
-# Alternative with Caddy directly
-caddy run --config Caddyfile
+# Alternative: Local Docker testing (legacy)
+docker build -t dyai-site .
+docker run --rm -p 8080:8080 dyai-site
 ```
 
-### Deployment Commands
+### Deployment Commands (Render.com)
 ```bash
-# Fly.io authentication (one-time)
-fly auth login
+# Render deployment is automatic via GitHub integration
+# Just push to main branch and Render will:
+# 1. Run: npm run build
+# 2. Serve static files from public/ directory
 
-# Deploy to Fly.io
-fly deploy
+# Manual build testing
+npm run build
+# Check public/ directory contains all files
 
-# Check deployment status
-fly status
-
-# View logs
-fly logs
+# Connect repository to Render:
+# 1. Go to render.com dashboard
+# 2. New -> Static Site
+# 3. Connect GitHub repository
+# 4. Build command: npm run build
+# 5. Publish directory: public
 ```
 
 ## Architecture
 
 ### Web Server Stack
 - **Frontend**: Static HTML/CSS/JavaScript website
-- **Web Server**: Caddy 2 (Alpine-based container)
-- **Deployment**: Fly.io platform
-- **Container**: Multi-stage Docker build with Caddy
+- **Deployment**: Render.com static site hosting
+- **Build Process**: npm run build → copies files to public/ directory
+- **Local Development**: Python HTTP server on port 8080
 
 ### Key Configuration Files
-- `Dockerfile`: Caddy-based container using Alpine Linux
-- `Caddyfile`: Web server configuration (serves on port 8080)
-- `fly.toml`: Fly.io deployment configuration (Frankfurt region)
+- `render.yaml`: Render.com deployment configuration (static site)
+- `package.json`: Build scripts and metadata
 - `.mcp.json`: MCP server configurations for AI coordination
+- `Dockerfile`: Legacy container config (for local testing only)
+- `fly.toml`: Legacy Fly.io config (not used)
 
 ### Website Features
 - Responsive design with modern CSS animations
@@ -97,10 +106,12 @@ When working with this project:
 
 ## Deployment Architecture
 
-- **Region**: Frankfurt (fra) - optimized for European users
-- **Container**: Shared CPU, auto-scaling (0 min machines)
-- **Port**: Internal 8080, external HTTPS forced
-- **Static Files**: Served directly by Caddy with SPA fallback to index.html
+- **Platform**: Render.com static site hosting
+- **Build Process**: Automatic on git push to main branch
+- **Build Command**: `npm run build` (copies files to public/)
+- **Publish Directory**: `public/`
+- **Routing**: SPA fallback to index.html for all routes
+- **HTTPS**: Automatic SSL certificate management
 
 ## Important Notes
 

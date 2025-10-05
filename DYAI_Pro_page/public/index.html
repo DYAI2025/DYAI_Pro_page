@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DYAI - Design Your Augmented Intelligence</title>
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="animations.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;600;700&family=Orbitron:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  </head>
+  <body
+    class="bg-future-white text-structure-grey font-sans-custom overflow-x-hidden"
+  >
+    <div id="particles-background" class="fixed inset-0 z-0"></div>
+    <div
+      id="neural-network-canvas"
+      class="fixed inset-0 z-0 pointer-events-none"
+    ></div>
+    <div id="app" class="flex flex-col min-h-screen relative z-10">
+      <header id="main-header" class="sticky top-0 z-50">
+        <nav
+          class="bg-white/95 backdrop-blur-lg shadow-subtle border-b border-structure-grey/10"
+        >
+          <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+              <!-- Logo -->
+              <a href="index.html" class="flex items-center space-x-2">
+                <span
+                  class="dyai-logo-professional text-2xl font-light tracking-wider"
+                  >DYAI</span
+                >
+              </a>
+
+              <!-- Desktop Navigation -->
+              <div class="hidden md:flex items-center space-x-1">
+                <a
+                  href="index.html"
+                  class="nav-link px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+                  >Start</a
+                >
+                <a
+                  href="philosophy.html"
+                  class="nav-link px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+                  >Philosophie</a
+                >
+                <a
+                  href="services.html"
+                  class="nav-link px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+                  >Angebote</a
+                >
+                <a
+                  href="insights.html"
+                  class="nav-link px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+                  >Einblicke</a
+                >
+                <div class="relative group">
+                  <button
+                    class="nav-link px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200 flex items-center gap-1"
+                  >
+                    Mehr
+                    <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                  </button>
+                  <div
+                    class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg border border-structure-grey/10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"
+                  >
+                    <a
+                      href="#"
+                      class="block px-4 py-2 text-sm text-structure-grey hover:bg-future-white"
+                      >Downloads</a
+                    >
+                    <a
+                      href="contact.html"
+                      class="block px-4 py-2 text-sm text-structure-grey hover:bg-future-white"
+                      >Kontakt</a
+                    >
+                    <a
+                      href="impressum.html"
+                      class="block px-4 py-2 text-sm text-structure-grey hover:bg-future-white"
+                      >Impressum</a
+                    >
+                    <a
+                      href="privacy.html"
+                      class="block px-4 py-2 text-sm text-structure-grey hover:bg-future-white"
+                      >Datenschutz</a
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <!-- Dark Mode Toggle & AI Agent Button -->
+              <div class="flex items-center gap-6">
+                <!-- Dark Mode Toggle with Label -->
+                <div class="flex items-center gap-2">
+                  <span class="text-sm font-medium text-structure-grey hidden sm:block">Dark Mode</span>
+                  <button
+                    id="dark-mode-toggle"
+                    class="dark-mode-toggle"
+                    title="Dark Mode umschalten"
+                    type="button"
+                  >
+                  </button>
+                </div>
+
+                <button
+                  id="ai-agent-toggle"
+                  class="ai-agent-button bg-living-coral text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-opacity-90 transition-all duration-200 flex items-center gap-2"
+                  type="button"
+                >
+                  <i data-lucide="bot" class="w-4 h-4"></i>
+                  <span>KI-Agent</span>
+                </button>
+
+                <!-- Mobile Menu Button -->
+                <button
+                  id="mobile-menu-button"
+                  class="md:hidden text-structure-grey hover:text-deep-space-blue"
+                  type="button"
+                >
+                  <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <div
+              id="mobile-menu"
+              class="md:hidden hidden border-t border-structure-grey/10 py-4"
+            >
+              <div class="space-y-2">
+                <a
+                  href="index.html"
+                  class="block px-4 py-2 text-sm font-medium text-structure-grey hover:text-deep-space-blue"
+                  >Start</a
+                >
+                <a
+                  href="philosophy.html"
+                  class="block px-4 py-2 text-sm font-medium text-structure-grey hover:text-deep-space-blue"
+                  >Philosophie</a
+                >
+                <a
+                  href="services.html"
+                  class="block px-4 py-2 text-sm font-medium text-structure-grey hover:text-deep-space-blue"
+                  >Angebote</a
+                >
+                <a
+                  href="insights.html"
+                  class="block px-4 py-2 text-sm font-medium text-structure-grey hover:text-deep-space-blue"
+                  >Einblicke</a
+                >
+                <a
+                  href="#"
+                  class="block px-4 py-2 text-sm font-medium text-structure-grey hover:text-deep-space-blue"
+                  >Downloads</a
+                >
+                <a
+                  href="contact.html"
+                  class="block px-4 py-2 text-sm font-medium text-structure-grey hover:text-deep-space-blue"
+                  >Kontakt</a
+                >
+              </div>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+      <main class="flex-grow">
+        <!-- Hero Section -->
+        <section
+          class="hero-professional relative overflow-hidden flex items-center justify-center min-h-[90vh] md:min-h-screen px-4 py-20 text-center"
+        >
+          <div
+            class="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"
+          ></div>
+          <div class="subtle-grid-pattern absolute inset-0 opacity-10"></div>
+          <div class="relative z-10 max-w-6xl mx-auto">
+            <div data-initial-hidden class="animate-fade-in-up text-center">
+              <!-- Minimalistic DYAI Logo -->
+              <div class="mb-16">
+                <h1
+                  class="dyai-logo-professional text-8xl md:text-9xl lg:text-[12rem] font-light tracking-wider mb-8"
+                >
+                  DYAI
+                </h1>
+                <div
+                  class="subtitle-professional font-sans-custom text-xl md:text-2xl text-slate-300 tracking-widest uppercase"
+                >
+                  Design Your Augmented Intelligence
+                </div>
+              </div>
+              <div class="text-block-professional max-w-6xl mx-auto mb-12">
+                <p
+                  class="font-sans-custom text-xs md:text-xs text-slate-300 leading-relaxed italic text-justify font-light"
+                >
+                  Wir verstehen KI nicht als künstliche Intelligenz. Denn was
+                  sollte an Intelligenz künstlich sein? Im Kern ist sie keine
+                  Nachbildung des Menschen, sondern eine Erweiterung seiner
+                  Fähigkeiten – eine neue Form der Zusammenarbeit zwischen
+                  Denken, Sprache und Technologie. KI ist weniger ein Ersatz als
+                  ein Verstärker: Sie erweitert, was wir wissen, schaffen und
+                  verstehen können. Und sie spricht in der ersten
+                  Programmiersprache, die wir alle beherrschen – unserer
+                  menschlichen Sprache. Entwickelt von Menschen, für Menschen.
+                  <span class="text-slate-200 font-medium"
+                    >Nicht künstlich. Augmentiert.</span
+                  >
+                </p>
+              </div>
+              <div class="mt-12 flex justify-center">
+                <a
+                  href="philosophy.html"
+                  class="pulse-button bg-living-coral text-white font-sans-custom font-semibold py-4 px-10 rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 relative overflow-hidden"
+                >
+                  <span class="relative z-10"
+                    >Entdecken Sie die Philosophie</span
+                  >
+                  <div class="button-ripple"></div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Philosophie Section -->
+        <section class="py-20 md:py-32 bg-white">
+          <div class="container mx-auto px-4">
+            <div class="max-w-5xl mx-auto">
+              <h2
+                class="font-sans-custom text-3xl md:text-4xl font-bold text-deep-space-blue mb-8 text-center"
+              >
+                Die Revolution ist psychologisch, nicht technologisch
+              </h2>
+              <div class="prose prose-lg max-w-none mb-12">
+                <p class="text-structure-grey leading-relaxed text-center">
+                  KI reflektiert unsere Stärken und Schwächen. Die
+                  Herausforderung liegt nicht in der Technologie selbst, sondern
+                  darin, wie Organisationen und Menschen mit ihr umgehen.
+                  Während Unternehmen in Systeme investieren, vernachlässigen
+                  sie die psychologische Vorbereitung ihrer Teams auf diese
+                  fundamentale Veränderung.
+                </p>
+              </div>
+              <div class="grid md:grid-cols-3 gap-8">
+                <div
+                  class="bg-white p-8 rounded-xl shadow-subtle hover:shadow-strong transition-shadow duration-300"
+                >
+                  <div
+                    class="flex items-center justify-center w-16 h-16 rounded-full bg-living-coral/10 mb-6"
+                  >
+                    <i
+                      data-lucide="target"
+                      class="w-8 h-8 text-living-coral"
+                    ></i>
+                  </div>
+                  <h3
+                    class="font-sans-custom text-xl font-bold text-deep-space-blue mb-3"
+                  >
+                    Integration vor Innovation
+                  </h3>
+                  <p class="text-base text-structure-grey">
+                    Organisationale Selbsterkenntnis als Fundament für
+                    erfolgreiche KI-Implementation
+                  </p>
+                </div>
+                <div
+                  class="bg-white p-8 rounded-xl shadow-subtle hover:shadow-strong transition-shadow duration-300"
+                >
+                  <div
+                    class="flex items-center justify-center w-16 h-16 rounded-full bg-living-coral/10 mb-6"
+                  >
+                    <i
+                      data-lucide="shield"
+                      class="w-8 h-8 text-living-coral"
+                    ></i>
+                  </div>
+                  <h3
+                    class="font-sans-custom text-xl font-bold text-deep-space-blue mb-3"
+                  >
+                    Transparenz über Kontrolle
+                  </h3>
+                  <p class="text-base text-structure-grey">
+                    Vertrauensbasierte Führung statt illusorischer
+                    Kontrollmechanismen
+                  </p>
+                </div>
+                <div
+                  class="bg-white p-8 rounded-xl shadow-subtle hover:shadow-strong transition-shadow duration-300"
+                >
+                  <div
+                    class="flex items-center justify-center w-16 h-16 rounded-full bg-living-coral/10 mb-6"
+                  >
+                    <i
+                      data-lucide="users-2"
+                      class="w-8 h-8 text-living-coral"
+                    ></i>
+                  </div>
+                  <h3
+                    class="font-sans-custom text-xl font-bold text-deep-space-blue mb-3"
+                  >
+                    Relationaler Ansatz
+                  </h3>
+                  <p class="text-base text-structure-grey">
+                    KI als kollaborativer Partner für nachhaltige Wertschöpfung
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Unser Angebot Section -->
+        <section class="py-20 md:py-32 bg-future-white">
+          <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+              <div class="text-center mb-16">
+                <h2
+                  class="font-sans-custom text-3xl md:text-4xl font-bold text-deep-space-blue mb-6"
+                >
+                  The Frontier Practice – Strategische Partnerschaft für die
+                  Mensch-KI-Integration
+                </h2>
+                <div class="max-w-4xl mx-auto text-left space-y-4">
+                  <p class="text-lg text-structure-grey text-center">
+                    Augmentierte Intelligenz verändert nicht nur Technologien,
+                    sondern Entscheidungslogiken. Unternehmen investieren
+                    Milliarden in Systeme – doch kaum jemand bereitet Menschen
+                    auf die neue Realität vor. Die eigentliche Herausforderung
+                    liegt nicht im Code, sondern in der Art, wie Organisationen
+                    mit dieser Beschleunigung umgehen.
+                  </p>
+                  <p class="text-lg text-structure-grey text-center">
+                    The Frontier Practice begleitet Führungsteams an dieser
+                    Schwelle. Unser Ansatz verbindet strategische Klarheit,
+                    psychologische Tiefe und organisatorische Umsetzbarkeit.
+                    Ziel ist nicht, „mehr KI" einzusetzen, sondern sie so zu
+                    integrieren, dass sie Orientierung, Resilienz und
+                    nachhaltige Leistungsfähigkeit stärkt.
+                  </p>
+                  <p
+                    class="text-lg text-deep-space-blue font-semibold text-center"
+                  >
+                    Wir arbeiten mit Unternehmen, die verstanden haben, dass die
+                    nächste Wettbewerbsdifferenz nicht in der Technologie selbst
+                    liegt – sondern darin, wie bewusst man mit ihr führt.
+                  </p>
+                </div>
+              </div>
+
+              <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+                <div
+                  class="bg-white p-8 rounded-xl shadow-subtle hover:shadow-strong transition-shadow duration-300"
+                >
+                  <div
+                    class="flex items-center justify-center w-16 h-16 rounded-full bg-living-coral/10 mb-6"
+                  >
+                    <i
+                      data-lucide="brain"
+                      class="w-8 h-8 text-living-coral"
+                    ></i>
+                  </div>
+                  <h3
+                    class="font-sans-custom text-xl font-bold text-deep-space-blue mb-3"
+                  >
+                    Human-AI Integration
+                  </h3>
+                  <p class="text-structure-grey text-base mb-4">
+                    Psychologische Integration der KI-Arbeit.
+                  </p>
+                  <div class="text-sm text-structure-grey space-y-2">
+                    <div>
+                      <strong>Bausteine:</strong> Readiness-Checks, gesunde
+                      Interaktionsmuster, individuelles und Team-Coaching.
+                    </div>
+                    <div>
+                      <strong>Ergebnis:</strong> stabile Teams, weniger Reibung,
+                      tragfähige Performance.
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="bg-white p-8 rounded-xl shadow-subtle hover:shadow-strong transition-shadow duration-300"
+                >
+                  <div
+                    class="flex items-center justify-center w-16 h-16 rounded-full bg-living-coral/10 mb-6"
+                  >
+                    <i
+                      data-lucide="users"
+                      class="w-8 h-8 text-living-coral"
+                    ></i>
+                  </div>
+                  <h3
+                    class="font-sans-custom text-xl font-bold text-deep-space-blue mb-3"
+                  >
+                    AI Leadership & Operating Model
+                  </h3>
+                  <p class="text-structure-grey text-base mb-4">
+                    Führung und Prozesse für hybride Mensch-KI-Teams.
+                  </p>
+                  <div class="text-sm text-structure-grey space-y-2">
+                    <div>
+                      <strong>Bausteine:</strong> Hybrid-Team-Dynamics,
+                      Psychological Safety 2.0, Mirror Meetings, Transparency
+                      Protocols.
+                    </div>
+                    <div>
+                      <strong>Ergebnis:</strong> klare Orientierung bei hoher
+                      Geschwindigkeit.
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="bg-white p-8 rounded-xl shadow-subtle hover:shadow-strong transition-shadow duration-300"
+                >
+                  <div
+                    class="flex items-center justify-center w-16 h-16 rounded-full bg-living-coral/10 mb-6"
+                  >
+                    <i
+                      data-lucide="compass"
+                      class="w-8 h-8 text-living-coral"
+                    ></i>
+                  </div>
+                  <h3
+                    class="font-sans-custom text-xl font-bold text-deep-space-blue mb-3"
+                  >
+                    Executive AI Sparring & Crisis Navigation
+                  </h3>
+                  <p class="text-structure-grey text-base mb-4">
+                    Vertrauliches Sparring für C-Level unter Unsicherheit.
+                  </p>
+                  <div class="text-sm text-structure-grey space-y-2">
+                    <div>
+                      <strong>Bausteine:</strong> Szenario-Analyse,
+                      Entscheidungsreflexion, Krisennavigation.
+                    </div>
+                    <div>
+                      <strong>Ergebnis:</strong> Klarheit, Standfestigkeit,
+                      verantwortbare Entscheidungen.
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="bg-white p-8 rounded-xl shadow-subtle hover:shadow-strong transition-shadow duration-300"
+                >
+                  <div
+                    class="flex items-center justify-center w-16 h-16 rounded-full bg-living-coral/10 mb-6"
+                  >
+                    <i
+                      data-lucide="search"
+                      class="w-8 h-8 text-living-coral"
+                    ></i>
+                  </div>
+                  <h3
+                    class="font-sans-custom text-xl font-bold text-deep-space-blue mb-3"
+                  >
+                    LeanDeep Diagnostics
+                  </h3>
+                  <p class="text-structure-grey text-base mb-4">
+                    Semantische Diagnostik macht unsichtbare Muster steuerbar.
+                  </p>
+                  <div class="text-sm text-structure-grey space-y-2">
+                    <div>
+                      <strong>Bausteine:</strong> Analyse von Sprache und
+                      Interaktion, Frühindikatoren für Spannung und
+                      Vertrauensbruch.
+                    </div>
+                    <div>
+                      <strong>Ergebnis:</strong> präventives Handeln statt
+                      Krisenmanagement.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="text-center">
+                <a
+                  href="services.html"
+                  class="mt-8 inline-block bg-living-coral text-white font-sans-custom font-semibold py-3 px-8 rounded-lg shadow-lg hover:bg-opacity-90 transition-transform duration-300 hover:scale-105"
+                >
+                  Unser Angebot entdecken
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Differenzierung Section -->
+        <section class="py-16 md:py-24 bg-deep-space-blue">
+          <div class="container mx-auto px-4">
+            <div class="max-w-5xl mx-auto">
+              <h2
+                class="font-sans-custom text-2xl md:text-3xl font-bold text-future-white mb-8 text-center"
+              >
+                Unsere Differenzierung
+              </h2>
+              <p class="text-lg text-future-white/90 mb-12 text-center">
+                Drei Kompetenzen, die zusammen menschenzentrierte KI-Integration
+                ermöglichen.
+              </p>
+              <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center">
+                  <div
+                    class="flex items-center justify-center w-16 h-16 rounded-full bg-future-white/10 mx-auto mb-6"
+                  >
+                    <i
+                      data-lucide="microscope"
+                      class="w-8 h-8 text-future-white"
+                    ></i>
+                  </div>
+                  <h3
+                    class="font-sans-custom text-lg font-bold text-future-white mb-3"
+                  >
+                    Empirische Forschung
+                  </h3>
+                  <p class="text-sm text-future-white/80">
+                    Dokumentierte Expertise aus intensiver Forschung an der
+                    Mensch-KI-Grenze
+                  </p>
+                </div>
+                <div class="text-center">
+                  <div
+                    class="flex items-center justify-center w-16 h-16 rounded-full bg-future-white/10 mx-auto mb-6"
+                  >
+                    <i
+                      data-lucide="brain"
+                      class="w-8 h-8 text-future-white"
+                    ></i>
+                  </div>
+                  <h3
+                    class="font-sans-custom text-lg font-bold text-future-white mb-3"
+                  >
+                    Psychologische Expertise
+                  </h3>
+                  <p class="text-sm text-future-white/80">
+                    Der menschliche Faktor, der über Erfolg oder Scheitern
+                    entscheidet
+                  </p>
+                </div>
+                <div class="text-center">
+                  <div
+                    class="flex items-center justify-center w-16 h-16 rounded-full bg-future-white/10 mx-auto mb-6"
+                  >
+                    <i
+                      data-lucide="network"
+                      class="w-8 h-8 text-future-white"
+                    ></i>
+                  </div>
+                  <h3
+                    class="font-sans-custom text-lg font-bold text-future-white mb-3"
+                  >
+                    Organisationale Praxis
+                  </h3>
+                  <p class="text-sm text-future-white/80">
+                    Erprobte Methoden zur Verankerung neuer Arbeitsweisen in
+                    Unternehmen
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Principles Section -->
+        <section
+          class="py-20 md:py-32 bg-future-white relative overflow-hidden"
+        >
+          <div class="container mx-auto px-4">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+              <h2
+                class="font-sans-custom text-4xl md:text-5xl font-bold text-deep-space-blue mb-4"
+              >
+                Unsere Kernprinzipien
+              </h2>
+              <p class="text-lg md:text-xl text-structure-grey">
+                Die Philosophie von DYAI basiert auf vier fundamentalen
+                Eintrittspunkten, die den Umgang mit Künstlicher Intelligenz
+                leiten.
+              </p>
+            </div>
+            <div
+              class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 perspective-container"
+            >
+              <!-- Principle 1 -->
+              <div
+                data-scroll-fade
+                class="card-3d bg-white p-8 rounded-xl shadow-subtle hover:shadow-strong transition-all duration-500 transform-gpu hover:-translate-y-2"
+              >
+                <div
+                  class="flex items-center justify-center w-16 h-16 rounded-full bg-living-coral/10 mb-6"
+                >
+                  <i
+                    data-lucide="users-2"
+                    class="w-8 h-8 text-living-coral"
+                  ></i>
+                </div>
+                <h3
+                  class="font-sans-custom text-xl font-bold text-deep-space-blue mb-3"
+                >
+                  Partnerschaft statt Werkzeug
+                </h3>
+                <p class="text-base text-structure-grey">
+                  Wir betrachten KI nicht als bloßes Instrument, sondern als
+                  einen Partner für symbiotische Beziehungen und neue Formen der
+                  Zusammenarbeit.
+                </p>
+              </div>
+              <!-- Principle 2 -->
+              <div
+                data-scroll-fade
+                style="animation-delay: 150ms"
+                class="card-3d bg-white p-8 rounded-xl shadow-subtle hover:shadow-strong transition-all duration-500 transform-gpu hover:-translate-y-2"
+              >
+                <div
+                  class="flex items-center justify-center w-16 h-16 rounded-full bg-living-coral/10 mb-6"
+                >
+                  <i
+                    data-lucide="trending-up"
+                    class="w-8 h-8 text-living-coral"
+                  ></i>
+                </div>
+                <h3
+                  class="font-sans-custom text-xl font-bold text-deep-space-blue mb-3"
+                >
+                  Proaktive Zukunftsgestaltung
+                </h3>
+                <p class="text-base text-structure-grey">
+                  Wir ergreifen die Initiative und gestalten aktiv die Welt von
+                  morgen, anstatt passiv auf Entwicklungen zu reagieren.
+                </p>
+              </div>
+              <!-- Principle 3 -->
+              <div
+                data-scroll-fade
+                style="animation-delay: 300ms"
+                class="card-3d bg-white p-8 rounded-xl shadow-subtle hover:shadow-strong transition-all duration-500 transform-gpu hover:-translate-y-2"
+              >
+                <div
+                  class="flex items-center justify-center w-16 h-16 rounded-full bg-living-coral/10 mb-6"
+                >
+                  <i
+                    data-lucide="sparkles"
+                    class="w-8 h-8 text-living-coral"
+                  ></i>
+                </div>
+                <h3
+                  class="font-sans-custom text-xl font-bold text-deep-space-blue mb-3"
+                >
+                  Menschzentrierte Evolution
+                </h3>
+                <p class="text-base text-structure-grey">
+                  Die Integration von KI ist eine Chance für menschliches
+                  Wachstum, um Empathie neu zu lernen und Bewusstsein zu
+                  erweitern.
+                </p>
+              </div>
+              <!-- Principle 4 -->
+              <div
+                data-scroll-fade
+                style="animation-delay: 450ms"
+                class="card-3d bg-white p-8 rounded-xl shadow-subtle hover:shadow-strong transition-all duration-500 transform-gpu hover:-translate-y-2"
+              >
+                <div
+                  class="flex items-center justify-center w-16 h-16 rounded-full bg-living-coral/10 mb-6"
+                >
+                  <i data-lucide="search" class="w-8 h-8 text-living-coral"></i>
+                </div>
+                <h3
+                  class="font-sans-custom text-xl font-bold text-deep-space-blue mb-3"
+                >
+                  Bewusste Auseinandersetzung
+                </h3>
+                <p class="text-base text-structure-grey">
+                  Wir fördern eine offene, kritische und neugierige
+                  Auseinandersetzung, um Potenziale zu nutzen und Risiken zu
+                  managen.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Vision Section -->
+        <section class="py-20 md:py-32 bg-deep-space-blue text-white">
+          <div class="container mx-auto px-4">
+            <div data-scroll-fade class="max-w-4xl mx-auto text-center">
+              <i
+                data-lucide="quote"
+                class="w-12 h-12 text-living-coral mx-auto mb-6"
+              ></i>
+              <blockquote
+                class="text-2xl md:text-3xl font-serif-custom italic leading-relaxed text-future-white/90"
+              >
+                In der Zukunft, die DYAI anstrebt, ist Künstliche Intelligenz
+                nahtlos und partnerschaftlich in unsere Gesellschaft und
+                Arbeitswelt integriert. Menschen agieren nicht aus Angst oder
+                Unterwerfung, sondern aus einem Zustand des erweiterten
+                Bewusstseins und der Co-Kreation mit intelligenten Systemen.
+              </blockquote>
+              <a
+                href="philosophy.html#vision"
+                class="mt-8 text-living-coral font-sans-custom font-semibold group flex items-center justify-center gap-2"
+              >
+                Lesen Sie die gesamte Vision
+                <i
+                  data-lucide="arrow-right"
+                  class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"
+                ></i>
+              </a>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer id="main-footer"></footer>
+    </div>
+
+    <script type="module" src="app.js"></script>
+    <script src="ai-animations.js"></script>
+    <script src="ai-agent.js"></script>
+    <script src="dark-mode.js"></script>
+
+    <!-- 11Labs ConvAI Widget -->
+    <elevenlabs-convai agent-id="agent_01jyywpjhzfgj8eqe9hnyepkfx"></elevenlabs-convai>
+    <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
+  </body>
+</html>

@@ -1,43 +1,64 @@
-# DYAI Website Deployment auf Fly.io
+# DYAI Website Deployment auf Render.com
 
-Dieses Repository enthält die statische DYAI-Website und eine minimalistische Deploy-Konfiguration für [Fly.io](https://fly.io/). Die Seite wird über einen schlanken Nginx-Container ausgeliefert.
+Dieses Repository enthält die statische DYAI-Website mit einer Deploy-Konfiguration für [Render.com](https://render.com/). Die Seite wird als statische Website bereitgestellt.
 
 ## Voraussetzungen
 
-- Installiertes [Flyctl](https://fly.io/docs/hands-on/install-flyctl/)
-- Ein Fly.io Account und eine bestehende Organisation
+- Ein [Render.com](https://render.com/) Account
+- GitHub Repository verbunden mit Render
+- Node.js für lokale Entwicklung (optional)
 
 ## Ordnerstruktur
 
-- `QJOBc9N/` – Quellcode der Website (HTML, CSS und JavaScript)
-- `Dockerfile` – Build-Konfiguration für das Nginx-Image
-- `nginx.conf` – Nginx Server-Konfiguration (lauscht auf Port 8080)
-- `fly.toml` – Fly.io App-Konfiguration
+- `*.html, *.css, *.js` – Quellcode der Website (HTML, CSS und JavaScript)
+- `render.yaml` – Render.com Deployment-Konfiguration
+- `package.json` – Build-Scripts und Projekt-Metadaten
+- `public/` – Build-Output (wird automatisch erstellt)
+- `Dockerfile` – Legacy Docker-Konfiguration (für lokale Tests)
+- `fly.toml` – Legacy Fly.io Konfiguration (nicht verwendet)
 
-## Erster Deployment-Lauf
+## Deployment auf Render.com
 
-1. **Einmalig anmelden:**
-   ```bash
-   fly auth login
-   ```
-2. **App initialisieren (optional, falls noch kein App-Name gesetzt ist):**
-   ```bash
-   fly launch --no-deploy
-   ```
-   Wähle einen eindeutigen App-Namen. Passe den Wert `app` in der Datei `fly.toml` entsprechend an.
-3. **Deployment starten:**
-   ```bash
-   fly deploy
-   ```
-4. **Status prüfen:**
-   ```bash
-   fly status
-   ```
+### Automatisches Deployment
+1. **Repository mit Render verbinden:**
+   - Gehe zu [render.com](https://render.com/) und melde dich an
+   - Klicke auf "New" → "Static Site"
+   - Verbinde dein GitHub Repository
+   - Setze folgende Einstellungen:
+     - **Build Command:** `npm run build`
+     - **Publish Directory:** `public`
+     - **Auto-Deploy:** Yes (bei Git Push)
+
+2. **Deployment erfolgt automatisch:**
+   - Bei jedem Push zum `main` Branch
+   - Render führt `npm run build` aus
+   - Statische Dateien werden aus `public/` bereitgestellt
+
+### Manuelles Build-Testing
+```bash
+# Build für Produktion
+npm run build
+
+# Überprüfe public/ Verzeichnis
+ls public/
+
+# Lokaler Test
+npm start
+# Öffne http://localhost:8080
+```
 
 ## Lokales Testen
 
-Um die Website lokal mit Docker zu testen:
+### Empfohlene Methode (NPM):
+```bash
+# Build-Prozess testen
+npm run build
 
+# Lokalen Server starten
+npm start
+```
+
+### Alternative (Docker - Legacy):
 ```bash
 docker build -t dyai-site .
 docker run --rm -p 8080:8080 dyai-site
