@@ -4,7 +4,7 @@
   "description": "Dieses Repository enthält die statische DYAI-Website und eine Deploy-Konfiguration für Render.com. Die Seite wird als statische Website bereitgestellt.",
   "main": "index.html",
   "scripts": {
-    "build": "mkdir -p public && cp index.html contact.html impressum.html insights.html philosophy.html privacy.html services.html style.css animations.css ai-agent.js ai-animations.js app.js dark-mode.js data.js update-navigation.js public/",
+    "build": "echo 'Build starting...' && ls -la",
     "start": "python -m http.server 8080",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
