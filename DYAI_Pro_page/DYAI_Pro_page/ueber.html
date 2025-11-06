@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Über – DYAI</title>
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/lucide@latest"></script>
+  </head>
+  <body class="bg-future-white text-structure-grey font-serif-custom">
+    <div id="app" class="flex flex-col min-h-screen">
+      <header id="main-header" class="sticky top-0 z-50"></header>
+
+      <main class="flex-grow">
+        <section class="bg-deep-space-blue text-center py-24 md:py-32">
+          <div class="container mx-auto px-4">
+            <div data-initial-hidden class="animate-fade-in-up">
+              <h1
+                class="font-sans-custom text-5xl md:text-6xl font-bold text-future-white mb-4"
+              >
+                Über DYAI
+              </h1>
+              <p
+                class="text-xl md:text-2xl text-future-white/80 max-w-4xl mx-auto"
+              >
+                Design Your Augmented Intelligence – Haltung, Qualität,
+                Verantwortung.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="py-20 md:py-28">
+          <div class="container mx-auto px-4">
+            <article
+              class="prose prose-lg max-w-3xl mx-auto bg-white p-8 md:p-12 rounded-xl shadow-subtle"
+            >
+              <h2>Wofür DYAI steht</h2>
+              <p>
+                Wir entwickeln klare, menschenzentrierte Lösungen rund um KI –
+                pragmatisch, verständlich und verantwortungsvoll. Unsere Arbeit
+                hilft Teams, souverän mit KI zu arbeiten und daraus echten
+                Mehrwert zu schaffen.
+              </p>
+
+              <h2>Kontakt</h2>
+              <p>
+                Fragen oder Feedback? Schreibe uns an
+                <a href="mailto:contact@DYAI.app">contact@DYAI.app</a>.
+              </p>
+
+              <hr />
+              <p class="mt-8 text-sm text-structure-grey/70">
+                verantwortlich:
+                <span class="align-middle text-xs tracking-wide uppercase"
+                  >poersch</span
+                >
+              </p>
+            </article>
+          </div>
+        </section>
+      </main>
+
+      <footer id="main-footer"></footer>
+    </div>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>

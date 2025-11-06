@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>InstaFile – Sofortiges Speichern im Browser | DYAI</title>
+    <meta
+      name="description"
+      content="InstaFile speichert markierten Text sofort als Datei (TXT, MD, PDF, CSV, JSON, Code) – ohne 'Speichern unter'-Dialog. Chrome Extension für maximale Effizienz."
+    />
+
+    <!-- Open Graph -->
+    <meta
+      property="og:title"
+      content="InstaFile – Sofortiges Speichern im Browser"
+    />
+    <meta
+      property="og:description"
+      content="Markieren, klicken, fertig. InstaFile spart Zeit beim Speichern von Textinhalten."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://dyai.app/instafile.html" />
+
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+      /* Instafile-spezifische Styles */
+      .instafile-gradient {
+        background: linear-gradient(
+          135deg,
+          var(--instafile-gradient-start) 0%,
+          var(--instafile-gradient-end) 100%
+        );
+      }
+
+      .instafile-primary {
+        color: var(--instafile-primary);
+      }
+
+      .bg-instafile-primary {
+        background-color: var(--instafile-primary);
+      }
+
+      .hover\:bg-instafile-primary:hover {
+        background-color: var(--instafile-primary);
+      }
+
+      .border-instafile-primary {
+        border-color: var(--instafile-primary);
+      }
+
+      .lightning-icon {
+        color: var(--instafile-icon);
+      }
+
+      /* Code-Block Styling */
+      .code-block {
+        font-family: "Fira Code", monospace;
+        background: var(--bg-secondary);
+        border-left: 4px solid var(--instafile-primary);
+        padding: 1rem;
+        border-radius: 0.5rem;
+        font-size: 0.875rem;
+        overflow-x: auto;
+      }
+
+      /* Feature Card Hover Effect */
+      .feature-card {
+        transition: all var(--transition-base) var(--easing-default);
+      }
+
+      .feature-card:hover {
+        transform: translateY(-8px);
+      }
+
+      /* Step Number Circle */
+      .step-number {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 1.25rem;
+        background: linear-gradient(
+          135deg,
+          var(--instafile-gradient-start),
+          var(--instafile-gradient-end)
+        );
+        color: white;
+        flex-shrink: 0;
+      }
+    </style>
+  </head>
+  <body class="bg-future-white text-structure-grey font-sans-custom">
+    <div id="app" class="flex flex-col min-h-screen">
+      <header id="main-header" class="sticky top-0 z-50"></header>
+
+      <main class="flex-grow">
+        <!-- Hero Section -->
+        <section
+          class="instafile-gradient text-white py-24 md:py-32 relative overflow-hidden"
+        >
+          <div class="absolute inset-0 opacity-10">
+            <div
+              class="absolute inset-0"
+              style="
+                background-image: radial-gradient(
+                  circle,
+                  white 1px,
+                  transparent 1px
+                );
+                background-size: 30px 30px;
+              "
+            ></div>
+          </div>
+          <div class="container mx-auto px-4 relative z-10">
+            <div data-initial-hidden class="animate-fade-in-up text-center">
+              <!-- Lightning Icon -->
+              <div class="flex justify-center mb-8">
+                <div
+                  class="w-24 h-24 rounded-2xl bg-white/15 backdrop-blur-lg flex items-center justify-center"
+                >
+                  <i data-lucide="zap" class="w-14 h-14 lightning-icon"></i>
+                </div>
+              </div>
+
+              <h1 class="font-sans-custom text-5xl md:text-6xl font-bold mb-6">
+                InstaFile
+              </h1>
+              <p class="text-xl md:text-2xl font-light mb-4 max-w-3xl mx-auto">
+                Markieren. Klicken. Fertig.
+              </p>
+              <p
+                class="text-lg md:text-xl text-white/80 mb-10 max-w-2xl mx-auto"
+              >
+                Speichern Sie markierten Text sofort als Datei – ohne den
+                „Speichern unter"-Dialog. TXT, Markdown, PDF, CSV, JSON, Code
+                und mehr.
+              </p>
+
+              <!-- CTA Buttons -->
+              <div
+                class="flex flex-col sm:flex-row gap-4 justify-center items-center"
+              >
+                <a
+                  href="#"
+                  target="_blank"
+                  rel="noopener"
+                  class="inline-flex items-center gap-3 bg-white text-instafile-primary font-semibold py-4 px-8 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 text-lg"
+                >
+                  <i data-lucide="chrome" class="w-6 h-6"></i>
+                  Im Chrome Web Store installieren
+                </a>
+                <a
+                  href="#how-it-works"
+                  class="inline-flex items-center gap-2 bg-white/15 backdrop-blur-lg text-white font-semibold py-4 px-8 rounded-lg hover:bg-white/25 transition-all duration-300 text-lg"
+                >
+                  <i data-lucide="play-circle" class="w-5 h-5"></i>
+                  So funktioniert's
+                </a>
+              </div>
+
+              <!-- Tags -->
+              <div class="flex flex-wrap gap-3 justify-center mt-10">
+                <span
+                  class="px-4 py-2 bg-white/15 backdrop-blur-lg rounded-full text-sm"
+                  >Offline-fähig</span
+                >
+                <span
+                  class="px-4 py-2 bg-white/15 backdrop-blur-lg rounded-full text-sm"
+                  >Keine Datenerhebung</span
+                >
+                <span
+                  class="px-4 py-2 bg-white/15 backdrop-blur-lg rounded-full text-sm"
+                  >Open Source</span
+                >
+                <span
+                  class="px-4 py-2 bg-white/15 backdrop-blur-lg rounded-full text-sm"
+                  >DSGVO-konform</span
+                >
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section id="how-it-works" class="py-20 md:py-28 bg-white">
+          <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+              <h2
+                class="font-sans-custom text-4xl md:text-5xl font-bold text-deep-space-blue mb-4"
+              >
+                In 3 Schritten zur Datei
+              </h2>
+              <p
+                class="text-lg md:text-xl text-structure-grey max-w-2xl mx-auto"
+              >
+                Kein komplizierter Dialog, keine zusätzlichen Klicks. Einfach
+                markieren und speichern.
+              </p>
+            </div>
+
+            <div class="max-w-4xl mx-auto space-y-12">
+              <!-- Step 1 -->
+              <div
+                data-scroll-fade
+                class="flex flex-col md:flex-row gap-6 items-start"
+              >
+                <div class="step-number">1</div>
+                <div class="flex-1">
+                  <h3
+                    class="font-sans-custom text-2xl font-bold text-deep-space-blue mb-3"
+                  >
+                    Text markieren
+                  </h3>
+                  <p class="text-lg text-structure-grey mb-4">
+                    Markieren Sie beliebigen Text auf einer Webseite –
+                    Code-Snippets, Artikel, Daten oder Notizen.
+                  </p>
+                  <div
+                    class="bg-future-white p-6 rounded-lg border-l-4 border-instafile-primary"
+                  >
+                    <p class="text-sm text-structure-grey italic">
+                      💡 Tipp: Funktioniert auf jeder Website, in jedem
+                      Textfeld.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 2 -->
+              <div
+                data-scroll-fade
+                style="animation-delay: 150ms"
+                class="flex flex-col md:flex-row gap-6 items-start"
+              >
+                <div class="step-number">2</div>
+                <div class="flex-1">
+                  <h3
+                    class="font-sans-custom text-2xl font-bold text-deep-space-blue mb-3"
+                  >
+                    Speichern auslösen
+                  </h3>
+                  <p class="text-lg text-structure-grey mb-4">
+                    Nutzen Sie das Kontextmenü (Rechtsklick), den schwebenden
+                    Button oder das Tastenkürzel.
+                  </p>
+                  <div class="grid sm:grid-cols-3 gap-4">
+                    <div
+                      class="bg-white p-4 rounded-lg shadow-subtle text-center"
+                    >
+                      <i
+                        data-lucide="mouse-pointer-click"
+                        class="w-8 h-8 mx-auto mb-2 instafile-primary"
+                      ></i>
+                      <p class="text-sm font-medium">Rechtsklick-Menü</p>
+                    </div>
+                    <div
+                      class="bg-white p-4 rounded-lg shadow-subtle text-center"
+                    >
+                      <i
+                        data-lucide="circle-dot"
+                        class="w-8 h-8 mx-auto mb-2 instafile-primary"
+                      ></i>
+                      <p class="text-sm font-medium">Schwebender Button</p>
+                    </div>
+                    <div
+                      class="bg-white p-4 rounded-lg shadow-subtle text-center"
+                    >
+                      <i
+                        data-lucide="keyboard"
+                        class="w-8 h-8 mx-auto mb-2 instafile-primary"
+                      ></i>
+                      <p class="text-sm font-medium">Tastenkürzel</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 3 -->
+              <div
+                data-scroll-fade
+                style="animation-delay: 300ms"
+                class="flex flex-col md:flex-row gap-6 items-start"
+              >
+                <div class="step-number">3</div>
+                <div class="flex-1">
+                  <h3
+                    class="font-sans-custom text-2xl font-bold text-deep-space-blue mb-3"
+                  >
+                    Datei liegt bereit
+                  </h3>
+                  <p class="text-lg text-structure-grey mb-4">
+                    Die Datei landet automatisch im Download-Ordner – mit
+                    sinnvollem Namen aus Seitentitel oder Zeitstempel.
+                  </p>
+                  <div class="code-block">
+                    <code>
+                      📁 Downloads/<br />
+                      &nbsp;&nbsp;├── README_2025-11-06_14-23.md<br />
+                      &nbsp;&nbsp;├── code-snippet_2025-11-06_14-25.js<br />
+                      &nbsp;&nbsp;└── article_2025-11-06_14-30.txt
+                    </code>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="py-20 md:py-28 bg-future-white">
+          <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+              <h2
+                class="font-sans-custom text-4xl md:text-5xl font-bold text-deep-space-blue mb-4"
+              >
+                Features
+              </h2>
+              <p
+                class="text-lg md:text-xl text-structure-grey max-w-2xl mx-auto"
+              >
+                Entwickelt für maximale Effizienz und Datenschutz.
+              </p>
+            </div>
+
+            <div
+              class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto"
+            >
+              <!-- Feature 1 -->
+              <div
+                data-scroll-fade
+                class="feature-card bg-white rounded-xl shadow-subtle p-8"
+              >
+                <div
+                  class="w-14 h-14 rounded-lg bg-instafile-primary/10 flex items-center justify-center mb-6"
+                >
+                  <i
+                    data-lucide="file-type"
+                    class="w-7 h-7 instafile-primary"
+                  ></i>
+                </div>
+                <h3
+                  class="font-sans-custom text-xl font-bold text-deep-space-blue mb-3"
+                >
+                  Viele Formate
+                </h3>
+                <p class="text-structure-grey">
+                  TXT, Markdown, PDF, CSV, JSON, YAML, HTML, XML, und
+                  Code-Snippets (JavaScript, Python, etc.)
+                </p>
+              </div>
+
+              <!-- Feature 2 -->
+              <div
+                data-scroll-fade
+                style="animation-delay: 100ms"
+                class="feature-card bg-white rounded-xl shadow-subtle p-8"
+              >
+                <div
+                  class="w-14 h-14 rounded-lg bg-instafile-primary/10 flex items-center justify-center mb-6"
+                >
+                  <i data-lucide="wand-2" class="w-7 h-7 instafile-primary"></i>
+                </div>
+                <h3
+                  class="font-sans-custom text-xl font-bold text-deep-space-blue mb-3"
+                >
+                  Smarte Erkennung
+                </h3>
+                <p class="text-structure-grey">
+                  Automatische Format-Erkennung basierend auf Inhalt. InstaFile
+                  wählt das passende Format.
+                </p>
+              </div>
+
+              <!-- Feature 3 -->
+              <div
+                data-scroll-fade
+                style="animation-delay: 200ms"
+                class="feature-card bg-white rounded-xl shadow-subtle p-8"
+              >
+                <div
+                  class="w-14 h-14 rounded-lg bg-instafile-primary/10 flex items-center justify-center mb-6"
+                >
+                  <i data-lucide="tag" class="w-7 h-7 instafile-primary"></i>
+                </div>
+                <h3
+                  class="font-sans-custom text-xl font-bold text-deep-space-blue mb-3"
+                >
+                  Sinnvolle Dateinamen
+                </h3>
+                <p class="text-structure-grey">
+                  Dateinamen aus Seitentitel, URL oder Zeitstempel –
+                  konfigurierbar nach Ihren Wünschen.
+                </p>
+              </div>
+
+              <!-- Feature 4 -->
+              <div
+                data-scroll-fade
+                style="animation-delay: 300ms"
+                class="feature-card bg-white rounded-xl shadow-subtle p-8"
+              >
+                <div
+                  class="w-14 h-14 rounded-lg bg-instafile-primary/10 flex items-center justify-center mb-6"
+                >
+                  <i
+                    data-lucide="shield-check"
+                    class="w-7 h-7 instafile-primary"
+                  ></i>
+                </div>
+                <h3
+                  class="font-sans-custom text-xl font-bold text-deep-space-blue mb-3"
+                >
+                  100% Privat
+                </h3>
+                <p class="text-structure-grey">
+                  Keine Datenerhebung, keine Server, keine Tracker. Alles läuft
+                  lokal in Ihrem Browser.
+                </p>
+              </div>
+
+              <!-- Feature 5 -->
+              <div
+                data-scroll-fade
+                style="animation-delay: 400ms"
+                class="feature-card bg-white rounded-xl shadow-subtle p-8"
+              >
+                <div
+                  class="w-14 h-14 rounded-lg bg-instafile-primary/10 flex items-center justify-center mb-6"
+                >
+                  <i
+                    data-lucide="wifi-off"
+                    class="w-7 h-7 instafile-primary"
+                  ></i>
+                </div>
+                <h3
+                  class="font-sans-custom text-xl font-bold text-deep-space-blue mb-3"
+                >
+                  Offline-fähig
+                </h3>
+                <p class="text-structure-grey">
+                  Funktioniert auch ohne Internetverbindung. Kein Cloud-Service
+                  erforderlich.
+                </p>
+              </div>
+
+              <!-- Feature 6 -->
+              <div
+                data-scroll-fade
+                style="animation-delay: 500ms"
+                class="feature-card bg-white rounded-xl shadow-subtle p-8"
+              >
+                <div
+                  class="w-14 h-14 rounded-lg bg-instafile-primary/10 flex items-center justify-center mb-6"
+                >
+                  <i
+                    data-lucide="settings-2"
+                    class="w-7 h-7 instafile-primary"
+                  ></i>
+                </div>
+                <h3
+                  class="font-sans-custom text-xl font-bold text-deep-space-blue mb-3"
+                >
+                  Anpassbar
+                </h3>
+                <p class="text-structure-grey">
+                  Konfigurieren Sie Dateinamen-Muster, Zielordner und
+                  UI-Elemente nach Ihren Bedürfnissen.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Privacy Section -->
+        <section class="py-20 md:py-28 bg-white">
+          <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+              <div
+                class="bg-gradient-to-br from-instafile-primary/5 to-instafile-gradient-start/5 rounded-2xl p-8 md:p-12 border border-instafile-primary/20"
+              >
+                <div class="flex items-start gap-6">
+                  <div class="flex-shrink-0">
+                    <div
+                      class="w-16 h-16 rounded-xl bg-instafile-primary/10 flex items-center justify-center"
+                    >
+                      <i
+                        data-lucide="lock"
+                        class="w-8 h-8 instafile-primary"
+                      ></i>
+                    </div>
+                  </div>
+                  <div>
+                    <h2
+                      class="font-sans-custom text-3xl md:text-4xl font-bold text-deep-space-blue mb-4"
+                    >
+                      Datenschutz steht an erster Stelle
+                    </h2>
+                    <div class="prose prose-lg max-w-none text-structure-grey">
+                      <p class="mb-4">
+                        InstaFile verarbeitet markierte Texte
+                        <strong>ausschließlich lokal</strong> in Ihrem Browser.
+                        Es findet keine Übertragung an Server statt.
+                      </p>
+                      <ul class="space-y-2 mb-4">
+                        <li class="flex items-start gap-3">
+                          <i
+                            data-lucide="check"
+                            class="w-5 h-5 text-green-600 mt-1 flex-shrink-0"
+                          ></i>
+                          <span
+                            >Keine personenbezogenen Daten werden erhoben</span
+                          >
+                        </li>
+                        <li class="flex items-start gap-3">
+                          <i
+                            data-lucide="check"
+                            class="w-5 h-5 text-green-600 mt-1 flex-shrink-0"
+                          ></i>
+                          <span>Keine Analytik- oder Tracking-Skripte</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                          <i
+                            data-lucide="check"
+                            class="w-5 h-5 text-green-600 mt-1 flex-shrink-0"
+                          ></i>
+                          <span
+                            >Kein Remote-Code oder externe Abhängigkeiten</span
+                          >
+                        </li>
+                        <li class="flex items-start gap-3">
+                          <i
+                            data-lucide="check"
+                            class="w-5 h-5 text-green-600 mt-1 flex-shrink-0"
+                          ></i>
+                          <span>DSGVO-konform durch Design</span>
+                        </li>
+                      </ul>
+                      <p class="text-sm">
+                        <a
+                          href="privacy.html#instafile"
+                          class="text-instafile-primary hover:underline font-semibold"
+                          >→ Vollständige Datenschutzerklärung für InstaFile</a
+                        >
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="py-20 md:py-28 bg-future-white">
+          <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+              <h2
+                class="font-sans-custom text-4xl md:text-5xl font-bold text-deep-space-blue mb-4"
+              >
+                Häufige Fragen
+              </h2>
+            </div>
+
+            <div class="max-w-3xl mx-auto space-y-6">
+              <!-- FAQ Item 1 -->
+              <details class="bg-white rounded-lg shadow-subtle p-6 group">
+                <summary
+                  class="font-sans-custom text-lg font-semibold text-deep-space-blue cursor-pointer flex items-center justify-between"
+                >
+                  Ist InstaFile wirklich kostenlos?
+                  <i
+                    data-lucide="chevron-down"
+                    class="w-5 h-5 transition-transform group-open:rotate-180"
+                  ></i>
+                </summary>
+                <p class="text-structure-grey mt-4 pl-2">
+                  Ja, InstaFile ist vollständig kostenlos und wird es auch
+                  bleiben. Es gibt keine Premium-Version, keine versteckten
+                  Kosten und keine Werbung.
+                </p>
+              </details>
+
+              <!-- FAQ Item 2 -->
+              <details class="bg-white rounded-lg shadow-subtle p-6 group">
+                <summary
+                  class="font-sans-custom text-lg font-semibold text-deep-space-blue cursor-pointer flex items-center justify-between"
+                >
+                  Welche Browser werden unterstützt?
+                  <i
+                    data-lucide="chevron-down"
+                    class="w-5 h-5 transition-transform group-open:rotate-180"
+                  ></i>
+                </summary>
+                <p class="text-structure-grey mt-4 pl-2">
+                  InstaFile ist eine Chrome Extension und funktioniert in allen
+                  Chromium-basierten Browsern (Chrome, Edge, Brave, Opera,
+                  etc.). Eine Firefox-Version ist in Planung.
+                </p>
+              </details>
+
+              <!-- FAQ Item 3 -->
+              <details class="bg-white rounded-lg shadow-subtle p-6 group">
+                <summary
+                  class="font-sans-custom text-lg font-semibold text-deep-space-blue cursor-pointer flex items-center justify-between"
+                >
+                  Werden meine Daten irgendwo gespeichert?
+                  <i
+                    data-lucide="chevron-down"
+                    class="w-5 h-5 transition-transform group-open:rotate-180"
+                  ></i>
+                </summary>
+                <p class="text-structure-grey mt-4 pl-2">
+                  Nein. InstaFile speichert ausschließlich Ihre lokalen
+                  Einstellungen (wie Dateinamen-Muster) im Browser. Ihre
+                  markierten Texte werden nur zum Zeitpunkt des Speicherns
+                  verarbeitet und nie gespeichert oder übertragen.
+                </p>
+              </details>
+
+              <!-- FAQ Item 4 -->
+              <details class="bg-white rounded-lg shadow-subtle p-6 group">
+                <summary
+                  class="font-sans-custom text-lg font-semibold text-deep-space-blue cursor-pointer flex items-center justify-between"
+                >
+                  Kann ich den Zielordner ändern?
+                  <i
+                    data-lucide="chevron-down"
+                    class="w-5 h-5 transition-transform group-open:rotate-180"
+                  ></i>
+                </summary>
+                <p class="text-structure-grey mt-4 pl-2">
+                  Standardmäßig landen Dateien im Download-Ordner. Sie können in
+                  den Einstellungen ein Ordner-Präfix festlegen (z. B.
+                  "InstaFile/"), um einen Unterordner zu erstellen.
+                </p>
+              </details>
+
+              <!-- FAQ Item 5 -->
+              <details class="bg-white rounded-lg shadow-subtle p-6 group">
+                <summary
+                  class="font-sans-custom text-lg font-semibold text-deep-space-blue cursor-pointer flex items-center justify-between"
+                >
+                  Ist InstaFile Open Source?
+                  <i
+                    data-lucide="chevron-down"
+                    class="w-5 h-5 transition-transform group-open:rotate-180"
+                  ></i>
+                </summary>
+                <p class="text-structure-grey mt-4 pl-2">
+                  Ja! Der gesamte Quellcode ist auf GitHub verfügbar. Sie können
+                  ihn einsehen, forken und zu Verbesserungen beitragen.
+                </p>
+              </details>
+            </div>
+          </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="instafile-gradient text-white py-20 md:py-28">
+          <div class="container mx-auto px-4">
+            <div data-scroll-fade class="max-w-3xl mx-auto text-center">
+              <h2 class="font-sans-custom text-4xl md:text-5xl font-bold mb-6">
+                Bereit, Zeit zu sparen?
+              </h2>
+              <p class="text-lg md:text-xl text-white/80 mb-10">
+                Installieren Sie InstaFile und erleben Sie, wie einfach das
+                Speichern sein kann.
+              </p>
+              <a
+                href="#"
+                target="_blank"
+                rel="noopener"
+                class="inline-flex items-center gap-3 bg-white text-instafile-primary font-semibold py-4 px-8 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 text-lg"
+              >
+                <i data-lucide="chrome" class="w-6 h-6"></i>
+                Jetzt im Chrome Web Store
+              </a>
+              <p class="text-sm text-white/60 mt-6">
+                Kostenlos · Kein Account erforderlich · DSGVO-konform
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Branding Section -->
+        <section class="py-16 bg-white border-t border-gray-100">
+          <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+              <p class="text-sm text-structure-grey/70 mb-4">Ein Projekt von</p>
+              <a href="index.html" class="inline-flex items-center gap-3 group">
+                <span
+                  class="font-sans-custom text-3xl font-bold text-deep-space-blue"
+                >
+                  DY<span class="text-living-coral">AI</span>
+                </span>
+              </a>
+              <p class="text-sm text-structure-grey mt-3 max-w-2xl mx-auto">
+                Design Your Augmented Intelligence – Wir gestalten die Zukunft
+                der Mensch-KI-Partnerschaft.
+              </p>
+              <a
+                href="index.html"
+                class="text-living-coral font-semibold text-sm mt-4 inline-block hover:underline"
+              >
+                Mehr über DYAI erfahren →
+              </a>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer id="main-footer"></footer>
+    </div>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
