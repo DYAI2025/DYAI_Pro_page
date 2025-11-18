@@ -625,7 +625,7 @@ const App = {
                 <!-- Project Image/Preview -->
                 <div class="relative h-48 bg-gradient-to-br from-deep-space-blue to-structure-grey overflow-hidden">
                     <div class="absolute inset-0 flex items-center justify-center">
-                        <i data-lucide="${projectCategories.find(c => c.id == project.category)?.icon || 'box'}"
+                        <i data-lucide="${Array.isArray(projectCategories) ? (projectCategories.find(c => c.id == project.category)?.icon || 'box') : 'box'}"
                            class="w-20 h-20 text-white/20"></i>
                     </div>
                     <div class="absolute top-4 left-4">
