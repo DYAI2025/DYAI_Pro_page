@@ -156,6 +156,7 @@ const App = {
     loadServices() {
         const container = document.getElementById('services-container');
         if (!container) return;
+        if (!Array.isArray(services)) return;
         let html = '';
         services.forEach((service, index) => {
             html += `
