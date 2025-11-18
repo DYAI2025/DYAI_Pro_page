@@ -62,7 +62,7 @@ class DarkModeManager {
                 }
             };
 
-            mediaQuery.addEventListener('change', handleChange);
+            mediaQuery.addListener(handleChange);
             handleChange(mediaQuery);
         }
     }
