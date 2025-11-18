@@ -145,7 +145,7 @@ const App = {
         if (!container) return;
 
         if (!Array.isArray(projects)) return;
-        const featured = projects.filter(p => p.featured);
+        const featured = (projects ?? []).filter(p => p.featured);
         container.innerHTML = featured.map((project, index) =>
             this.createProjectCard(project, index * 150, true)
         ).join('');
