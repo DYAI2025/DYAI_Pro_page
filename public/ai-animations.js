@@ -406,7 +406,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // const aiParticles = new AIParticles('ai-particles');
 
     // Initialize typing animation
-    const typeWriter = new TypeWriter('main-title', [
+    new TypeWriter('main-title', [
         'Design Your',
         'Develop Your',
         'Deploy Your',
