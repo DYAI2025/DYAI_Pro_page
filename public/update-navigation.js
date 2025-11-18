@@ -76,5 +76,16 @@ function updateActiveNavigation() {
     });
 }
 
-// Nach DOM Load ausführen
-document.addEventListener('DOMContentLoaded', updateActiveNavigation);
+// Navigation in den DOM einfügen und dann aktive Seite markieren
+document.addEventListener('DOMContentLoaded', function() {
+    // Versuche, einen Container mit der ID 'navigation-container' zu finden
+    let container = document.getElementById('navigation-container');
+    if (!container) {
+        // Falls nicht vorhanden, erstelle einen neuen Container und füge ihn am Anfang des Bodys ein
+        container = document.createElement('div');
+        container.id = 'navigation-container';
+        document.body.insertBefore(container, document.body.firstChild);
+    }
+    container.innerHTML = navigationHTML;
+    updateActiveNavigation();
+});
