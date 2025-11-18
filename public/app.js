@@ -144,7 +144,7 @@ const App = {
         const container = document.getElementById('home-featured-projects');
         if (!container) return;
 
-        const featured = projects.filter(p => p.featured);
+        const featured = Array.isArray(projects) ? projects.filter(p => p.featured) : [];
         container.innerHTML = featured.map((project, index) =>
             this.createProjectCard(project, index * 150, true)
         ).join('');
