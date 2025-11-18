@@ -178,6 +178,10 @@ const App = {
         const container = document.getElementById('insights-container');
         if (!container) return;
         let html = '';
+        if (!Array.isArray(insights)) {
+            container.innerHTML = '';
+            return;
+        }
         insights.forEach((post, index) => {
             html += `
                 <div data-scroll-fade style="animation-delay: ${index * 150}ms;" class="bg-white rounded-xl shadow-subtle overflow-hidden flex flex-col group hover:shadow-strong transition-shadow duration-300">
