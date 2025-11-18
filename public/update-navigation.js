@@ -1,4 +1,5 @@
 // Gemeinsame Navigation für alle Seiten
+// Shared navigation for all pages
 const navigationHTML = `
 <nav class="bg-white/80 backdrop-blur-lg shadow-subtle">
   <div class="container mx-auto px-4">
