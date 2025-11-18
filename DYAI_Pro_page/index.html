@@ -761,8 +761,51 @@
     <script src="ai-agent.js"></script>
     <script src="dark-mode.js"></script>
 
-    <!-- 11Labs ConvAI Widget - Temporarily disabled for production -->
-    <!-- <elevenlabs-convai agent-id="agent_01jyywpjhzfgj8eqe9hnyepkfx"></elevenlabs-convai>
-    <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script> -->
+    <!-- AI Avatar Assistant -->
+    <div id="ai-avatar-container" class="hidden">
+      <div id="ai-avatar-overlay" class="ai-avatar-overlay">
+        <div class="ai-avatar-window">
+          <div class="ai-avatar-header">
+            <div class="flex items-center gap-3">
+              <div class="avatar-status-indicator"></div>
+              <div>
+                <h3 class="text-white font-semibold">DYAI Assistant</h3>
+                <p class="text-white/70 text-xs">Sprechen Sie mit mir über AI-Integration</p>
+              </div>
+            </div>
+            <button id="close-avatar" class="text-white/70 hover:text-white transition-colors">
+              <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+          </div>
+
+          <div class="ai-avatar-body">
+            <!-- Avatar Canvas -->
+            <canvas id="avatar-canvas" width="300" height="300"></canvas>
+
+            <!-- Audio Visualizer -->
+            <div class="audio-visualizer">
+              <div class="visualizer-bar"></div>
+              <div class="visualizer-bar"></div>
+              <div class="visualizer-bar"></div>
+              <div class="visualizer-bar"></div>
+              <div class="visualizer-bar"></div>
+            </div>
+          </div>
+
+          <div class="ai-avatar-footer">
+            <p class="text-white/60 text-xs text-center">
+              Powered by ElevenLabs ConvAI
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ElevenLabs ConvAI Widget -->
+    <elevenlabs-convai agent-id="agent_01jyywpjhzfgj8eqe9hnyepkfx"></elevenlabs-convai>
+    <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
+
+    <!-- Avatar Controller -->
+    <script src="avatar-controller.js"></script>
   </body>
 </html>
