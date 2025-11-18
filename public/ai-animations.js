@@ -400,13 +400,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // }
 
     // Initialize neural network visualization
-    new NeuralNetworkVisualization('neural-visualization');
+    const neuralViz = new NeuralNetworkVisualization('neural-visualization');
 
     // Disabled AI particles for professional look
     // const aiParticles = new AIParticles('ai-particles');
 
     // Initialize typing animation
-    new TypeWriter('main-title', [
+    const typeWriter = new TypeWriter('main-title', [
         'Design Your',
         'Develop Your',
         'Deploy Your',
