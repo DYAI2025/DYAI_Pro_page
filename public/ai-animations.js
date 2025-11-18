@@ -400,7 +400,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // }
 
     // Initialize neural network visualization
-    const neuralViz = new NeuralNetworkVisualization('neural-visualization');
+    new NeuralNetworkVisualization('neural-visualization');
 
     // Disabled AI particles for professional look
     // const aiParticles = new AIParticles('ai-particles');
