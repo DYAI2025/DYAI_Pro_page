@@ -39,7 +39,7 @@ The build script (`npm run build`) does:
 
 ## Custom Domain
 
-The site is configured with the custom domain: `dyai_pro_page.app`
+The site is configured with the custom domain: `dyai-pro-page.app`
 
 To configure DNS:
 1. Add an A record pointing to GitHub Pages IPs:
