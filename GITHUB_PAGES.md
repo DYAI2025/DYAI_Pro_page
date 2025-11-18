@@ -79,24 +79,39 @@ The build script (`npm run build`) does:
 4. Creates `.nojekyll` file (prevents Jekyll processing)
 5. Copies `CNAME` file for custom domain configuration
 
-## Custom Domain
+## Access Your Site
 
-The site is configured with the custom domain: `dyai-pro-page.app`
+Your site will be available at the GitHub Pages URL:
 
-To configure DNS:
-1. Add an A record pointing to GitHub Pages IPs:
-   - 185.199.108.153
-   - 185.199.109.153
-   - 185.199.110.153
-   - 185.199.111.153
-2. Or add a CNAME record pointing to: `DYAI2025.github.io`
+**🌐 https://DYAI2025.github.io/DYAI_Pro_page/**
+
+### Optional: Custom Domain
+
+If you want to use a custom domain:
+
+1. **Purchase a domain** (e.g., from Namecheap, GoDaddy, Cloudflare)
+2. **Create a CNAME file** in the repository root with your domain name:
+   ```bash
+   echo "yourdomain.com" > CNAME
+   ```
+3. **Configure DNS records** at your domain registrar:
+   - **A Records** pointing to GitHub Pages IPs:
+     - 185.199.108.153
+     - 185.199.109.153
+     - 185.199.110.153
+     - 185.199.111.153
+   - **OR a CNAME record** pointing to: `DYAI2025.github.io`
+4. **Enable HTTPS** in GitHub Pages settings (automatic after DNS propagation)
 
 ## GitHub Pages Settings
 
 To enable GitHub Pages in your repository:
-1. Go to Settings → Pages
-2. Source: GitHub Actions
-3. The workflow will handle deployment automatically
+1. Go to **Settings → Pages**
+2. Under **Source**, select: **"GitHub Actions"**
+3. The workflow will automatically deploy on every push
+4. Your site will be live at: `https://DYAI2025.github.io/DYAI_Pro_page/`
+
+**Note**: DNS propagation for custom domains can take up to 48 hours.
 
 ## Local Testing
 
