@@ -15,7 +15,7 @@ const navigationHTML = `
         <a href="services.html" class="nav-link px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200">Angebote</a>
         <a href="insights.html" class="nav-link px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200">Einblicke</a>
         <div class="relative group">
-          <button type="button" class="nav-link px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200 flex items-center gap-1">
+          <button type="button" class="nav-link px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200 flex items-center gap-1" aria-label="Weitere Optionen" aria-haspopup="true">
             Mehr
             <i data-lucide="chevron-down" class="w-4 h-4"></i>
           </button>
