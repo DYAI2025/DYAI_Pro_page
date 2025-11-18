@@ -156,7 +156,7 @@ const App = {
         const container = document.getElementById('services-container');
         if (!container) return;
         let html = '';
-        services.forEach((service, index) => {
+        (Array.isArray(services) ? services : []).forEach((service, index) => {
             html += `
                 <div data-scroll-fade style="animation-delay: ${index * 150}ms;" class="bg-white rounded-xl shadow-subtle p-8 flex flex-col hover:shadow-strong transition-shadow duration-300">
                     <div class="flex items-center justify-center w-16 h-16 rounded-full bg-living-coral/10 mb-6">
