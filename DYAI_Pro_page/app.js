@@ -587,14 +587,17 @@ const App = {
         const gridContainer = document.getElementById('projects-grid');
         if (!featuredContainer || !gridContainer) return;
 
+        // Defensive: ensure projects is a defined array
+        const safeProjects = Array.isArray(projects) ? projects : [];
+
         // Load featured projects
-        const featured = projects.filter(p => p.featured);
+        const featured = safeProjects.filter(p => p.featured);
         featuredContainer.innerHTML = featured.map((project, index) =>
             this.createProjectCard(project, index * 150, true)
         ).join('');
 
         // Load all projects
-        gridContainer.innerHTML = projects.map((project, index) =>
+        gridContainer.innerHTML = safeProjects.map((project, index) =>
             this.createProjectCard(project, index * 100, false)
         ).join('');
 
