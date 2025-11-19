@@ -419,6 +419,7 @@ const App = {
     initSmartNavigation() {
         // Track user behavior for smart suggestions
         let scrollDepth = 0;
+
         window.addEventListener('scroll', () => {
             const currentScroll = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
             scrollDepth = Math.max(scrollDepth, currentScroll);
