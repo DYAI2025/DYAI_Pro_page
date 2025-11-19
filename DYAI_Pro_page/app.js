@@ -16,7 +16,8 @@ const App = {
         const headerContainer = document.getElementById('main-header');
         const footerContainer = document.getElementById('main-footer');
         if (headerContainer) {
-            headerContainer.innerHTML = this.getHeaderHTML();
+            // Header is already in HTML, don't override it
+            // headerContainer.innerHTML = this.getHeaderHTML();
             this.initNavigation();
         }
         if (footerContainer) {
