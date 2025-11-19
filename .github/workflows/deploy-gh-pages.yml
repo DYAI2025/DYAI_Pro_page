@@ -57,6 +57,7 @@ jobs:
           ls -la DYAI_Pro_page/ || echo "DYAI_Pro_page directory not found!"
           ls -la DYAI_Pro_page/instafile_images/ || echo "instafile_images not found!"
           test -f package.json && echo "✓ package.json exists" || echo "✗ package.json missing!"
+          test -f CNAME && echo "✓ CNAME exists" || echo "✗ CNAME missing!"
 
       - name: Install dependencies
         run: |
@@ -87,6 +88,7 @@ jobs:
             # Verify critical files
             test -f public/index.html && echo "✓ index.html exists" || echo "✗ index.html missing!"
             test -f public/.nojekyll && echo "✓ .nojekyll exists" || echo "✗ .nojekyll missing!"
+            test -f public/CNAME && echo "✓ CNAME exists" || echo "✗ CNAME missing!"
             test -d public/instafile_images && echo "✓ instafile_images exists" || echo "✗ instafile_images missing!"
 
             # Count files

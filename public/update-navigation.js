@@ -76,4 +76,10 @@ function updateActiveNavigation() {
 }
 
 // Nach DOM Load ausführen
-document.addEventListener('DOMContentLoaded', updateActiveNavigation);
+document.addEventListener('DOMContentLoaded', () => {
+    const navContainer = document.getElementById('navigation-container');
+    if (navContainer) {
+        navContainer.innerHTML = navigationHTML;
+    }
+    updateActiveNavigation();
+});
