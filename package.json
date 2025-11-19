@@ -4,7 +4,7 @@
   "description": "Dieses Repository enthält die statische DYAI-Website und eine Deploy-Konfiguration für Render.com. Die Seite wird als statische Website bereitgestellt.",
   "main": "index.html",
   "scripts": {
-    "build": "mkdir -p public && find DYAI_Pro_page -maxdepth 1 \\( -name '*.html' -o -name '*.css' -o -name '*.js' \\) -exec cp {} public/ \\; && if [ -d DYAI_Pro_page/instafile_images ]; then cp -r DYAI_Pro_page/instafile_images public/; fi && touch public/.nojekyll",
+    "build": "mkdir -p public && find DYAI_Pro_page -maxdepth 1 \\( -name '*.html' -o -name '*.css' -o -name '*.js' \\) -exec cp {} public/ \\; && if [ -d DYAI_Pro_page/instafile_images ]; then cp -r DYAI_Pro_page/instafile_images public/; fi && touch public/.nojekyll && if [ -f CNAME ]; then cp CNAME public/; fi",
     "start": "python -m http.server 8080",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
