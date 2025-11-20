@@ -4,6 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DYAI - Design Your Augmented Intelligence</title>
+    <script>
+      // Tailwind Dark Mode Configuration
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              'deep-space-blue': '#0D1B2A',
+              'living-coral': '#FF6F61',
+              'future-white': '#F0F4F8',
+              'structure-grey': '#415A77',
+            }
+          }
+        }
+      }
+    </script>
     <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="animations.css" />
@@ -30,7 +46,7 @@
     <div id="app" class="flex flex-col min-h-screen relative z-10">
       <header id="main-header" class="sticky top-0 z-50">
         <nav
-          class="bg-white/95 backdrop-blur-lg shadow-subtle border-b border-structure-grey/10"
+          class="bg-white/95 dark:bg-slate-900/95 backdrop-blur-lg shadow-subtle border-b border-structure-grey/10 dark:border-slate-700/50"
         >
           <div class="container mx-auto px-4">
             <div class="flex justify-between items-center h-16">
@@ -72,26 +88,26 @@
                     <i data-lucide="chevron-down" class="w-4 h-4"></i>
                   </button>
                   <div
-                    class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg border border-structure-grey/10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"
+                    class="absolute right-0 mt-2 w-48 bg-white dark:bg-slate-800 rounded-md shadow-lg border border-structure-grey/10 dark:border-slate-700 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"
                   >
                     <a
                       href="#"
-                      class="block px-4 py-2 text-sm text-structure-grey hover:bg-future-white"
+                      class="block px-4 py-2 text-sm text-structure-grey dark:text-slate-300 hover:bg-future-white dark:hover:bg-slate-700"
                       >Downloads</a
                     >
                     <a
                       href="contact.html"
-                      class="block px-4 py-2 text-sm text-structure-grey hover:bg-future-white"
+                      class="block px-4 py-2 text-sm text-structure-grey dark:text-slate-300 hover:bg-future-white dark:hover:bg-slate-700"
                       >Kontakt</a
                     >
                     <a
                       href="impressum.html"
-                      class="block px-4 py-2 text-sm text-structure-grey hover:bg-future-white"
+                      class="block px-4 py-2 text-sm text-structure-grey dark:text-slate-300 hover:bg-future-white dark:hover:bg-slate-700"
                       >Impressum</a
                     >
                     <a
                       href="privacy.html"
-                      class="block px-4 py-2 text-sm text-structure-grey hover:bg-future-white"
+                      class="block px-4 py-2 text-sm text-structure-grey dark:text-slate-300 hover:bg-future-white dark:hover:bg-slate-700"
                       >Datenschutz</a
                     >
                   </div>
@@ -102,13 +118,15 @@
               <div class="flex items-center gap-6">
                 <!-- Dark Mode Toggle with Label -->
                 <div class="flex items-center gap-2">
-                  <span class="text-sm font-medium text-structure-grey hidden sm:block">Dark Mode</span>
+                  <span class="text-sm font-medium text-structure-grey dark:text-slate-300 hidden sm:block">Dark Mode</span>
                   <button
                     id="dark-mode-toggle"
-                    class="dark-mode-toggle"
+                    class="dark-mode-toggle relative"
                     title="Dark Mode umschalten"
                     type="button"
                   >
+                    <i data-lucide="sun" class="w-4 h-4 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 dark:opacity-0 opacity-100 transition-opacity"></i>
+                    <i data-lucide="moon" class="w-4 h-4 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 dark:opacity-100 opacity-0 transition-opacity"></i>
                   </button>
                 </div>
 
@@ -135,37 +153,37 @@
             <!-- Mobile Navigation -->
             <div
               id="mobile-menu"
-              class="md:hidden hidden border-t border-structure-grey/10 py-4"
+              class="md:hidden hidden border-t border-structure-grey/10 dark:border-slate-700 py-4 dark:bg-slate-900"
             >
               <div class="space-y-2">
                 <a
                   href="index.html"
-                  class="block px-4 py-2 text-sm font-medium text-structure-grey hover:text-deep-space-blue"
+                  class="block px-4 py-2 text-sm font-medium text-structure-grey dark:text-slate-300 hover:text-deep-space-blue dark:hover:text-living-coral"
                   >Start</a
                 >
                 <a
                   href="philosophy.html"
-                  class="block px-4 py-2 text-sm font-medium text-structure-grey hover:text-deep-space-blue"
+                  class="block px-4 py-2 text-sm font-medium text-structure-grey dark:text-slate-300 hover:text-deep-space-blue dark:hover:text-living-coral"
                   >Philosophie</a
                 >
                 <a
                   href="services.html"
-                  class="block px-4 py-2 text-sm font-medium text-structure-grey hover:text-deep-space-blue"
+                  class="block px-4 py-2 text-sm font-medium text-structure-grey dark:text-slate-300 hover:text-deep-space-blue dark:hover:text-living-coral"
                   >Angebote</a
                 >
                 <a
                   href="insights.html"
-                  class="block px-4 py-2 text-sm font-medium text-structure-grey hover:text-deep-space-blue"
+                  class="block px-4 py-2 text-sm font-medium text-structure-grey dark:text-slate-300 hover:text-deep-space-blue dark:hover:text-living-coral"
                   >Einblicke</a
                 >
                 <a
                   href="#"
-                  class="block px-4 py-2 text-sm font-medium text-structure-grey hover:text-deep-space-blue"
+                  class="block px-4 py-2 text-sm font-medium text-structure-grey dark:text-slate-300 hover:text-deep-space-blue dark:hover:text-living-coral"
                   >Downloads</a
                 >
                 <a
                   href="contact.html"
-                  class="block px-4 py-2 text-sm font-medium text-structure-grey hover:text-deep-space-blue"
+                  class="block px-4 py-2 text-sm font-medium text-structure-grey dark:text-slate-300 hover:text-deep-space-blue dark:hover:text-living-coral"
                   >Kontakt</a
                 >
               </div>
@@ -232,16 +250,16 @@
         </section>
 
         <!-- Philosophie Section -->
-        <section class="py-20 md:py-32 bg-white">
+        <section class="py-20 md:py-32 bg-white dark:bg-slate-900">
           <div class="container mx-auto px-4">
             <div class="max-w-5xl mx-auto">
               <h2
-                class="font-sans-custom text-3xl md:text-4xl font-bold text-deep-space-blue mb-8 text-center"
+                class="font-sans-custom text-3xl md:text-4xl font-bold text-deep-space-blue dark:text-slate-100 dark:text-slate-100 mb-8 text-center"
               >
                 Die Revolution ist psychologisch, nicht technologisch
               </h2>
               <div class="prose prose-lg max-w-none mb-12">
-                <p class="text-structure-grey leading-relaxed text-center">
+                <p class="text-structure-grey dark:text-slate-300 leading-relaxed text-center">
                   KI reflektiert unsere Stärken und Schwächen. Die
                   Herausforderung liegt nicht in der Technologie selbst, sondern
                   darin, wie Organisationen und Menschen mit ihr umgehen.
@@ -252,7 +270,7 @@
               </div>
               <div class="grid md:grid-cols-3 gap-8">
                 <div
-                  class="bg-white p-8 rounded-xl shadow-subtle hover:shadow-strong transition-shadow duration-300"
+                  class="bg-white dark:bg-slate-800 p-8 rounded-xl shadow-subtle hover:shadow-strong transition-shadow duration-300"
                 >
                   <div
                     class="flex items-center justify-center w-16 h-16 rounded-full bg-living-coral/10 mb-6"
@@ -263,17 +281,17 @@
                     ></i>
                   </div>
                   <h3
-                    class="font-sans-custom text-xl font-bold text-deep-space-blue mb-3"
+                    class="font-sans-custom text-xl font-bold text-deep-space-blue dark:text-slate-100 mb-3"
                   >
                     Integration vor Innovation
                   </h3>
-                  <p class="text-base text-structure-grey">
+                  <p class="text-base text-structure-grey dark:text-slate-300">
                     Organisationale Selbsterkenntnis als Fundament für
                     erfolgreiche KI-Implementation
                   </p>
                 </div>
                 <div
-                  class="bg-white p-8 rounded-xl shadow-subtle hover:shadow-strong transition-shadow duration-300"
+                  class="bg-white dark:bg-slate-800 p-8 rounded-xl shadow-subtle hover:shadow-strong transition-shadow duration-300"
                 >
                   <div
                     class="flex items-center justify-center w-16 h-16 rounded-full bg-living-coral/10 mb-6"
@@ -284,17 +302,17 @@
                     ></i>
                   </div>
                   <h3
-                    class="font-sans-custom text-xl font-bold text-deep-space-blue mb-3"
+                    class="font-sans-custom text-xl font-bold text-deep-space-blue dark:text-slate-100 mb-3"
                   >
                     Transparenz über Kontrolle
                   </h3>
-                  <p class="text-base text-structure-grey">
+                  <p class="text-base text-structure-grey dark:text-slate-300">
                     Vertrauensbasierte Führung statt illusorischer
                     Kontrollmechanismen
                   </p>
                 </div>
                 <div
-                  class="bg-white p-8 rounded-xl shadow-subtle hover:shadow-strong transition-shadow duration-300"
+                  class="bg-white dark:bg-slate-800 p-8 rounded-xl shadow-subtle hover:shadow-strong transition-shadow duration-300"
                 >
                   <div
                     class="flex items-center justify-center w-16 h-16 rounded-full bg-living-coral/10 mb-6"
@@ -305,11 +323,11 @@
                     ></i>
                   </div>
                   <h3
-                    class="font-sans-custom text-xl font-bold text-deep-space-blue mb-3"
+                    class="font-sans-custom text-xl font-bold text-deep-space-blue dark:text-slate-100 mb-3"
                   >
                     Relationaler Ansatz
                   </h3>
-                  <p class="text-base text-structure-grey">
+                  <p class="text-base text-structure-grey dark:text-slate-300">
                     KI als kollaborativer Partner für nachhaltige Wertschöpfung
                   </p>
                 </div>
@@ -319,18 +337,18 @@
         </section>
 
         <!-- Unser Angebot Section -->
-        <section class="py-20 md:py-32 bg-future-white">
+        <section class="py-20 md:py-32 bg-future-white dark:bg-slate-800">
           <div class="container mx-auto px-4">
             <div class="max-w-6xl mx-auto">
               <div class="text-center mb-16">
                 <h2
-                  class="font-sans-custom text-3xl md:text-4xl font-bold text-deep-space-blue mb-6"
+                  class="font-sans-custom text-3xl md:text-4xl font-bold text-deep-space-blue dark:text-slate-100 mb-6"
                 >
                   The Frontier Practice – Strategische Partnerschaft für die
                   Mensch-KI-Integration
                 </h2>
                 <div class="max-w-4xl mx-auto text-left space-y-4">
-                  <p class="text-lg text-structure-grey text-center">
+                  <p class="text-lg text-structure-grey dark:text-slate-300 text-center">
                     Augmentierte Intelligenz verändert nicht nur Technologien,
                     sondern Entscheidungslogiken. Unternehmen investieren
                     Milliarden in Systeme – doch kaum jemand bereitet Menschen
@@ -338,7 +356,7 @@
                     liegt nicht im Code, sondern in der Art, wie Organisationen
                     mit dieser Beschleunigung umgehen.
                   </p>
-                  <p class="text-lg text-structure-grey text-center">
+                  <p class="text-lg text-structure-grey dark:text-slate-300 text-center">
                     The Frontier Practice begleitet Führungsteams an dieser
                     Schwelle. Unser Ansatz verbindet strategische Klarheit,
                     psychologische Tiefe und organisatorische Umsetzbarkeit.
@@ -358,7 +376,7 @@
 
               <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
                 <div
-                  class="bg-white p-8 rounded-xl shadow-subtle hover:shadow-strong transition-shadow duration-300"
+                  class="bg-white dark:bg-slate-800 p-8 rounded-xl shadow-subtle hover:shadow-strong transition-shadow duration-300"
                 >
                   <div
                     class="flex items-center justify-center w-16 h-16 rounded-full bg-living-coral/10 mb-6"
@@ -369,7 +387,7 @@
                     ></i>
                   </div>
                   <h3
-                    class="font-sans-custom text-xl font-bold text-deep-space-blue mb-3"
+                    class="font-sans-custom text-xl font-bold text-deep-space-blue dark:text-slate-100 mb-3"
                   >
                     Human-AI Integration
                   </h3>
@@ -389,7 +407,7 @@
                 </div>
 
                 <div
-                  class="bg-white p-8 rounded-xl shadow-subtle hover:shadow-strong transition-shadow duration-300"
+                  class="bg-white dark:bg-slate-800 p-8 rounded-xl shadow-subtle hover:shadow-strong transition-shadow duration-300"
                 >
                   <div
                     class="flex items-center justify-center w-16 h-16 rounded-full bg-living-coral/10 mb-6"
@@ -400,7 +418,7 @@
                     ></i>
                   </div>
                   <h3
-                    class="font-sans-custom text-xl font-bold text-deep-space-blue mb-3"
+                    class="font-sans-custom text-xl font-bold text-deep-space-blue dark:text-slate-100 mb-3"
                   >
                     AI Leadership & Operating Model
                   </h3>
@@ -421,7 +439,7 @@
                 </div>
 
                 <div
-                  class="bg-white p-8 rounded-xl shadow-subtle hover:shadow-strong transition-shadow duration-300"
+                  class="bg-white dark:bg-slate-800 p-8 rounded-xl shadow-subtle hover:shadow-strong transition-shadow duration-300"
                 >
                   <div
                     class="flex items-center justify-center w-16 h-16 rounded-full bg-living-coral/10 mb-6"
@@ -432,7 +450,7 @@
                     ></i>
                   </div>
                   <h3
-                    class="font-sans-custom text-xl font-bold text-deep-space-blue mb-3"
+                    class="font-sans-custom text-xl font-bold text-deep-space-blue dark:text-slate-100 mb-3"
                   >
                     Executive AI Sparring & Crisis Navigation
                   </h3>
@@ -452,7 +470,7 @@
                 </div>
 
                 <div
-                  class="bg-white p-8 rounded-xl shadow-subtle hover:shadow-strong transition-shadow duration-300"
+                  class="bg-white dark:bg-slate-800 p-8 rounded-xl shadow-subtle hover:shadow-strong transition-shadow duration-300"
                 >
                   <div
                     class="flex items-center justify-center w-16 h-16 rounded-full bg-living-coral/10 mb-6"
@@ -463,7 +481,7 @@
                     ></i>
                   </div>
                   <h3
-                    class="font-sans-custom text-xl font-bold text-deep-space-blue mb-3"
+                    class="font-sans-custom text-xl font-bold text-deep-space-blue dark:text-slate-100 mb-3"
                   >
                     LeanDeep Diagnostics
                   </h3>
@@ -583,7 +601,7 @@
               >
                 Unsere Kernprinzipien
               </h2>
-              <p class="text-lg md:text-xl text-structure-grey">
+              <p class="text-lg md:text-xl text-structure-grey dark:text-slate-300">
                 Die Philosophie von DYAI basiert auf vier fundamentalen
                 Eintrittspunkten, die den Umgang mit Künstlicher Intelligenz
                 leiten.
@@ -606,11 +624,11 @@
                   ></i>
                 </div>
                 <h3
-                  class="font-sans-custom text-xl font-bold text-deep-space-blue mb-3"
+                  class="font-sans-custom text-xl font-bold text-deep-space-blue dark:text-slate-100 mb-3"
                 >
                   Partnerschaft statt Werkzeug
                 </h3>
-                <p class="text-base text-structure-grey">
+                <p class="text-base text-structure-grey dark:text-slate-300">
                   Wir betrachten KI nicht als bloßes Instrument, sondern als
                   einen Partner für symbiotische Beziehungen und neue Formen der
                   Zusammenarbeit.
@@ -631,11 +649,11 @@
                   ></i>
                 </div>
                 <h3
-                  class="font-sans-custom text-xl font-bold text-deep-space-blue mb-3"
+                  class="font-sans-custom text-xl font-bold text-deep-space-blue dark:text-slate-100 mb-3"
                 >
                   Proaktive Zukunftsgestaltung
                 </h3>
-                <p class="text-base text-structure-grey">
+                <p class="text-base text-structure-grey dark:text-slate-300">
                   Wir ergreifen die Initiative und gestalten aktiv die Welt von
                   morgen, anstatt passiv auf Entwicklungen zu reagieren.
                 </p>
@@ -655,11 +673,11 @@
                   ></i>
                 </div>
                 <h3
-                  class="font-sans-custom text-xl font-bold text-deep-space-blue mb-3"
+                  class="font-sans-custom text-xl font-bold text-deep-space-blue dark:text-slate-100 mb-3"
                 >
                   Menschzentrierte Evolution
                 </h3>
-                <p class="text-base text-structure-grey">
+                <p class="text-base text-structure-grey dark:text-slate-300">
                   Die Integration von KI ist eine Chance für menschliches
                   Wachstum, um Empathie neu zu lernen und Bewusstsein zu
                   erweitern.
@@ -677,11 +695,11 @@
                   <i data-lucide="search" class="w-8 h-8 text-living-coral"></i>
                 </div>
                 <h3
-                  class="font-sans-custom text-xl font-bold text-deep-space-blue mb-3"
+                  class="font-sans-custom text-xl font-bold text-deep-space-blue dark:text-slate-100 mb-3"
                 >
                   Bewusste Auseinandersetzung
                 </h3>
-                <p class="text-base text-structure-grey">
+                <p class="text-base text-structure-grey dark:text-slate-300">
                   Wir fördern eine offene, kritische und neugierige
                   Auseinandersetzung, um Potenziale zu nutzen und Risiken zu
                   managen.
@@ -692,7 +710,7 @@
         </section>
 
         <!-- Featured Projects Section -->
-        <section class="py-20 md:py-32 bg-white">
+        <section class="py-20 md:py-32 bg-white dark:bg-slate-900">
           <div class="container mx-auto px-4">
             <div class="text-center mb-12">
               <div class="inline-block px-4 py-2 bg-living-coral/10 rounded-full mb-4">
@@ -701,7 +719,7 @@
               <h2 class="font-sans-custom text-4xl md:text-5xl font-bold text-deep-space-blue mb-4">
                 Projekte an der Frontier
               </h2>
-              <p class="text-lg md:text-xl text-structure-grey max-w-3xl mx-auto">
+              <p class="text-lg md:text-xl text-structure-grey dark:text-slate-300 max-w-3xl mx-auto">
                 Praktische Implementierungen unserer Philosophie: Von AI Agents über RAG Systems bis hin zu Research Tools
               </p>
             </div>

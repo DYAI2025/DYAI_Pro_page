@@ -29,8 +29,10 @@ class DarkModeManager {
         const html = document.documentElement;
 
         if (theme === 'dark') {
+            html.classList.add('dark');
             html.setAttribute('data-theme', 'dark');
         } else {
+            html.classList.remove('dark');
             html.removeAttribute('data-theme');
         }
 
@@ -48,7 +50,7 @@ class DarkModeManager {
     }
 
     getCurrentTheme() {
-        return document.documentElement.getAttribute('data-theme') || 'light';
+        return document.documentElement.classList.contains('dark') ? 'dark' : 'light';
     }
 
     watchSystemTheme() {
