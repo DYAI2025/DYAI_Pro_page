@@ -146,7 +146,7 @@ const App = {
         if (!container) return;
 
         if (!Array.isArray(projects)) return;
-        const featured = (projects ?? []).filter(p => p.featured);
+        const featured = projects.filter(p => p.featured);
         container.innerHTML = featured.map((project, index) =>
             this.createProjectCard(project, index * 150, true)
         ).join('');
@@ -157,7 +157,6 @@ const App = {
     loadServices() {
         const container = document.getElementById('services-container');
         if (!container) return;
-        if (!Array.isArray(services)) return;
         let html = '';
         services.forEach((service, index) => {
             html += `
@@ -180,7 +179,6 @@ const App = {
     loadInsights() {
         const container = document.getElementById('insights-container');
         if (!container) return;
-        if (!Array.isArray(insights)) return;
         let html = '';
         insights.forEach((post, index) => {
             html += `
@@ -627,7 +625,7 @@ const App = {
                 <!-- Project Image/Preview -->
                 <div class="relative h-48 bg-gradient-to-br from-deep-space-blue to-structure-grey overflow-hidden">
                     <div class="absolute inset-0 flex items-center justify-center">
-                        <i data-lucide="${Array.isArray(projectCategories) ? (projectCategories.find(c => c.id == project.category)?.icon || 'box') : 'box'}"
+                        <i data-lucide="${projectCategories.find(c => c.id == project.category)?.icon || 'box'}"
                            class="w-20 h-20 text-white/20"></i>
                     </div>
                     <div class="absolute top-4 left-4">
