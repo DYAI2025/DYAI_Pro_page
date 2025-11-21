@@ -26,19 +26,9 @@
       const englishText = element.getAttribute('data-en');
 
       if (lang === 'de' && germanText) {
-        // Check if the element contains HTML (like <strong> tags)
-        if (germanText.includes('<')) {
-          element.innerHTML = germanText;
-        } else {
-          element.textContent = germanText;
-        }
+        element.textContent = germanText;
       } else if (lang === 'en' && englishText) {
-        // Check if the element contains HTML (like <strong> tags)
-        if (englishText.includes('<')) {
-          element.innerHTML = englishText;
-        } else {
-          element.textContent = englishText;
-        }
+        element.textContent = englishText;
       }
     });
 
