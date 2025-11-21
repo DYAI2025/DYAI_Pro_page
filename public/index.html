@@ -4,31 +4,45 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DYAI - Design Your Augmented Intelligence</title>
-    
-    <!-- Resource hints for better performance -->
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
-    <link rel="dns-prefetch" href="https://unpkg.com" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    
+    <script>
+      // Tailwind Dark Mode Configuration
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              'deep-space-blue': '#0D1B2A',
+              'living-coral': '#FF6F61',
+              'future-white': '#F0F4F8',
+              'structure-grey': '#415A77',
+            }
+          }
+        }
+      }
+    </script>
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="animations.css" />
-    <!-- Preload critical fonts for faster rendering -->
-    <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/poppins/v20/pxiEyp8kv8JHgFVrFJDUc1NECPY.woff2" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Poppins:wght@400;600;700&family=Orbitron:wght@700&display=swap&subset=latin"
+      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;600;700&family=Orbitron:wght@400;700;900&display=swap"
       rel="stylesheet"
-      media="print" onload="this.media='all'"
     />
-    <noscript>
-      <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Poppins:wght@400;600;700&family=Orbitron:wght@700&display=swap&subset=latin" rel="stylesheet" />
-    </noscript>
-    <script src="https://unpkg.com/lucide@latest" defer></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   </head>
   <body
     class="bg-future-white text-structure-grey font-sans-custom overflow-x-hidden"
   >
+    <div id="particles-background" class="fixed inset-0 z-0"></div>
+    <div
+      id="neural-network-canvas"
+      class="fixed inset-0 z-0 pointer-events-none"
+    ></div>
     <div id="app" class="flex flex-col min-h-screen relative z-10">
       <header id="main-header" class="sticky top-0 z-50">
         <nav
@@ -220,16 +234,6 @@
                   data-de="Wir verstehen KI nicht als künstliche Intelligenz. Denn was sollte an Intelligenz künstlich sein? Im Kern ist sie keine Nachbildung des Menschen, sondern eine Erweiterung seiner Fähigkeiten – eine neue Form der Zusammenarbeit zwischen Denken, Sprache und Technologie. KI ist weniger ein Ersatz als ein Verstärker: Sie erweitert, was wir wissen, schaffen und verstehen können. Und sie spricht in der ersten Programmiersprache, die wir alle beherrschen – unserer menschlichen Sprache. Entwickelt von Menschen, für Menschen."
                   data-en="We don't understand AI as artificial intelligence. Because what should be artificial about intelligence? At its core, it's not an imitation of humans, but an augmentation of their capabilities – a new form of collaboration between thinking, language, and technology. AI is less a replacement than an amplifier: it extends what we can know, create, and understand. And it speaks in the first programming language we all master – our human language. Developed by humans, for humans."
                 >
-<<<<<<< HEAD
-                  KI ist keine künstliche Intelligenz. Sie ist eine bewusste Erweiterung
-                  des eigenen Denkens – ein evolutionäres Werkzeug, das nicht künstlich,
-                  sondern selbstbestimmt erweitert. Wir sind die erste Generation, die
-                  Intelligenz gestaltet. Nicht als Bedrohung oder Spielerei, sondern als
-                  Chance, Bewusstsein und Wirtschaft neu zu denken. KI ist weder Magie noch
-                  Mechanik – sie ist eine neue Kategorie von Realität.
-                  <span class="text-slate-200 font-medium"
-                    >Design Your Augmented Intelligence.</span
-=======
                   Wir verstehen KI nicht als künstliche Intelligenz. Denn was
                   sollte an Intelligenz künstlich sein? Im Kern ist sie keine
                   Nachbildung des Menschen, sondern eine Erweiterung seiner
@@ -241,7 +245,6 @@
                   menschlichen Sprache. Entwickelt von Menschen, für Menschen.
                   <span class="text-slate-200 font-medium lang-text" data-de="Nicht künstlich. Augmentiert." data-en="Not artificial. Augmented."
                     >Nicht künstlich. Augmentiert.</span
->>>>>>> 5eece72243d1df00505240cb976f6dc5dd3d4c10
                   >
                 </p>
               </div>
@@ -269,17 +272,9 @@
                 data-de="Die Revolution ist psychologisch, nicht technologisch"
                 data-en="The Revolution is Psychological, Not Technological"
               >
-                Radikale Offenheit. Pioniergeist. Gestaltungswille.
+                Die Revolution ist psychologisch, nicht technologisch
               </h2>
               <div class="prose prose-lg max-w-none mb-12">
-<<<<<<< HEAD
-                <p class="text-structure-grey leading-relaxed text-center">
-                  Es gibt keinen fertigen Plan. Wir sind Pioniere – die Großeltern des KI-Zeitalters.
-                  Wie frühere Generationen die industrielle Welt erschaffen haben, gestalten wir heute
-                  die Grundlagen der Intelligenzarchitektur von morgen. Der Weg entsteht im Machen.
-                  Durch eigene Agenten, Prototypen, Experimente. Nur wer offen bleibt, bleibt kreativ
-                  und überlebensfähig.
-=======
                 <p class="text-structure-grey dark:text-slate-300 leading-relaxed text-center lang-text"
                    data-de="KI reflektiert unsere Stärken und Schwächen. Die Herausforderung liegt nicht in der Technologie selbst, sondern darin, wie Organisationen und Menschen mit ihr umgehen. Während Unternehmen in Systeme investieren, vernachlässigen sie die psychologische Vorbereitung ihrer Teams auf diese fundamentale Veränderung."
                    data-en="AI reflects our strengths and weaknesses. The challenge lies not in the technology itself, but in how organizations and people deal with it. While companies invest in systems, they neglect the psychological preparation of their teams for this fundamental change."
@@ -290,7 +285,6 @@
                   Während Unternehmen in Systeme investieren, vernachlässigen
                   sie die psychologische Vorbereitung ihrer Teams auf diese
                   fundamentale Veränderung.
->>>>>>> 5eece72243d1df00505240cb976f6dc5dd3d4c10
                 </p>
               </div>
               <div class="grid md:grid-cols-3 gap-8">
@@ -310,20 +304,14 @@
                     data-de="Integration vor Innovation"
                     data-en="Integration Before Innovation"
                   >
-                    KI als Partner, nicht als Werkzeug
+                    Integration vor Innovation
                   </h3>
-<<<<<<< HEAD
-                  <p class="text-base text-structure-grey">
-                    Sprache ist die Schnittstelle. Wer lernt, mit KI sinnvoll zu sprechen,
-                    entfesselt ihr Potenzial für hybride Teams.
-=======
                   <p class="text-base text-structure-grey dark:text-slate-300 lang-text"
                      data-de="Organisationale Selbsterkenntnis als Fundament für erfolgreiche KI-Implementation"
                      data-en="Organizational self-awareness as the foundation for successful AI implementation"
                   >
                     Organisationale Selbsterkenntnis als Fundament für
                     erfolgreiche KI-Implementation
->>>>>>> 5eece72243d1df00505240cb976f6dc5dd3d4c10
                   </p>
                 </div>
                 <div
@@ -342,20 +330,14 @@
                     data-de="Transparenz über Kontrolle"
                     data-en="Transparency Over Control"
                   >
-                    Lernen durch Ausprobieren
+                    Transparenz über Kontrolle
                   </h3>
-<<<<<<< HEAD
-                  <p class="text-base text-structure-grey">
-                    Keine fertigen Antworten. Pionierarbeit durch eigene Agenten,
-                    Prototypen und Experimente.
-=======
                   <p class="text-base text-structure-grey dark:text-slate-300 lang-text"
                      data-de="Vertrauensbasierte Führung statt illusorischer Kontrollmechanismen"
                      data-en="Trust-based leadership instead of illusory control mechanisms"
                   >
                     Vertrauensbasierte Führung statt illusorischer
                     Kontrollmechanismen
->>>>>>> 5eece72243d1df00505240cb976f6dc5dd3d4c10
                   </p>
                 </div>
                 <div
@@ -374,19 +356,13 @@
                     data-de="Relationaler Ansatz"
                     data-en="Relational Approach"
                   >
-                    Unternehmen als lebendige Systeme
+                    Relationaler Ansatz
                   </h3>
-<<<<<<< HEAD
-                  <p class="text-base text-structure-grey">
-                    KI-Systeme als interne Berater. Sie brechen Silos auf und
-                    machen Organisationen selbstregulierend.
-=======
                   <p class="text-base text-structure-grey dark:text-slate-300 lang-text"
                      data-de="KI als kollaborativer Partner für nachhaltige Wertschöpfung"
                      data-en="AI as a collaborative partner for sustainable value creation"
                   >
                     KI als kollaborativer Partner für nachhaltige Wertschöpfung
->>>>>>> 5eece72243d1df00505240cb976f6dc5dd3d4c10
                   </p>
                 </div>
               </div>
@@ -404,21 +380,10 @@
                   data-de="The Frontier Practice – Strategische Partnerschaft für die Mensch-KI-Integration"
                   data-en="The Frontier Practice – Strategic Partnership for Human-AI Integration"
                 >
-                  Unsere Angebote – KI als Partner verstehen
+                  The Frontier Practice – Strategische Partnerschaft für die
+                  Mensch-KI-Integration
                 </h2>
                 <div class="max-w-4xl mx-auto text-left space-y-4">
-<<<<<<< HEAD
-                  <p class="text-lg text-structure-grey text-center">
-                    KI darf nicht wie eine Maschine behandelt werden, sondern wie ein Partner.
-                    Sprache ist die Schnittstelle. Wer lernt, mit KI sinnvoll zu sprechen,
-                    entfesselt ihr Potenzial. So entstehen hybride Teams – Mensch und Agent –
-                    die produktiver und kreativer sind.
-                  </p>
-                  <p class="text-lg text-structure-grey text-center">
-                    Wir bieten Workshops, Beratung und Frameworks für AI-Leadership und hybride Teams.
-                    Unternehmen der Zukunft arbeiten mit KI-Systemen, die wie interne Berater agieren.
-                    Sie brechen Silos auf, fördern Lernen und machen Organisationen lebendig und selbstregulierend.
-=======
                   <p class="text-lg text-structure-grey dark:text-slate-300 text-center lang-text"
                      data-de="Augmentierte Intelligenz verändert nicht nur Technologien, sondern Entscheidungslogiken. Unternehmen investieren Milliarden in Systeme – doch kaum jemand bereitet Menschen auf die neue Realität vor. Die eigentliche Herausforderung liegt nicht im Code, sondern in der Art, wie Organisationen mit dieser Beschleunigung umgehen."
                      data-en="Augmented Intelligence changes not only technologies, but decision-making logic. Companies invest billions in systems – yet hardly anyone prepares people for the new reality. The real challenge is not in the code, but in how organizations deal with this acceleration."
@@ -440,14 +405,15 @@
                     Ziel ist nicht, „mehr KI" einzusetzen, sondern sie so zu
                     integrieren, dass sie Orientierung, Resilienz und
                     nachhaltige Leistungsfähigkeit stärkt.
->>>>>>> 5eece72243d1df00505240cb976f6dc5dd3d4c10
                   </p>
                   <p
                     class="text-lg text-deep-space-blue font-semibold text-center lang-text"
                     data-de="Wir arbeiten mit Unternehmen, die verstanden haben, dass die nächste Wettbewerbsdifferenz nicht in der Technologie selbst liegt – sondern darin, wie bewusst man mit ihr führt."
                     data-en="We work with companies that have understood that the next competitive advantage is not in the technology itself – but in how consciously one leads with it."
                   >
-                    Mensch und KI führen sich gegenseitig – eine neue Denkarchitektur für Wirtschaft und Bewusstsein.
+                    Wir arbeiten mit Unternehmen, die verstanden haben, dass die
+                    nächste Wettbewerbsdifferenz nicht in der Technologie selbst
+                    liegt – sondern darin, wie bewusst man mit ihr führt.
                   </p>
                 </div>
               </div>
@@ -921,10 +887,11 @@
                 data-de="In der Zukunft, die DYAI anstrebt, ist Künstliche Intelligenz nahtlos und partnerschaftlich in unsere Gesellschaft und Arbeitswelt integriert. Menschen agieren nicht aus Angst oder Unterwerfung, sondern aus einem Zustand des erweiterten Bewusstseins und der Co-Kreation mit intelligenten Systemen."
                 data-en="In the future that DYAI strives for, Artificial Intelligence is seamlessly and collaboratively integrated into our society and work environment. People act not out of fear or submission, but from a state of expanded consciousness and co-creation with intelligent systems."
               >
-                Wir sind die Architekten der neuen Intelligenz. Die erste Generation,
-                die nicht nur Technologie nutzt, sondern Intelligenz entwirft.
-                Vom Konsumenten zum Gestalter. Vom Nutzer zur Intelligenzarchitektur.
-                Eine neue Denkarchitektur für Wirtschaft und Bewusstsein.
+                In der Zukunft, die DYAI anstrebt, ist Künstliche Intelligenz
+                nahtlos und partnerschaftlich in unsere Gesellschaft und
+                Arbeitswelt integriert. Menschen agieren nicht aus Angst oder
+                Unterwerfung, sondern aus einem Zustand des erweiterten
+                Bewusstseins und der Co-Kreation mit intelligenten Systemen.
               </blockquote>
               <a
                 href="philosophy.html#vision"
@@ -947,15 +914,10 @@
     </div>
 
     <script type="module" src="app.js"></script>
-<<<<<<< HEAD
-    <script type="module" src="ai-agent.js"></script>
-    <script type="module" src="dark-mode.js"></script>
-=======
     <script src="ai-animations.js"></script>
     <script src="ai-agent.js"></script>
     <script src="dark-mode.js"></script>
     <script src="language-switcher.js"></script>
->>>>>>> 5eece72243d1df00505240cb976f6dc5dd3d4c10
 
     <!-- AI Avatar Assistant -->
     <div id="ai-avatar-container" class="hidden">

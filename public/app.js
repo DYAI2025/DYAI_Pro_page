@@ -8,13 +8,7 @@ const App = {
             this.initScrollAnimations();
             this.initAIFeatures();
             this.initInteractiveElements();
-            
-            // Defer icon initialization until after main content is loaded
-            requestIdleCallback(() => {
-                if (typeof lucide !== 'undefined') {
-                    lucide.createIcons();
-                }
-            }, { timeout: 2000 });
+            lucide.createIcons();
         });
     },
 
@@ -254,25 +248,8 @@ const App = {
     },
 
     initAIFeatures() {
-        // Voice assistant and chatbot loaded on first user interaction
-        const loadAIOnInteraction = () => {
-            requestIdleCallback(() => {
-                // Uncomment when needed:
-                // this.initVoiceAssistant();
-                // this.initChatBot();
-            });
-            // Remove listeners after first load
-            ['click', 'scroll', 'keydown'].forEach(event => {
-                document.removeEventListener(event, loadAIOnInteraction, { once: true });
-            });
-        };
-        
-        // Defer AI features until user interaction
-        ['click', 'scroll', 'keydown'].forEach(event => {
-            document.addEventListener(event, loadAIOnInteraction, { once: true });
-        });
-        
-        // Load immediately without waiting for interaction
+        this.initVoiceAssistant();
+        this.initChatBot();
         this.initSmartNavigation();
         this.initDynamicContent();
     },
@@ -441,7 +418,6 @@ const App = {
     initSmartNavigation() {
         // Track user behavior for smart suggestions
         let scrollDepth = 0;
-        let timeOnPage = Date.now();
 
         window.addEventListener('scroll', () => {
             const currentScroll = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
@@ -558,28 +534,25 @@ const App = {
     },
 
     initInteractiveElements() {
-        // Defer non-critical interactive features
-        requestIdleCallback(() => {
-            // Add interactive hover effects to cards
-            const cards = document.querySelectorAll('.card-3d');
-            cards.forEach(card => {
-                card.addEventListener('mouseenter', () => {
-                    card.style.transform = 'translateY(-10px) scale(1.02)';
-                    card.style.boxShadow = '0 20px 40px rgba(13, 27, 42, 0.15)';
-                });
-
-                card.addEventListener('mouseleave', () => {
-                    card.style.transform = 'translateY(0) scale(1)';
-                    card.style.boxShadow = '';
-                });
+        // Add interactive hover effects to cards
+        const cards = document.querySelectorAll('.card-3d');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-10px) scale(1.02)';
+                card.style.boxShadow = '0 20px 40px rgba(13, 27, 42, 0.15)';
             });
 
-            // Add ripple effect to buttons
-            const buttons = document.querySelectorAll('button, .pulse-button');
-            buttons.forEach(button => {
-                button.addEventListener('click', this.createRipple);
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) scale(1)';
+                card.style.boxShadow = '';
             });
-        }, { timeout: 3000 });
+        });
+
+        // Add ripple effect to buttons
+        const buttons = document.querySelectorAll('button, .pulse-button');
+        buttons.forEach(button => {
+            button.addEventListener('click', this.createRipple);
+        });
     },
 
     createRipple(e) {
