@@ -8,7 +8,13 @@ const App = {
             this.initScrollAnimations();
             this.initAIFeatures();
             this.initInteractiveElements();
-            lucide.createIcons();
+            
+            // Defer icon initialization until after main content is loaded
+            requestIdleCallback(() => {
+                if (typeof lucide !== 'undefined') {
+                    lucide.createIcons();
+                }
+            }, { timeout: 2000 });
         });
     },
 
@@ -226,8 +232,25 @@ const App = {
     },
 
     initAIFeatures() {
-        this.initVoiceAssistant();
-        this.initChatBot();
+        // Voice assistant and chatbot loaded on first user interaction
+        const loadAIOnInteraction = () => {
+            requestIdleCallback(() => {
+                // Uncomment when needed:
+                // this.initVoiceAssistant();
+                // this.initChatBot();
+            });
+            // Remove listeners after first load
+            ['click', 'scroll', 'keydown'].forEach(event => {
+                document.removeEventListener(event, loadAIOnInteraction, { once: true });
+            });
+        };
+        
+        // Defer AI features until user interaction
+        ['click', 'scroll', 'keydown'].forEach(event => {
+            document.addEventListener(event, loadAIOnInteraction, { once: true });
+        });
+        
+        // Load immediately without waiting for interaction
         this.initSmartNavigation();
         this.initDynamicContent();
     },
@@ -513,25 +536,28 @@ const App = {
     },
 
     initInteractiveElements() {
-        // Add interactive hover effects to cards
-        const cards = document.querySelectorAll('.card-3d');
-        cards.forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                card.style.transform = 'translateY(-10px) scale(1.02)';
-                card.style.boxShadow = '0 20px 40px rgba(13, 27, 42, 0.15)';
+        // Defer non-critical interactive features
+        requestIdleCallback(() => {
+            // Add interactive hover effects to cards
+            const cards = document.querySelectorAll('.card-3d');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'translateY(-10px) scale(1.02)';
+                    card.style.boxShadow = '0 20px 40px rgba(13, 27, 42, 0.15)';
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'translateY(0) scale(1)';
+                    card.style.boxShadow = '';
+                });
             });
 
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'translateY(0) scale(1)';
-                card.style.boxShadow = '';
+            // Add ripple effect to buttons
+            const buttons = document.querySelectorAll('button, .pulse-button');
+            buttons.forEach(button => {
+                button.addEventListener('click', this.createRipple);
             });
-        });
-
-        // Add ripple effect to buttons
-        const buttons = document.querySelectorAll('button, .pulse-button');
-        buttons.forEach(button => {
-            button.addEventListener('click', this.createRipple);
-        });
+        }, { timeout: 3000 });
     },
 
     createRipple(e) {
