@@ -166,27 +166,7 @@ body {
     border-color: var(--border-strong);
 }
 
-/* White cards should always have dark text, even in dark mode */
-.bg-white h3,
-.bg-white p,
-.bg-white .text-deep-space-blue,
-.bg-white .text-structure-grey {
-    color: #0D1B2A !important;
-}
-
-.bg-white .text-structure-grey {
-    color: #415A77 !important;
-}
-
-/* Ensure white cards stay white in dark mode */
-[data-theme="dark"] .bg-white {
-    background-color: #ffffff !important;
-}
-
-/* Icons in white cards should stay colored */
-[data-theme="dark"] .bg-white .text-living-coral {
-    color: #FF6F61 !important;
-}
+/* Removed conflicting bg-white dark mode rules to allow Tailwind dark: classes to work properly */
 
 /* Form elements dark mode */
 [data-theme="dark"] input[type="text"],
