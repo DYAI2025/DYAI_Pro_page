@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body class="bg-future-white text-structure-grey font-sans-custom">
+<body class="bg-future-white dark:bg-slate-800 dark:bg-slate-900 text-structure-grey dark:text-slate-300 font-sans-custom">
     <div id="app" class="flex flex-col min-h-screen">
         <header id="main-header" class="sticky top-0 z-50"></header>
 
@@ -58,7 +58,7 @@
             </section>
 
             <!-- Filter Section -->
-            <section class="py-8 bg-white border-b border-structure-grey/10 sticky top-20 z-40 backdrop-blur-lg bg-white/95">
+            <section class="py-8 bg-white dark:bg-slate-900 border-b border-structure-grey/10 sticky top-20 z-40 backdrop-blur-lg bg-white/95">
                 <div class="container mx-auto px-4">
                     <div class="flex flex-wrap gap-3 justify-center">
                         <button
@@ -99,7 +99,7 @@
             <section class="py-20 bg-future-white">
                 <div class="container mx-auto px-4">
                     <div class="text-center mb-12">
-                        <h2 class="font-sans-custom text-3xl md:text-4xl font-bold text-deep-space-blue mb-4">
+                        <h2 class="font-sans-custom text-3xl md:text-4xl font-bold text-deep-space-blue dark:text-slate-100 mb-4">
                             Featured Projects
                         </h2>
                         <p class="text-lg text-structure-grey max-w-2xl mx-auto">
@@ -116,7 +116,7 @@
             <section class="py-20 bg-white">
                 <div class="container mx-auto px-4">
                     <div class="text-center mb-12">
-                        <h2 class="font-sans-custom text-3xl md:text-4xl font-bold text-deep-space-blue mb-4">
+                        <h2 class="font-sans-custom text-3xl md:text-4xl font-bold text-deep-space-blue dark:text-slate-100 mb-4">
                             Alle Projekte
                         </h2>
                     </div>
@@ -127,7 +127,7 @@
                     <!-- No Results Message -->
                     <div id="no-results" class="hidden text-center py-12">
                         <i data-lucide="search-x" class="w-16 h-16 text-structure-grey/30 mx-auto mb-4"></i>
-                        <p class="text-lg text-structure-grey">Keine Projekte in dieser Kategorie gefunden.</p>
+                        <p class="text-lg text-structure-grey dark:text-slate-300">Keine Projekte in dieser Kategorie gefunden.</p>
                     </div>
                 </div>
             </section>

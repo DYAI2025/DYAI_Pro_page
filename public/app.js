@@ -145,6 +145,7 @@ const App = {
         const container = document.getElementById('home-featured-projects');
         if (!container) return;
 
+        if (!Array.isArray(projects)) return;
         const featured = projects.filter(p => p.featured);
         container.innerHTML = featured.map((project, index) =>
             this.createProjectCard(project, index * 150, true)
@@ -156,7 +157,6 @@ const App = {
     loadServices() {
         const container = document.getElementById('services-container');
         if (!container) return;
-        if (!Array.isArray(services)) return;
         let html = '';
         services.forEach((service, index) => {
             html += `
@@ -179,7 +179,6 @@ const App = {
     loadInsights() {
         const container = document.getElementById('insights-container');
         if (!container) return;
-        if (!Array.isArray(insights)) return;
         let html = '';
         insights.forEach((post, index) => {
             html += `
