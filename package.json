@@ -1,23 +1,39 @@
 {
-  "name": "dyai_pro_page",
-  "version": "1.0.0",
-  "description": "Dieses Repository enthält die statische DYAI-Website und eine Deploy-Konfiguration für Render.com. Die Seite wird als statische Website bereitgestellt.",
-  "main": "index.html",
+  "name": "dyai-professional",
+  "version": "2.0.0",
+  "description": "DYAI - Professional website with modern build system",
+  "type": "module",
   "scripts": {
-    "build": "mkdir -p public && find DYAI_Pro_page -maxdepth 1 \\( -name '*.html' -o -name '*.css' -o -name '*.js' \\) -exec cp {} public/ \\;",
-    "start": "python -m http.server 8080",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@tailwindcss/postcss": "^4.1.17",
+    "lucide-react": "^0.263.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.0.0-alpha.25",
+    "@types/node": "^20.11.5",
+    "postcss": "^8.4.35",
+    "postcss-import": "^16.0.1",
+    "postcss-preset-env": "^9.3.0",
+    "tailwindcss": "^4.0.0-alpha.25",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.12",
+    "vite-plugin-svgr": "^4.2.0"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/DYAI2025/DYAI_Pro_page.git"
   },
-  "keywords": [],
+  "keywords": [
+    "dyai",
+    "ai",
+    "professional",
+    "consulting"
+  ],
   "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/DYAI2025/DYAI_Pro_page/issues"
-  },
-  "homepage": "https://github.com/DYAI2025/DYAI_Pro_page#readme"
+  "license": "ISC"
 }

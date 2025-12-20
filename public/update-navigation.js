@@ -1,5 +1,4 @@
 // Gemeinsame Navigation für alle Seiten
-// Shared navigation for all pages
 const navigationHTML = `
 <nav class="bg-white/80 backdrop-blur-lg shadow-subtle">
   <div class="container mx-auto px-4">
@@ -16,7 +15,7 @@ const navigationHTML = `
         <a href="services.html" class="nav-link px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200">Angebote</a>
         <a href="insights.html" class="nav-link px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200">Einblicke</a>
         <div class="relative group">
-          <button type="button" class="nav-link px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200 flex items-center gap-1" aria-label="Weitere Optionen" aria-haspopup="true">
+          <button type="button" class="nav-link px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200 flex items-center gap-1">
             Mehr
             <i data-lucide="chevron-down" class="w-4 h-4"></i>
           </button>
@@ -76,16 +75,5 @@ function updateActiveNavigation() {
     });
 }
 
-// Navigation in den DOM einfügen und dann aktive Seite markieren
-document.addEventListener('DOMContentLoaded', function() {
-    // Versuche, einen Container mit der ID 'navigation-container' zu finden
-    let container = document.getElementById('navigation-container');
-    if (!container) {
-        // Falls nicht vorhanden, erstelle einen neuen Container und füge ihn am Anfang des Bodys ein
-        container = document.createElement('div');
-        container.id = 'navigation-container';
-        document.body.insertBefore(container, document.body.firstChild);
-    }
-    container.innerHTML = navigationHTML;
-    updateActiveNavigation();
-});
+// Nach DOM Load ausführen
+document.addEventListener('DOMContentLoaded', updateActiveNavigation);

@@ -1,0 +1,137 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+      - claude/deploy-github-pages-*
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages-${{ github.ref }}"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dump runner environment (diagnostics)
+        run: |
+          echo "==== RUNNER ENVIRONMENT ===="
+          echo "RUNNER_OS: $RUNNER_OS"
+          echo "RUNNER_NAME: $RUNNER_NAME"
+          echo "USER: $(whoami)"
+          echo "WORKDIR: $PWD"
+          echo "BRANCH: ${{ github.ref }}"
+          echo "COMMIT: ${{ github.sha }}"
+          echo "==== SYSTEM INFO ===="
+          uname -a
+          node --version || echo "Node not installed"
+          npm --version || echo "npm not installed"
+          git --version
+          echo "==== GIT INFO ===="
+          git status || true
+          git branch -a || true
+          echo "==== DIRECTORY CONTENTS ===="
+          ls -la
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Verify checkout
+        run: |
+          echo "==== POST-CHECKOUT VERIFICATION ===="
+          ls -la
+          echo "==== CHECKING STRUCTURE ===="
+          ls -la DYAI_Pro_page/ || echo "DYAI_Pro_page directory not found!"
+          ls -la DYAI_Pro_page/instafile_images/ || echo "instafile_images not found!"
+          test -f package.json && echo "✓ package.json exists" || echo "✗ package.json missing!"
+          test -f CNAME && echo "✓ CNAME exists" || echo "✗ CNAME missing!"
+
+      - name: Install dependencies
+        run: |
+          echo "==== INSTALLING DEPENDENCIES ===="
+          if [ -f package-lock.json ]; then
+            npm ci --no-audit --no-fund
+          else
+            npm install --no-audit --no-fund
+          fi
+
+      - name: Build project with diagnostics
+        run: |
+          echo "==== STARTING BUILD ===="
+          mkdir -p $GITHUB_WORKSPACE/logs
+
+          # Run build and capture output
+          npm run build 2>&1 | tee $GITHUB_WORKSPACE/logs/build.log
+
+          echo "==== BUILD COMPLETED ===="
+          echo "==== VERIFYING BUILD OUTPUT ===="
+          ls -la public/ || echo "✗ public directory not created!"
+
+          if [ -d public ]; then
+            echo "✓ public directory exists"
+            echo "==== PUBLIC DIRECTORY CONTENTS ===="
+            ls -la public/
+
+            # Verify critical files
+            test -f public/index.html && echo "✓ index.html exists" || echo "✗ index.html missing!"
+            test -f public/.nojekyll && echo "✓ .nojekyll exists" || echo "✗ .nojekyll missing!"
+            test -f public/CNAME && echo "✓ CNAME exists" || echo "✗ CNAME missing!"
+            test -d public/instafile_images && echo "✓ instafile_images exists" || echo "✗ instafile_images missing!"
+
+            # Count files
+            FILE_COUNT=$(find public -type f | wc -l)
+            echo "Total files in public/: $FILE_COUNT"
+
+            if [ $FILE_COUNT -lt 5 ]; then
+              echo "⚠️  WARNING: Only $FILE_COUNT files found in public/ - this seems too few!"
+            fi
+          else
+            echo "✗ CRITICAL: public directory does not exist after build!"
+            exit 1
+          fi
+
+      - name: Upload build logs (on failure)
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-logs
+          path: ${{ github.workspace }}/logs/
+          retention-days: 7
+
+      - name: Upload artifact for GitHub Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
+
+      - name: Verify artifact upload
+        run: |
+          echo "✓ Artifact uploaded successfully"
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: Output deployment URL
+        run: |
+          echo "==== DEPLOYMENT SUCCESSFUL ===="
+          echo "Deployed to: ${{ steps.deployment.outputs.page_url }}"

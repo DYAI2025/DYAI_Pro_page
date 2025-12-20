@@ -16,7 +16,8 @@ const App = {
         const headerContainer = document.getElementById('main-header');
         const footerContainer = document.getElementById('main-footer');
         if (headerContainer) {
-            headerContainer.innerHTML = this.getHeaderHTML();
+            // Header is already in HTML, don't override it
+            // headerContainer.innerHTML = this.getHeaderHTML();
             this.initNavigation();
         }
         if (footerContainer) {
@@ -144,7 +145,8 @@ const App = {
         const container = document.getElementById('home-featured-projects');
         if (!container) return;
 
-        const featured = Array.isArray(projects) ? projects.filter(p => p.featured) : [];
+        if (!Array.isArray(projects)) return;
+        const featured = projects.filter(p => p.featured);
         container.innerHTML = featured.map((project, index) =>
             this.createProjectCard(project, index * 150, true)
         ).join('');
@@ -156,7 +158,7 @@ const App = {
         const container = document.getElementById('services-container');
         if (!container) return;
         let html = '';
-        (Array.isArray(services) ? services : []).forEach((service, index) => {
+        services.forEach((service, index) => {
             html += `
                 <div data-scroll-fade style="animation-delay: ${index * 150}ms;" class="bg-white rounded-xl shadow-subtle p-8 flex flex-col hover:shadow-strong transition-shadow duration-300">
                     <div class="flex items-center justify-center w-16 h-16 rounded-full bg-living-coral/10 mb-6">
@@ -178,10 +180,6 @@ const App = {
         const container = document.getElementById('insights-container');
         if (!container) return;
         let html = '';
-        if (!Array.isArray(insights)) {
-            container.innerHTML = '';
-            return;
-        }
         insights.forEach((post, index) => {
             html += `
                 <div data-scroll-fade style="animation-delay: ${index * 150}ms;" class="bg-white rounded-xl shadow-subtle overflow-hidden flex flex-col group hover:shadow-strong transition-shadow duration-300">
@@ -420,6 +418,7 @@ const App = {
     initSmartNavigation() {
         // Track user behavior for smart suggestions
         let scrollDepth = 0;
+
         window.addEventListener('scroll', () => {
             const currentScroll = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
             scrollDepth = Math.max(scrollDepth, currentScroll);
@@ -589,7 +588,7 @@ const App = {
         const gridContainer = document.getElementById('projects-grid');
         if (!featuredContainer || !gridContainer) return;
 
-        // Ensure projects is an array before using it
+        // Defensive: ensure projects is a defined array
         const safeProjects = Array.isArray(projects) ? projects : [];
 
         // Load featured projects
@@ -626,7 +625,7 @@ const App = {
                 <!-- Project Image/Preview -->
                 <div class="relative h-48 bg-gradient-to-br from-deep-space-blue to-structure-grey overflow-hidden">
                     <div class="absolute inset-0 flex items-center justify-center">
-                        <i data-lucide="${projectCategories.find(c => c.id === project.category)?.icon || 'box'}"
+                        <i data-lucide="${projectCategories.find(c => c.id == project.category)?.icon || 'box'}"
                            class="w-20 h-20 text-white/20"></i>
                     </div>
                     <div class="absolute top-4 left-4">
