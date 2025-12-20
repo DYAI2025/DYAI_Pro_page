@@ -179,6 +179,7 @@ const App = {
     loadInsights() {
         const container = document.getElementById('insights-container');
         if (!container) return;
+        if (!Array.isArray(insights)) return;
         let html = '';
         insights.forEach((post, index) => {
             html += `
