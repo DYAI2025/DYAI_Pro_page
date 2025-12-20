@@ -420,7 +420,6 @@ const App = {
     initSmartNavigation() {
         // Track user behavior for smart suggestions
         let scrollDepth = 0;
-        let timeOnPage = Date.now();
 
         window.addEventListener('scroll', () => {
             const currentScroll = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
