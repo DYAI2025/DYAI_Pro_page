@@ -1,217 +1,9 @@
-/* Optimized animations - reduced complexity for better performance */
+/* Modern Animation Effects for DYAI - Optimized for Performance */
 
-/* Navigation Styles */
-.nav-link {
-    color: var(--structure-grey);
-    position: relative;
-}
+/* ============================================
+   LOGO ANIMATIONS
+   ============================================ */
 
-.nav-link:hover {
-    color: var(--deep-space-blue);
-}
-
-.nav-link.active {
-    color: var(--living-coral);
-}
-
-.nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 50%;
-    width: 0;
-    height: 2px;
-    background-color: var(--living-coral);
-    transition: width 0.3s ease;
-    transform: translateX(-50%);
-}
-
-.nav-link:hover::after,
-.nav-link.active::after {
-    width: 80%;
-}
-
-/* AI Agent Button */
-.ai-agent-button {
-    position: relative;
-    overflow: hidden;
-}
-
-.ai-agent-button:hover::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgba(255, 255, 255, 0.1);
-}
-
-.ai-agent-button.active {
-    background-color: var(--deep-space-blue);
-}
-
-/* Professional DYAI Logo - Simplified */
-.dyai-logo-professional {
-    font-family: 'Orbitron', 'Poppins', sans-serif;
-    font-weight: 300;
-    letter-spacing: 0.15em;
-    color: var(--text-primary);
-}
-
-/* Professional Hero Background */
-.hero-professional {
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
-}
-
-/* Subtle Grid Pattern - Simplified */
-.subtle-grid-pattern {
-    background-image:
-        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-    background-size: 50px 50px;
-}
-
-/* Professional subtitle - Simplified animation */
-.subtitle-professional {
-    opacity: 0;
-    animation: fade-in 1.5s ease-out 0.5s forwards;
-}
-
-@keyframes fade-in {
-    to {
-        opacity: 1;
-    }
-}
-
-/* Professional Text Block */
-.text-block-professional {
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 16px;
-    padding: 2rem;
-    backdrop-filter: blur(10px);
-}
-
-.text-block-professional p {
-    font-size: 1rem;
-    line-height: 1.7;
-    color: #cbd5e1;
-    font-weight: 300;
-    margin: 0;
-}
-
-@media (min-width: 768px) {
-    .text-block-professional p {
-        font-size: 1.125rem;
-        line-height: 1.8;
-    }
-}
-
-/* Scroll-triggered animations */
-.fade-in-sequence {
-    opacity: 0;
-    animation: fade-in 0.8s forwards;
-}
-
-/* Pulse Button - Simplified */
-.pulse-button {
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.pulse-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(255, 111, 97, 0.3);
-}
-
-/* 3D Card Effect - Simplified */
-.card-3d {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card-3d:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .card-3d:hover {
-        transform: none;
-    }
-    
-    .pulse-button:hover {
-        transform: none;
-    }
-}
-
-/* Navigation Styles */
-.nav-link {
-    color: var(--structure-grey);
-    position: relative;
-}
-
-.nav-link:hover {
-    color: var(--deep-space-blue);
-}
-
-.nav-link.active {
-    color: var(--living-coral);
-}
-
-.nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 50%;
-    width: 0;
-    height: 2px;
-    background-color: var(--living-coral);
-    transition: all 0.3s ease;
-    transform: translateX(-50%);
-}
-
-.nav-link:hover::after,
-.nav-link.active::after {
-    width: 80%;
-}
-
-/* AI Agent Button */
-.ai-agent-button {
-    position: relative;
-    overflow: hidden;
-}
-
-.ai-agent-button::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    transition: all 0.3s ease;
-}
-
-.ai-agent-button:hover::before {
-    width: 100px;
-    height: 100px;
-}
-
-.ai-agent-button.active {
-    background-color: var(--deep-space-blue);
-    animation: pulse-glow 2s infinite;
-}
-
-@keyframes pulse-glow {
-    0%, 100% {
-        box-shadow: 0 0 0 0 rgba(255, 111, 97, 0.4);
-    }
-    50% {
-        box-shadow: 0 0 0 10px rgba(255, 111, 97, 0);
-    }
-}
-
-/* Professional DYAI Logo */
 .dyai-logo-professional {
     font-family: 'Orbitron', 'Poppins', sans-serif;
     font-weight: 300;
@@ -228,84 +20,34 @@
     background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: professional-gradient-shift 12s ease-in-out infinite;
-    text-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
     position: relative;
-}
-
-.dyai-logo-professional::before {
-    content: 'DYAI';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(148, 163, 184, 0.05) 0%, rgba(203, 213, 225, 0.05) 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    filter: blur(1px);
-    z-index: -1;
 }
 
 @keyframes professional-gradient-shift {
-    0%, 100% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
 }
 
-/* Professional Hero Background */
-.hero-professional {
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
-    position: relative;
-}
+/* ============================================
+   HERO SECTION ANIMATIONS
+   ============================================ */
 
-/* Subtle Grid Pattern */
-.subtle-grid-pattern {
-    background-image:
-        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-    background-size: 50px 50px;
-    animation: grid-float 20s linear infinite;
-}
-
-@keyframes grid-float {
-    0% {
-        transform: translate(0, 0);
-    }
-    100% {
-        transform: translate(50px, 50px);
-    }
-}
-
-/* Professional subtitle styling */
 .subtitle-professional {
     opacity: 0;
-    animation: subtitle-fade-in 2s ease-out 1s forwards;
+    animation: fade-in 1.5s ease-out 0.5s forwards;
 }
 
-@keyframes subtitle-fade-in {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+@keyframes fade-in {
+    to { opacity: 1; }
 }
 
-/* Professional Text Block */
 .text-block-professional {
-    opacity: 0;
-    animation: text-block-fade-in 2s ease-out 1.5s forwards;
     background: rgba(255, 255, 255, 0.02);
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 16px;
     padding: 2rem;
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     box-shadow:
         0 4px 24px rgba(0, 0, 0, 0.1),
         inset 0 1px 0 rgba(255, 255, 255, 0.1);
@@ -316,7 +58,6 @@
     line-height: 1.7;
     color: #cbd5e1;
     font-weight: 300;
-    text-align: justify;
     margin: 0;
 }
 
@@ -327,178 +68,9 @@
     }
 }
 
-@keyframes text-block-fade-in {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Gradient Text Animation */
-.gradient-text {
-    background: linear-gradient(90deg, #FF6F61, #FFD700, #00CED1, #FF6F61);
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: gradient-shift 3s ease infinite;
-}
-
-@keyframes gradient-shift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-/* Glitch Effect */
-.glitch-text {
-    position: relative;
-    animation: glitch-skew 1s infinite linear alternate-reverse;
-}
-
-.glitch-text::before,
-.glitch-text::after {
-    content: attr(data-text);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-.glitch-text::before {
-    animation: glitch-1 0.5s infinite;
-    color: #00CED1;
-    z-index: -1;
-}
-
-.glitch-text::after {
-    animation: glitch-2 0.5s infinite;
-    color: #FF6F61;
-    z-index: -2;
-}
-
-@keyframes glitch-1 {
-    0%, 100% {
-        clip-path: inset(0 0 0 0);
-        transform: translate(0);
-    }
-    20% {
-        clip-path: inset(30% 0 50% 0);
-        transform: translate(-2px, 2px);
-    }
-    40% {
-        clip-path: inset(60% 0 20% 0);
-        transform: translate(2px, -2px);
-    }
-    60% {
-        clip-path: inset(10% 0 80% 0);
-        transform: translate(-2px, 1px);
-    }
-    80% {
-        clip-path: inset(75% 0 10% 0);
-        transform: translate(1px, -1px);
-    }
-}
-
-@keyframes glitch-2 {
-    0%, 100% {
-        clip-path: inset(0 0 0 0);
-        transform: translate(0);
-    }
-    20% {
-        clip-path: inset(50% 0 30% 0);
-        transform: translate(2px, -1px);
-    }
-    40% {
-        clip-path: inset(20% 0 60% 0);
-        transform: translate(-2px, 2px);
-    }
-    60% {
-        clip-path: inset(80% 0 10% 0);
-        transform: translate(1px, -2px);
-    }
-    80% {
-        clip-path: inset(10% 0 75% 0);
-        transform: translate(-1px, 1px);
-    }
-}
-
-@keyframes glitch-skew {
-    0%, 100% { transform: skew(0deg); }
-    20% { transform: skew(-0.5deg); }
-    40% { transform: skew(0.5deg); }
-    60% { transform: skew(-0.5deg); }
-    80% { transform: skew(0.25deg); }
-}
-
-/* Floating Orbs - Disabled for Professional Look - REMOVED FOR PERFORMANCE */
-
-/* Hide Particle Backgrounds for Professional Look - REMOVED FOR PERFORMANCE */
-
-/* Typing Animation */
-.typing-text {
-    overflow: hidden;
-    white-space: nowrap;
-    border-right: 3px solid #FF6F61;
-    animation: typing 3s steps(30, end), blink 0.5s step-end infinite alternate;
-}
-
-@keyframes typing {
-    from { width: 0; }
-    to { width: 100%; }
-}
-
-@keyframes blink {
-    50% { border-color: transparent; }
-}
-
-/* Animated Text Lines */
-.animated-text-line {
-    display: block;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fade-in-up-text 1s forwards;
-}
-
-.animated-text-line:nth-child(1) { animation-delay: 0.5s; }
-.animated-text-line:nth-child(2) { animation-delay: 1s; }
-.animated-text-line:nth-child(3) { animation-delay: 1.5s; }
-
-@keyframes fade-in-up-text {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Pulse Button */
-.pulse-button {
-    position: relative;
-    overflow: hidden;
-}
-
-.pulse-button::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.3);
-    transform: translate(-50%, -50%);
-    transition: width 0.6s, height 0.6s;
-}
-
-.pulse-button:hover::before {
-    width: 300px;
-    height: 300px;
-}
+/* ============================================
+   BUTTON EFFECTS
+   ============================================ */
 
 .button-ripple {
     position: absolute;
@@ -509,6 +81,7 @@
     background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
     transform: translate(-50%, -50%) scale(0);
     animation: ripple-pulse 2s infinite;
+    pointer-events: none;
 }
 
 @keyframes ripple-pulse {
@@ -522,7 +95,7 @@
     }
 }
 
-/* Neon Button */
+/* Neon glow effect */
 .neon-button {
     position: relative;
     text-shadow: 0 0 10px rgba(255, 111, 97, 0.8);
@@ -545,13 +118,15 @@
     }
 }
 
-/* Glow Text */
+/* ============================================
+   TEXT ANIMATIONS
+   ============================================ */
+
 .glow-text {
     text-shadow:
         0 0 10px rgba(255, 111, 97, 0.8),
         0 0 20px rgba(255, 111, 97, 0.6),
-        0 0 30px rgba(255, 111, 97, 0.4),
-        0 0 40px rgba(255, 111, 97, 0.2);
+        0 0 30px rgba(255, 111, 97, 0.4);
     animation: text-glow 2s ease-in-out infinite alternate;
 }
 
@@ -560,76 +135,71 @@
         text-shadow:
             0 0 10px rgba(255, 111, 97, 0.8),
             0 0 20px rgba(255, 111, 97, 0.6),
-            0 0 30px rgba(255, 111, 97, 0.4),
-            0 0 40px rgba(255, 111, 97, 0.2);
+            0 0 30px rgba(255, 111, 97, 0.4);
     }
     to {
         text-shadow:
             0 0 20px rgba(255, 111, 97, 1),
             0 0 30px rgba(255, 111, 97, 0.8),
-            0 0 40px rgba(255, 111, 97, 0.6),
-            0 0 50px rgba(255, 111, 97, 0.4);
+            0 0 40px rgba(255, 111, 97, 0.6);
     }
 }
 
-/* 3D Card Effect */
-.perspective-container {
-    perspective: 1000px;
-}
-
-.card-3d {
-    transform-style: preserve-3d;
-    transition: transform 0.6s;
-}
-
-.card-3d:hover {
-    transform: rotateY(5deg) rotateX(-5deg) translateZ(20px);
-}
-
-/* Particle Background */
-#particles-background {
-    background: linear-gradient(135deg, #0D1B2A 0%, #1a3a5d 100%);
-}
-
-#particles-background canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-/* Neural Network Canvas */
-#neural-network-canvas {
-    opacity: 0.3;
-    mix-blend-mode: screen;
-}
-
-/* AI Visualization Container */
-.ai-visualization-container {
-    background: linear-gradient(135deg, #0D1B2A 0%, #1a3a5d 100%);
-    border-radius: 1rem;
+/* Typing animation */
+.typing-text {
     overflow: hidden;
-    position: relative;
+    white-space: nowrap;
+    border-right: 3px solid var(--living-coral);
+    animation: typing 3s steps(30, end), blink 0.5s step-end infinite alternate;
 }
 
-#neural-visualization {
-    background: transparent;
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
 }
 
-/* Scroll-triggered animations */
-.fade-in-sequence {
+@keyframes blink {
+    50% { border-color: transparent; }
+}
+
+/* Stagger fade-in for text lines */
+.animated-text-line {
+    display: block;
     opacity: 0;
-    animation: fadeInSequence 1s forwards;
+    transform: translateY(20px);
+    animation: fade-in-up-text 1s forwards;
 }
 
-@keyframes fadeInSequence {
+.animated-text-line:nth-child(1) { animation-delay: 0.5s; }
+.animated-text-line:nth-child(2) { animation-delay: 1s; }
+.animated-text-line:nth-child(3) { animation-delay: 1.5s; }
+
+@keyframes fade-in-up-text {
     to {
         opacity: 1;
+        transform: translateY(0);
     }
 }
 
-/* Loading Animation */
+/* ============================================
+   SCROLL ANIMATIONS
+   ============================================ */
+
+.fade-in-sequence {
+    opacity: 0;
+    animation: fade-in 0.8s forwards;
+}
+
+/* Parallax scroll effect */
+.parallax-slow {
+    transform: translateY(0);
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ============================================
+   LOADING & PROGRESS ANIMATIONS
+   ============================================ */
+
 .ai-loading {
     display: inline-block;
     width: 80px;
@@ -644,8 +214,8 @@
     height: 64px;
     margin: 8px;
     border-radius: 50%;
-    border: 6px solid #FF6F61;
-    border-color: #FF6F61 transparent #FF6F61 transparent;
+    border: 6px solid var(--living-coral);
+    border-color: var(--living-coral) transparent var(--living-coral) transparent;
     animation: ai-spin 1.2s linear infinite;
 }
 
@@ -654,46 +224,63 @@
     100% { transform: rotate(360deg); }
 }
 
-/* Matrix Rain Effect */
-.matrix-rain {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 1;
+/* Skeleton loading */
+.skeleton {
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.05) 25%,
+        rgba(255, 255, 255, 0.1) 50%,
+        rgba(255, 255, 255, 0.05) 75%
+    );
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s ease-in-out infinite;
 }
 
-.matrix-column {
-    position: absolute;
-    color: #00FF41;
-    font-family: 'Courier New', monospace;
-    font-size: 10px;
-    white-space: nowrap;
-    animation: matrix-fall linear infinite;
+@keyframes skeleton-loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
 }
 
-@keyframes matrix-fall {
-    to {
-        transform: translateY(100vh);
-    }
+/* ============================================
+   INTERACTIVE HOVER EFFECTS
+   ============================================ */
+
+/* Magnetic hover effect */
+.magnetic-hover {
+    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-/* Circuit Board Pattern */
-.circuit-pattern {
-    background-image:
-        repeating-linear-gradient(0deg, transparent, transparent 35px, rgba(255, 111, 97, 0.1) 35px, rgba(255, 111, 97, 0.1) 70px),
-        repeating-linear-gradient(90deg, transparent, transparent 35px, rgba(255, 111, 97, 0.1) 35px, rgba(255, 111, 97, 0.1) 70px);
-    animation: circuit-move 10s linear infinite;
+.magnetic-hover:hover {
+    transform: scale(1.05);
 }
 
-@keyframes circuit-move {
-    0% { background-position: 0 0; }
-    100% { background-position: 70px 70px; }
+/* Tilt effect on hover */
+.tilt-hover {
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-/* Holographic Effect */
+.tilt-hover:hover {
+    transform: perspective(1000px) rotateX(2deg) rotateY(-2deg) translateZ(10px);
+}
+
+/* Glow on hover */
+.glow-hover {
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.glow-hover:hover {
+    box-shadow: 
+        0 0 20px rgba(255, 111, 97, 0.4),
+        0 0 40px rgba(255, 111, 97, 0.2);
+    transform: translateY(-2px);
+}
+
+/* ============================================
+   SPECIAL VISUAL EFFECTS
+   ============================================ */
+
+/* Holographic shimmer */
 .holographic {
     background: linear-gradient(45deg, #FF6F61, #FFD700, #00CED1, #9D4EDD, #FF6F61);
     background-size: 400% 400%;
@@ -707,23 +294,187 @@
     75% { background-position: 0% 0%; }
 }
 
-/* Responsive adjustments */
+/* Floating animation */
+.float {
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+/* Pulse animation */
+.pulse-slow {
+    animation: pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse-slow {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.02);
+    }
+}
+
+/* ============================================
+   BACKGROUND PATTERNS
+   ============================================ */
+
+/* Circuit board pattern */
+.circuit-pattern {
+    background-image:
+        repeating-linear-gradient(0deg, transparent, transparent 35px, rgba(255, 111, 97, 0.1) 35px, rgba(255, 111, 97, 0.1) 70px),
+        repeating-linear-gradient(90deg, transparent, transparent 35px, rgba(255, 111, 97, 0.1) 35px, rgba(255, 111, 97, 0.1) 70px);
+    animation: circuit-move 10s linear infinite;
+}
+
+@keyframes circuit-move {
+    0% { background-position: 0 0; }
+    100% { background-position: 70px 70px; }
+}
+
+/* Dot pattern */
+.dot-pattern {
+    background-image: radial-gradient(circle, rgba(255, 111, 97, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+/* ============================================
+   AI AVATAR ANIMATIONS
+   ============================================ */
+
+.ai-avatar-overlay {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    z-index: 9999;
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    pointer-events: none;
+}
+
+#ai-avatar-container.visible .ai-avatar-overlay {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    pointer-events: all;
+}
+
+.avatar-status-indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #10b981;
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+    animation: pulse-status 2s ease-in-out infinite;
+}
+
+@keyframes pulse-status {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.5;
+        transform: scale(0.95);
+    }
+}
+
+/* Audio visualizer bars */
+.audio-visualizer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    height: 30px;
+}
+
+.visualizer-bar {
+    width: 4px;
+    height: 8px;
+    background: var(--living-coral);
+    border-radius: 2px;
+    transition: height 0.1s ease;
+}
+
+.audio-visualizer.active .visualizer-bar {
+    animation: visualizer-bounce 0.6s ease-in-out infinite;
+}
+
+.audio-visualizer.active .visualizer-bar:nth-child(1) { animation-delay: 0s; }
+.audio-visualizer.active .visualizer-bar:nth-child(2) { animation-delay: 0.1s; }
+.audio-visualizer.active .visualizer-bar:nth-child(3) { animation-delay: 0.2s; }
+.audio-visualizer.active .visualizer-bar:nth-child(4) { animation-delay: 0.1s; }
+.audio-visualizer.active .visualizer-bar:nth-child(5) { animation-delay: 0s; }
+
+@keyframes visualizer-bounce {
+    0%, 100% { height: 8px; }
+    50% { height: 24px; }
+}
+
+/* ============================================
+   RESPONSIVE OPTIMIZATIONS
+   ============================================ */
+
 @media (max-width: 768px) {
-    .floating-orb {
-        filter: blur(30px);
+    /* Reduce animation complexity on mobile */
+    .card-3d:hover,
+    .tilt-hover:hover {
+        transform: translateY(-4px);
     }
-
-    .orb-1, .orb-2, .orb-3, .orb-4 {
-        width: 200px;
-        height: 200px;
+    
+    .pulse-button:hover {
+        transform: none;
     }
-
-    .glitch-text {
+    
+    /* Disable expensive animations on mobile */
+    .holographic,
+    .circuit-pattern {
         animation: none;
     }
-
-    .glitch-text::before,
-    .glitch-text::after {
-        display: none;
+    
+    .ai-avatar-overlay {
+        right: 15px;
+        bottom: 80px;
     }
+}
+
+/* ============================================
+   ACCESSIBILITY - REDUCED MOTION
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .parallax-slow,
+    .float,
+    .pulse-slow {
+        animation: none;
+        transform: none;
+    }
+}
+
+/* ============================================
+   PERFORMANCE OPTIMIZATIONS
+   ============================================ */
+
+/* Use GPU acceleration for animations */
+.gpu-accelerated {
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+/* Contain layout shifts */
+.contain-layout {
+    contain: layout style paint;
 }
