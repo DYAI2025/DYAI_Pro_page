@@ -64,7 +64,12 @@ class DarkModeManager {
                 }
             };
 
-            mediaQuery.addEventListener('change', handleChange);
+            if (typeof mediaQuery.addEventListener === 'function') {
+                mediaQuery.addEventListener('change', handleChange);
+            } else if (typeof mediaQuery.addListener === 'function') {
+                // Fallback for older browsers
+                mediaQuery.addListener(handleChange);
+            }
             handleChange(mediaQuery);
         }
     }
