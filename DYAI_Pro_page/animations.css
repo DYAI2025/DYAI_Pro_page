@@ -1,4 +1,146 @@
-/* Advanced AI Animation Styles */
+/* Optimized animations - reduced complexity for better performance */
+
+/* Navigation Styles */
+.nav-link {
+    color: var(--structure-grey);
+    position: relative;
+}
+
+.nav-link:hover {
+    color: var(--deep-space-blue);
+}
+
+.nav-link.active {
+    color: var(--living-coral);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: var(--living-coral);
+    transition: width 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 80%;
+}
+
+/* AI Agent Button */
+.ai-agent-button {
+    position: relative;
+    overflow: hidden;
+}
+
+.ai-agent-button:hover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.ai-agent-button.active {
+    background-color: var(--deep-space-blue);
+}
+
+/* Professional DYAI Logo - Simplified */
+.dyai-logo-professional {
+    font-family: 'Orbitron', 'Poppins', sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    color: var(--text-primary);
+}
+
+/* Professional Hero Background */
+.hero-professional {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+}
+
+/* Subtle Grid Pattern - Simplified */
+.subtle-grid-pattern {
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 50px 50px;
+}
+
+/* Professional subtitle - Simplified animation */
+.subtitle-professional {
+    opacity: 0;
+    animation: fade-in 1.5s ease-out 0.5s forwards;
+}
+
+@keyframes fade-in {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Professional Text Block */
+.text-block-professional {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 2rem;
+    backdrop-filter: blur(10px);
+}
+
+.text-block-professional p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #cbd5e1;
+    font-weight: 300;
+    margin: 0;
+}
+
+@media (min-width: 768px) {
+    .text-block-professional p {
+        font-size: 1.125rem;
+        line-height: 1.8;
+    }
+}
+
+/* Scroll-triggered animations */
+.fade-in-sequence {
+    opacity: 0;
+    animation: fade-in 0.8s forwards;
+}
+
+/* Pulse Button - Simplified */
+.pulse-button {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pulse-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 111, 97, 0.3);
+}
+
+/* 3D Card Effect - Simplified */
+.card-3d {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-3d:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .card-3d:hover {
+        transform: none;
+    }
+    
+    .pulse-button:hover {
+        transform: none;
+    }
+}
 
 /* Navigation Styles */
 .nav-link {
@@ -294,16 +436,9 @@
     80% { transform: skew(0.25deg); }
 }
 
-/* Floating Orbs - Disabled for Professional Look */
-.floating-orbs-container {
-    display: none;
-}
+/* Floating Orbs - Disabled for Professional Look - REMOVED FOR PERFORMANCE */
 
-/* Hide Particle Backgrounds for Professional Look */
-#particles-background,
-#ai-particles {
-    display: none;
-}
+/* Hide Particle Backgrounds for Professional Look - REMOVED FOR PERFORMANCE */
 
 /* Typing Animation */
 .typing-text {

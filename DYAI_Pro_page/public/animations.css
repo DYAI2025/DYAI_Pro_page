@@ -294,16 +294,9 @@
     80% { transform: skew(0.25deg); }
 }
 
-/* Floating Orbs - Disabled for Professional Look */
-.floating-orbs-container {
-    display: none;
-}
+/* Floating Orbs - Disabled for Professional Look - REMOVED FOR PERFORMANCE */
 
-/* Hide Particle Backgrounds for Professional Look */
-#particles-background,
-#ai-particles {
-    display: none;
-}
+/* Hide Particle Backgrounds for Professional Look - REMOVED FOR PERFORMANCE */
 
 /* Typing Animation */
 .typing-text {

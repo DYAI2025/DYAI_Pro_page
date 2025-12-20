@@ -226,8 +226,10 @@ const App = {
     },
 
     initAIFeatures() {
-        this.initVoiceAssistant();
-        this.initChatBot();
+        // Voice assistant deferred for performance - load on demand
+        // this.initVoiceAssistant();
+        // Chat bot deferred for performance - load on demand  
+        // this.initChatBot();
         this.initSmartNavigation();
         this.initDynamicContent();
     },

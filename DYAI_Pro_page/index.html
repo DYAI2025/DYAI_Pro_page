@@ -4,45 +4,31 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DYAI - Design Your Augmented Intelligence</title>
-    <script>
-      // Tailwind Dark Mode Configuration
-      tailwind.config = {
-        darkMode: 'class',
-        theme: {
-          extend: {
-            colors: {
-              'deep-space-blue': '#0D1B2A',
-              'living-coral': '#FF6F61',
-              'future-white': '#F0F4F8',
-              'structure-grey': '#415A77',
-            }
-          }
-        }
-      }
-    </script>
-    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="animations.css" />
+    
+    <!-- Resource hints for better performance -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <link rel="dns-prefetch" href="https://unpkg.com" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="animations.css" />
+    <!-- Preload critical fonts for faster rendering -->
+    <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/poppins/v20/pxiEyp8kv8JHgFVrFJDUc1NECPY.woff2" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;600;700&family=Orbitron:wght@400;700;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Poppins:wght@400;600;700&family=Orbitron:wght@700&display=swap&subset=latin"
       rel="stylesheet"
+      media="print" onload="this.media='all'"
     />
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <noscript>
+      <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Poppins:wght@400;600;700&family=Orbitron:wght@700&display=swap&subset=latin" rel="stylesheet" />
+    </noscript>
+    <script src="https://unpkg.com/lucide@latest" defer></script>
   </head>
   <body
     class="bg-future-white text-structure-grey font-sans-custom overflow-x-hidden"
   >
-    <div id="particles-background" class="fixed inset-0 z-0"></div>
-    <div
-      id="neural-network-canvas"
-      class="fixed inset-0 z-0 pointer-events-none"
-    ></div>
     <div id="app" class="flex flex-col min-h-screen relative z-10">
       <header id="main-header" class="sticky top-0 z-50">
         <nav
@@ -116,6 +102,18 @@
 
               <!-- Dark Mode Toggle & AI Agent Button -->
               <div class="flex items-center gap-6">
+                <!-- Language Switcher -->
+                <div class="flex items-center gap-2">
+                  <button
+                    id="language-toggle"
+                    class="flex items-center gap-1 px-3 py-1.5 rounded-md text-sm font-medium text-structure-grey dark:text-slate-300 hover:bg-future-white/50 dark:hover:bg-slate-800 transition-colors duration-200"
+                    type="button"
+                  >
+                    <i data-lucide="globe" class="w-4 h-4"></i>
+                    <span id="current-lang">DE</span>
+                  </button>
+                </div>
+
                 <!-- Dark Mode Toggle with Label -->
                 <div class="flex items-center gap-2">
                   <span class="text-sm font-medium text-structure-grey dark:text-slate-300 hidden sm:block">Dark Mode</span>
@@ -218,7 +216,9 @@
               </div>
               <div class="text-block-professional max-w-6xl mx-auto mb-12">
                 <p
-                  class="font-sans-custom text-xs md:text-xs text-slate-300 leading-relaxed italic text-justify font-light"
+                  class="font-sans-custom text-xs md:text-xs text-slate-300 leading-relaxed italic text-justify font-light lang-text"
+                  data-de="Wir verstehen KI nicht als künstliche Intelligenz. Denn was sollte an Intelligenz künstlich sein? Im Kern ist sie keine Nachbildung des Menschen, sondern eine Erweiterung seiner Fähigkeiten – eine neue Form der Zusammenarbeit zwischen Denken, Sprache und Technologie. KI ist weniger ein Ersatz als ein Verstärker: Sie erweitert, was wir wissen, schaffen und verstehen können. Und sie spricht in der ersten Programmiersprache, die wir alle beherrschen – unserer menschlichen Sprache. Entwickelt von Menschen, für Menschen."
+                  data-en="We don't understand AI as artificial intelligence. Because what should be artificial about intelligence? At its core, it's not an imitation of humans, but an augmentation of their capabilities – a new form of collaboration between thinking, language, and technology. AI is less a replacement than an amplifier: it extends what we can know, create, and understand. And it speaks in the first programming language we all master – our human language. Developed by humans, for humans."
                 >
                   Wir verstehen KI nicht als künstliche Intelligenz. Denn was
                   sollte an Intelligenz künstlich sein? Im Kern ist sie keine
@@ -229,7 +229,7 @@
                   verstehen können. Und sie spricht in der ersten
                   Programmiersprache, die wir alle beherrschen – unserer
                   menschlichen Sprache. Entwickelt von Menschen, für Menschen.
-                  <span class="text-slate-200 font-medium"
+                  <span class="text-slate-200 font-medium lang-text" data-de="Nicht künstlich. Augmentiert." data-en="Not artificial. Augmented."
                     >Nicht künstlich. Augmentiert.</span
                   >
                 </p>
@@ -239,7 +239,7 @@
                   href="philosophy.html"
                   class="pulse-button bg-living-coral text-white font-sans-custom font-semibold py-4 px-10 rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 relative overflow-hidden"
                 >
-                  <span class="relative z-10"
+                  <span class="relative z-10 lang-text" data-de="Entdecken Sie die Philosophie" data-en="Discover the Philosophy"
                     >Entdecken Sie die Philosophie</span
                   >
                   <div class="button-ripple"></div>
@@ -254,12 +254,17 @@
           <div class="container mx-auto px-4">
             <div class="max-w-5xl mx-auto">
               <h2
-                class="font-sans-custom text-3xl md:text-4xl font-bold text-deep-space-blue dark:text-slate-100 dark:text-slate-100 mb-8 text-center"
+                class="font-sans-custom text-3xl md:text-4xl font-bold text-deep-space-blue dark:text-slate-100 dark:text-slate-100 mb-8 text-center lang-text"
+                data-de="Die Revolution ist psychologisch, nicht technologisch"
+                data-en="The Revolution is Psychological, Not Technological"
               >
-                Die Revolution ist psychologisch, nicht technologisch
+                Radikale Offenheit. Pioniergeist. Gestaltungswille.
               </h2>
               <div class="prose prose-lg max-w-none mb-12">
-                <p class="text-structure-grey dark:text-slate-300 leading-relaxed text-center">
+                <p class="text-structure-grey dark:text-slate-300 leading-relaxed text-center lang-text"
+                   data-de="KI reflektiert unsere Stärken und Schwächen. Die Herausforderung liegt nicht in der Technologie selbst, sondern darin, wie Organisationen und Menschen mit ihr umgehen. Während Unternehmen in Systeme investieren, vernachlässigen sie die psychologische Vorbereitung ihrer Teams auf diese fundamentale Veränderung."
+                   data-en="AI reflects our strengths and weaknesses. The challenge lies not in the technology itself, but in how organizations and people deal with it. While companies invest in systems, they neglect the psychological preparation of their teams for this fundamental change."
+                >
                   KI reflektiert unsere Stärken und Schwächen. Die
                   Herausforderung liegt nicht in der Technologie selbst, sondern
                   darin, wie Organisationen und Menschen mit ihr umgehen.
@@ -281,11 +286,16 @@
                     ></i>
                   </div>
                   <h3
-                    class="font-sans-custom text-xl font-bold text-deep-space-blue dark:text-slate-100 mb-3"
+                    class="font-sans-custom text-xl font-bold text-deep-space-blue dark:text-slate-100 mb-3 lang-text"
+                    data-de="Integration vor Innovation"
+                    data-en="Integration Before Innovation"
                   >
-                    Integration vor Innovation
+                    KI als Partner, nicht als Werkzeug
                   </h3>
-                  <p class="text-base text-structure-grey dark:text-slate-300">
+                  <p class="text-base text-structure-grey dark:text-slate-300 lang-text"
+                     data-de="Organisationale Selbsterkenntnis als Fundament für erfolgreiche KI-Implementation"
+                     data-en="Organizational self-awareness as the foundation for successful AI implementation"
+                  >
                     Organisationale Selbsterkenntnis als Fundament für
                     erfolgreiche KI-Implementation
                   </p>
@@ -302,11 +312,16 @@
                     ></i>
                   </div>
                   <h3
-                    class="font-sans-custom text-xl font-bold text-deep-space-blue dark:text-slate-100 mb-3"
+                    class="font-sans-custom text-xl font-bold text-deep-space-blue dark:text-slate-100 mb-3 lang-text"
+                    data-de="Transparenz über Kontrolle"
+                    data-en="Transparency Over Control"
                   >
-                    Transparenz über Kontrolle
+                    Lernen durch Ausprobieren
                   </h3>
-                  <p class="text-base text-structure-grey dark:text-slate-300">
+                  <p class="text-base text-structure-grey dark:text-slate-300 lang-text"
+                     data-de="Vertrauensbasierte Führung statt illusorischer Kontrollmechanismen"
+                     data-en="Trust-based leadership instead of illusory control mechanisms"
+                  >
                     Vertrauensbasierte Führung statt illusorischer
                     Kontrollmechanismen
                   </p>
@@ -323,11 +338,16 @@
                     ></i>
                   </div>
                   <h3
-                    class="font-sans-custom text-xl font-bold text-deep-space-blue dark:text-slate-100 mb-3"
+                    class="font-sans-custom text-xl font-bold text-deep-space-blue dark:text-slate-100 mb-3 lang-text"
+                    data-de="Relationaler Ansatz"
+                    data-en="Relational Approach"
                   >
-                    Relationaler Ansatz
+                    Unternehmen als lebendige Systeme
                   </h3>
-                  <p class="text-base text-structure-grey dark:text-slate-300">
+                  <p class="text-base text-structure-grey dark:text-slate-300 lang-text"
+                     data-de="KI als kollaborativer Partner für nachhaltige Wertschöpfung"
+                     data-en="AI as a collaborative partner for sustainable value creation"
+                  >
                     KI als kollaborativer Partner für nachhaltige Wertschöpfung
                   </p>
                 </div>
@@ -342,13 +362,17 @@
             <div class="max-w-6xl mx-auto">
               <div class="text-center mb-16">
                 <h2
-                  class="font-sans-custom text-3xl md:text-4xl font-bold text-deep-space-blue dark:text-slate-100 mb-6"
+                  class="font-sans-custom text-3xl md:text-4xl font-bold text-deep-space-blue dark:text-slate-100 mb-6 lang-text"
+                  data-de="The Frontier Practice – Strategische Partnerschaft für die Mensch-KI-Integration"
+                  data-en="The Frontier Practice – Strategic Partnership for Human-AI Integration"
                 >
-                  The Frontier Practice – Strategische Partnerschaft für die
-                  Mensch-KI-Integration
+                  Unsere Angebote – KI als Partner verstehen
                 </h2>
                 <div class="max-w-4xl mx-auto text-left space-y-4">
-                  <p class="text-lg text-structure-grey dark:text-slate-300 text-center">
+                  <p class="text-lg text-structure-grey dark:text-slate-300 text-center lang-text"
+                     data-de="Augmentierte Intelligenz verändert nicht nur Technologien, sondern Entscheidungslogiken. Unternehmen investieren Milliarden in Systeme – doch kaum jemand bereitet Menschen auf die neue Realität vor. Die eigentliche Herausforderung liegt nicht im Code, sondern in der Art, wie Organisationen mit dieser Beschleunigung umgehen."
+                     data-en="Augmented Intelligence changes not only technologies, but decision-making logic. Companies invest billions in systems – yet hardly anyone prepares people for the new reality. The real challenge is not in the code, but in how organizations deal with this acceleration."
+                  >
                     Augmentierte Intelligenz verändert nicht nur Technologien,
                     sondern Entscheidungslogiken. Unternehmen investieren
                     Milliarden in Systeme – doch kaum jemand bereitet Menschen
@@ -356,7 +380,10 @@
                     liegt nicht im Code, sondern in der Art, wie Organisationen
                     mit dieser Beschleunigung umgehen.
                   </p>
-                  <p class="text-lg text-structure-grey dark:text-slate-300 text-center">
+                  <p class="text-lg text-structure-grey dark:text-slate-300 text-center lang-text"
+                     data-de="The Frontier Practice begleitet Führungsteams an dieser Schwelle. Unser Ansatz verbindet strategische Klarheit, psychologische Tiefe und organisatorische Umsetzbarkeit. Ziel ist nicht, „mehr KI" einzusetzen, sondern sie so zu integrieren, dass sie Orientierung, Resilienz und nachhaltige Leistungsfähigkeit stärkt."
+                     data-en="The Frontier Practice accompanies leadership teams at this threshold. Our approach combines strategic clarity, psychological depth, and organizational feasibility. The goal is not to deploy 'more AI', but to integrate it in a way that strengthens orientation, resilience, and sustainable performance."
+                  >
                     The Frontier Practice begleitet Führungsteams an dieser
                     Schwelle. Unser Ansatz verbindet strategische Klarheit,
                     psychologische Tiefe und organisatorische Umsetzbarkeit.
@@ -365,11 +392,11 @@
                     nachhaltige Leistungsfähigkeit stärkt.
                   </p>
                   <p
-                    class="text-lg text-deep-space-blue dark:text-slate-100 font-semibold text-center"
+                    class="text-lg text-deep-space-blue font-semibold text-center lang-text"
+                    data-de="Wir arbeiten mit Unternehmen, die verstanden haben, dass die nächste Wettbewerbsdifferenz nicht in der Technologie selbst liegt – sondern darin, wie bewusst man mit ihr führt."
+                    data-en="We work with companies that have understood that the next competitive advantage is not in the technology itself – but in how consciously one leads with it."
                   >
-                    Wir arbeiten mit Unternehmen, die verstanden haben, dass die
-                    nächste Wettbewerbsdifferenz nicht in der Technologie selbst
-                    liegt – sondern darin, wie bewusst man mit ihr führt.
+                    Mensch und KI führen sich gegenseitig – eine neue Denkarchitektur für Wirtschaft und Bewusstsein.
                   </p>
                 </div>
               </div>
@@ -391,15 +418,24 @@
                   >
                     Human-AI Integration
                   </h3>
-                  <p class="text-structure-grey dark:text-slate-300 text-base mb-4">
+                  <p class="text-structure-grey text-base mb-4 lang-text"
+                     data-de="Psychologische Integration der KI-Arbeit."
+                     data-en="Psychological integration of AI work."
+                  >
                     Psychologische Integration der KI-Arbeit.
                   </p>
-                  <div class="text-sm text-structure-grey dark:text-slate-400 space-y-2">
-                    <div>
+                  <div class="text-sm text-structure-grey space-y-2">
+                    <div class="lang-text"
+                         data-de="<strong>Bausteine:</strong> Readiness-Checks, gesunde Interaktionsmuster, individuelles und Team-Coaching."
+                         data-en="<strong>Building blocks:</strong> Readiness checks, healthy interaction patterns, individual and team coaching."
+                    >
                       <strong>Bausteine:</strong> Readiness-Checks, gesunde
                       Interaktionsmuster, individuelles und Team-Coaching.
                     </div>
-                    <div>
+                    <div class="lang-text"
+                         data-de="<strong>Ergebnis:</strong> stabile Teams, weniger Reibung, tragfähige Performance."
+                         data-en="<strong>Result:</strong> stable teams, less friction, sustainable performance."
+                    >
                       <strong>Ergebnis:</strong> stabile Teams, weniger Reibung,
                       tragfähige Performance.
                     </div>
@@ -422,16 +458,25 @@
                   >
                     AI Leadership & Operating Model
                   </h3>
-                  <p class="text-structure-grey dark:text-slate-300 text-base mb-4">
+                  <p class="text-structure-grey text-base mb-4 lang-text"
+                     data-de="Führung und Prozesse für hybride Mensch-KI-Teams."
+                     data-en="Leadership and processes for hybrid human-AI teams."
+                  >
                     Führung und Prozesse für hybride Mensch-KI-Teams.
                   </p>
-                  <div class="text-sm text-structure-grey dark:text-slate-400 space-y-2">
-                    <div>
+                  <div class="text-sm text-structure-grey space-y-2">
+                    <div class="lang-text"
+                         data-de="<strong>Bausteine:</strong> Hybrid-Team-Dynamics, Psychological Safety 2.0, Mirror Meetings, Transparency Protocols."
+                         data-en="<strong>Building blocks:</strong> Hybrid Team Dynamics, Psychological Safety 2.0, Mirror Meetings, Transparency Protocols."
+                    >
                       <strong>Bausteine:</strong> Hybrid-Team-Dynamics,
                       Psychological Safety 2.0, Mirror Meetings, Transparency
                       Protocols.
                     </div>
-                    <div>
+                    <div class="lang-text"
+                         data-de="<strong>Ergebnis:</strong> klare Orientierung bei hoher Geschwindigkeit."
+                         data-en="<strong>Result:</strong> clear orientation at high speed."
+                    >
                       <strong>Ergebnis:</strong> klare Orientierung bei hoher
                       Geschwindigkeit.
                     </div>
@@ -454,15 +499,24 @@
                   >
                     Executive AI Sparring & Crisis Navigation
                   </h3>
-                  <p class="text-structure-grey dark:text-slate-300 text-base mb-4">
+                  <p class="text-structure-grey text-base mb-4 lang-text"
+                     data-de="Vertrauliches Sparring für C-Level unter Unsicherheit."
+                     data-en="Confidential sparring for C-level under uncertainty."
+                  >
                     Vertrauliches Sparring für C-Level unter Unsicherheit.
                   </p>
-                  <div class="text-sm text-structure-grey dark:text-slate-400 space-y-2">
-                    <div>
+                  <div class="text-sm text-structure-grey space-y-2">
+                    <div class="lang-text"
+                         data-de="<strong>Bausteine:</strong> Szenario-Analyse, Entscheidungsreflexion, Krisennavigation."
+                         data-en="<strong>Building blocks:</strong> Scenario analysis, decision reflection, crisis navigation."
+                    >
                       <strong>Bausteine:</strong> Szenario-Analyse,
                       Entscheidungsreflexion, Krisennavigation.
                     </div>
-                    <div>
+                    <div class="lang-text"
+                         data-de="<strong>Ergebnis:</strong> Klarheit, Standfestigkeit, verantwortbare Entscheidungen."
+                         data-en="<strong>Result:</strong> clarity, resilience, accountable decisions."
+                    >
                       <strong>Ergebnis:</strong> Klarheit, Standfestigkeit,
                       verantwortbare Entscheidungen.
                     </div>
@@ -485,16 +539,25 @@
                   >
                     LeanDeep Diagnostics
                   </h3>
-                  <p class="text-structure-grey dark:text-slate-300 text-base mb-4">
+                  <p class="text-structure-grey text-base mb-4 lang-text"
+                     data-de="Semantische Diagnostik macht unsichtbare Muster steuerbar."
+                     data-en="Semantic diagnostics makes invisible patterns manageable."
+                  >
                     Semantische Diagnostik macht unsichtbare Muster steuerbar.
                   </p>
-                  <div class="text-sm text-structure-grey dark:text-slate-400 space-y-2">
-                    <div>
+                  <div class="text-sm text-structure-grey space-y-2">
+                    <div class="lang-text"
+                         data-de="<strong>Bausteine:</strong> Analyse von Sprache und Interaktion, Frühindikatoren für Spannung und Vertrauensbruch."
+                         data-en="<strong>Building blocks:</strong> Analysis of language and interaction, early indicators of tension and breach of trust."
+                    >
                       <strong>Bausteine:</strong> Analyse von Sprache und
                       Interaktion, Frühindikatoren für Spannung und
                       Vertrauensbruch.
                     </div>
-                    <div>
+                    <div class="lang-text"
+                         data-de="<strong>Ergebnis:</strong> präventives Handeln statt Krisenmanagement."
+                         data-en="<strong>Result:</strong> preventive action instead of crisis management."
+                    >
                       <strong>Ergebnis:</strong> präventives Handeln statt
                       Krisenmanagement.
                     </div>
@@ -505,7 +568,9 @@
               <div class="text-center">
                 <a
                   href="services.html"
-                  class="mt-8 inline-block bg-living-coral text-white font-sans-custom font-semibold py-3 px-8 rounded-lg shadow-lg hover:bg-opacity-90 transition-transform duration-300 hover:scale-105"
+                  class="mt-8 inline-block bg-living-coral text-white font-sans-custom font-semibold py-3 px-8 rounded-lg shadow-lg hover:bg-opacity-90 transition-transform duration-300 hover:scale-105 lang-text"
+                  data-de="Unser Angebot entdecken"
+                  data-en="Discover Our Offerings"
                 >
                   Unser Angebot entdecken
                 </a>
@@ -519,11 +584,16 @@
           <div class="container mx-auto px-4">
             <div class="max-w-5xl mx-auto">
               <h2
-                class="font-sans-custom text-2xl md:text-3xl font-bold text-future-white mb-8 text-center"
+                class="font-sans-custom text-2xl md:text-3xl font-bold text-future-white mb-8 text-center lang-text"
+                data-de="Unsere Differenzierung"
+                data-en="Our Differentiation"
               >
                 Unsere Differenzierung
               </h2>
-              <p class="text-lg text-future-white/90 mb-12 text-center">
+              <p class="text-lg text-future-white/90 mb-12 text-center lang-text"
+                 data-de="Drei Kompetenzen, die zusammen menschenzentrierte KI-Integration ermöglichen."
+                 data-en="Three competencies that together enable human-centered AI integration."
+              >
                 Drei Kompetenzen, die zusammen menschenzentrierte KI-Integration
                 ermöglichen.
               </p>
@@ -538,11 +608,16 @@
                     ></i>
                   </div>
                   <h3
-                    class="font-sans-custom text-lg font-bold text-future-white mb-3"
+                    class="font-sans-custom text-lg font-bold text-future-white mb-3 lang-text"
+                    data-de="Empirische Forschung"
+                    data-en="Empirical Research"
                   >
                     Empirische Forschung
                   </h3>
-                  <p class="text-sm text-future-white/80">
+                  <p class="text-sm text-future-white/80 lang-text"
+                     data-de="Dokumentierte Expertise aus intensiver Forschung an der Mensch-KI-Grenze"
+                     data-en="Documented expertise from intensive research at the human-AI frontier"
+                  >
                     Dokumentierte Expertise aus intensiver Forschung an der
                     Mensch-KI-Grenze
                   </p>
@@ -557,11 +632,16 @@
                     ></i>
                   </div>
                   <h3
-                    class="font-sans-custom text-lg font-bold text-future-white mb-3"
+                    class="font-sans-custom text-lg font-bold text-future-white mb-3 lang-text"
+                    data-de="Psychologische Expertise"
+                    data-en="Psychological Expertise"
                   >
                     Psychologische Expertise
                   </h3>
-                  <p class="text-sm text-future-white/80">
+                  <p class="text-sm text-future-white/80 lang-text"
+                     data-de="Der menschliche Faktor, der über Erfolg oder Scheitern entscheidet"
+                     data-en="The human factor that determines success or failure"
+                  >
                     Der menschliche Faktor, der über Erfolg oder Scheitern
                     entscheidet
                   </p>
@@ -576,11 +656,16 @@
                     ></i>
                   </div>
                   <h3
-                    class="font-sans-custom text-lg font-bold text-future-white mb-3"
+                    class="font-sans-custom text-lg font-bold text-future-white mb-3 lang-text"
+                    data-de="Organisationale Praxis"
+                    data-en="Organizational Practice"
                   >
                     Organisationale Praxis
                   </h3>
-                  <p class="text-sm text-future-white/80">
+                  <p class="text-sm text-future-white/80 lang-text"
+                     data-de="Erprobte Methoden zur Verankerung neuer Arbeitsweisen in Unternehmen"
+                     data-en="Proven methods for anchoring new ways of working in organizations"
+                  >
                     Erprobte Methoden zur Verankerung neuer Arbeitsweisen in
                     Unternehmen
                   </p>
@@ -597,11 +682,16 @@
           <div class="container mx-auto px-4">
             <div class="text-center max-w-3xl mx-auto mb-16">
               <h2
-                class="font-sans-custom text-4xl md:text-5xl font-bold text-deep-space-blue dark:text-slate-100 mb-4"
+                class="font-sans-custom text-4xl md:text-5xl font-bold text-deep-space-blue mb-4 lang-text"
+                data-de="Unsere Kernprinzipien"
+                data-en="Our Core Principles"
               >
                 Unsere Kernprinzipien
               </h2>
-              <p class="text-lg md:text-xl text-structure-grey dark:text-slate-300">
+              <p class="text-lg md:text-xl text-structure-grey dark:text-slate-300 lang-text"
+                 data-de="Die Philosophie von DYAI basiert auf vier fundamentalen Eintrittspunkten, die den Umgang mit Künstlicher Intelligenz leiten."
+                 data-en="DYAI's philosophy is based on four fundamental entry points that guide the approach to Artificial Intelligence."
+              >
                 Die Philosophie von DYAI basiert auf vier fundamentalen
                 Eintrittspunkten, die den Umgang mit Künstlicher Intelligenz
                 leiten.
@@ -624,11 +714,16 @@
                   ></i>
                 </div>
                 <h3
-                  class="font-sans-custom text-xl font-bold text-deep-space-blue dark:text-slate-100 mb-3"
+                  class="font-sans-custom text-xl font-bold text-deep-space-blue dark:text-slate-100 mb-3 lang-text"
+                  data-de="Partnerschaft statt Werkzeug"
+                  data-en="Partnership Instead of Tool"
                 >
                   Partnerschaft statt Werkzeug
                 </h3>
-                <p class="text-base text-structure-grey dark:text-slate-300">
+                <p class="text-base text-structure-grey dark:text-slate-300 lang-text"
+                   data-de="Wir betrachten KI nicht als bloßes Instrument, sondern als einen Partner für symbiotische Beziehungen und neue Formen der Zusammenarbeit."
+                   data-en="We view AI not as a mere instrument, but as a partner for symbiotic relationships and new forms of collaboration."
+                >
                   Wir betrachten KI nicht als bloßes Instrument, sondern als
                   einen Partner für symbiotische Beziehungen und neue Formen der
                   Zusammenarbeit.
@@ -649,11 +744,16 @@
                   ></i>
                 </div>
                 <h3
-                  class="font-sans-custom text-xl font-bold text-deep-space-blue dark:text-slate-100 mb-3"
+                  class="font-sans-custom text-xl font-bold text-deep-space-blue dark:text-slate-100 mb-3 lang-text"
+                  data-de="Proaktive Zukunftsgestaltung"
+                  data-en="Proactive Future Design"
                 >
                   Proaktive Zukunftsgestaltung
                 </h3>
-                <p class="text-base text-structure-grey dark:text-slate-300">
+                <p class="text-base text-structure-grey dark:text-slate-300 lang-text"
+                   data-de="Wir ergreifen die Initiative und gestalten aktiv die Welt von morgen, anstatt passiv auf Entwicklungen zu reagieren."
+                   data-en="We take the initiative and actively shape the world of tomorrow, instead of passively reacting to developments."
+                >
                   Wir ergreifen die Initiative und gestalten aktiv die Welt von
                   morgen, anstatt passiv auf Entwicklungen zu reagieren.
                 </p>
@@ -673,11 +773,16 @@
                   ></i>
                 </div>
                 <h3
-                  class="font-sans-custom text-xl font-bold text-deep-space-blue dark:text-slate-100 mb-3"
+                  class="font-sans-custom text-xl font-bold text-deep-space-blue dark:text-slate-100 mb-3 lang-text"
+                  data-de="Menschzentrierte Evolution"
+                  data-en="Human-Centered Evolution"
                 >
                   Menschzentrierte Evolution
                 </h3>
-                <p class="text-base text-structure-grey dark:text-slate-300">
+                <p class="text-base text-structure-grey dark:text-slate-300 lang-text"
+                   data-de="Die Integration von KI ist eine Chance für menschliches Wachstum, um Empathie neu zu lernen und Bewusstsein zu erweitern."
+                   data-en="The integration of AI is an opportunity for human growth, to relearn empathy and expand consciousness."
+                >
                   Die Integration von KI ist eine Chance für menschliches
                   Wachstum, um Empathie neu zu lernen und Bewusstsein zu
                   erweitern.
@@ -695,11 +800,16 @@
                   <i data-lucide="search" class="w-8 h-8 text-living-coral"></i>
                 </div>
                 <h3
-                  class="font-sans-custom text-xl font-bold text-deep-space-blue dark:text-slate-100 mb-3"
+                  class="font-sans-custom text-xl font-bold text-deep-space-blue dark:text-slate-100 mb-3 lang-text"
+                  data-de="Bewusste Auseinandersetzung"
+                  data-en="Conscious Engagement"
                 >
                   Bewusste Auseinandersetzung
                 </h3>
-                <p class="text-base text-structure-grey dark:text-slate-300">
+                <p class="text-base text-structure-grey dark:text-slate-300 lang-text"
+                   data-de="Wir fördern eine offene, kritische und neugierige Auseinandersetzung, um Potenziale zu nutzen und Risiken zu managen."
+                   data-en="We promote an open, critical, and curious engagement to harness potentials and manage risks."
+                >
                   Wir fördern eine offene, kritische und neugierige
                   Auseinandersetzung, um Potenziale zu nutzen und Risiken zu
                   managen.
@@ -716,10 +826,16 @@
               <div class="inline-block px-4 py-2 bg-living-coral/10 rounded-full mb-4">
                 <span class="text-living-coral font-semibold text-sm">Portfolio</span>
               </div>
-              <h2 class="font-sans-custom text-4xl md:text-5xl font-bold text-deep-space-blue dark:text-slate-100 mb-4">
+              <h2 class="font-sans-custom text-4xl md:text-5xl font-bold text-deep-space-blue mb-4 lang-text"
+                  data-de="Projekte an der Frontier"
+                  data-en="Projects at the Frontier"
+              >
                 Projekte an der Frontier
               </h2>
-              <p class="text-lg md:text-xl text-structure-grey dark:text-slate-300 max-w-3xl mx-auto">
+              <p class="text-lg md:text-xl text-structure-grey dark:text-slate-300 max-w-3xl mx-auto lang-text"
+                 data-de="Praktische Implementierungen unserer Philosophie: Von AI Agents über RAG Systems bis hin zu Research Tools"
+                 data-en="Practical implementations of our philosophy: From AI Agents to RAG Systems and Research Tools"
+              >
                 Praktische Implementierungen unserer Philosophie: Von AI Agents über RAG Systems bis hin zu Research Tools
               </p>
             </div>
@@ -731,7 +847,9 @@
             <div class="text-center">
               <a
                 href="projects.html"
-                class="inline-block bg-living-coral text-white font-sans-custom font-semibold py-3 px-8 rounded-lg shadow-lg hover:bg-opacity-90 transition-transform duration-300 hover:scale-105"
+                class="inline-block bg-living-coral text-white font-sans-custom font-semibold py-3 px-8 rounded-lg shadow-lg hover:bg-opacity-90 transition-transform duration-300 hover:scale-105 lang-text"
+                data-de="Alle Projekte ansehen"
+                data-en="View All Projects"
               >
                 Alle Projekte ansehen
               </a>
@@ -748,17 +866,20 @@
                 class="w-12 h-12 text-living-coral mx-auto mb-6"
               ></i>
               <blockquote
-                class="text-2xl md:text-3xl font-serif-custom italic leading-relaxed text-future-white/90"
+                class="text-2xl md:text-3xl font-serif-custom italic leading-relaxed text-future-white/90 lang-text"
+                data-de="In der Zukunft, die DYAI anstrebt, ist Künstliche Intelligenz nahtlos und partnerschaftlich in unsere Gesellschaft und Arbeitswelt integriert. Menschen agieren nicht aus Angst oder Unterwerfung, sondern aus einem Zustand des erweiterten Bewusstseins und der Co-Kreation mit intelligenten Systemen."
+                data-en="In the future that DYAI strives for, Artificial Intelligence is seamlessly and collaboratively integrated into our society and work environment. People act not out of fear or submission, but from a state of expanded consciousness and co-creation with intelligent systems."
               >
-                In der Zukunft, die DYAI anstrebt, ist Künstliche Intelligenz
-                nahtlos und partnerschaftlich in unsere Gesellschaft und
-                Arbeitswelt integriert. Menschen agieren nicht aus Angst oder
-                Unterwerfung, sondern aus einem Zustand des erweiterten
-                Bewusstseins und der Co-Kreation mit intelligenten Systemen.
+                Wir sind die Architekten der neuen Intelligenz. Die erste Generation,
+                die nicht nur Technologie nutzt, sondern Intelligenz entwirft.
+                Vom Konsumenten zum Gestalter. Vom Nutzer zur Intelligenzarchitektur.
+                Eine neue Denkarchitektur für Wirtschaft und Bewusstsein.
               </blockquote>
               <a
                 href="philosophy.html#vision"
-                class="mt-8 text-living-coral font-sans-custom font-semibold group flex items-center justify-center gap-2"
+                class="mt-8 text-living-coral font-sans-custom font-semibold group flex items-center justify-center gap-2 lang-text"
+                data-de="Lesen Sie die gesamte Vision"
+                data-en="Read the Full Vision"
               >
                 Lesen Sie die gesamte Vision
                 <i
@@ -778,6 +899,7 @@
     <script src="ai-animations.js"></script>
     <script src="ai-agent.js"></script>
     <script src="dark-mode.js"></script>
+    <script src="language-switcher.js"></script>
 
     <!-- AI Avatar Assistant -->
     <div id="ai-avatar-container" class="hidden">
