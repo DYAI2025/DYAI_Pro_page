@@ -14,6 +14,7 @@
     
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="animations.css" />
+    <script src="modern-effects.js" defer></script>
     <!-- Preload critical fonts for faster rendering -->
     <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/poppins/v20/pxiEyp8kv8JHgFVrFJDUc1NECPY.woff2" crossorigin />
     <link
@@ -28,6 +29,7 @@
   </head>
   <body
     class="bg-future-white text-structure-grey font-sans-custom overflow-x-hidden"
+    data-theme="light"
   >
     <div id="app" class="flex flex-col min-h-screen relative z-10">
       <header id="main-header" class="sticky top-0 z-50">
@@ -216,21 +218,13 @@
               </div>
               <div class="text-block-professional max-w-6xl mx-auto mb-12">
                 <p
-                  class="font-sans-custom text-xs md:text-xs text-slate-300 leading-relaxed italic text-justify font-light lang-text"
-                  data-de="Wir verstehen KI nicht als künstliche Intelligenz. Denn was sollte an Intelligenz künstlich sein? Im Kern ist sie keine Nachbildung des Menschen, sondern eine Erweiterung seiner Fähigkeiten – eine neue Form der Zusammenarbeit zwischen Denken, Sprache und Technologie. KI ist weniger ein Ersatz als ein Verstärker: Sie erweitert, was wir wissen, schaffen und verstehen können. Und sie spricht in der ersten Programmiersprache, die wir alle beherrschen – unserer menschlichen Sprache. Entwickelt von Menschen, für Menschen."
-                  data-en="We don't understand AI as artificial intelligence. Because what should be artificial about intelligence? At its core, it's not an imitation of humans, but an augmentation of their capabilities – a new form of collaboration between thinking, language, and technology. AI is less a replacement than an amplifier: it extends what we can know, create, and understand. And it speaks in the first programming language we all master – our human language. Developed by humans, for humans."
+                  class="font-sans-custom text-sm md:text-base text-slate-300 leading-relaxed text-justify font-light lang-text"
+                  data-de="Wir erleben die größte Wirtschaftsrevolution der Menschheitsgeschichte. Diesmal ist etwas anders. Ein Musterbruch. Jahrzehnte lang sprachen wir von Arbeit 2.0, Arbeit 3.0, Arbeit 4.0, als wäre die Zukunft ein Software Update auf das Bekannte. Doch die Überschrift dessen, was jetzt kommt, trägt weder das Wort Arbeit noch eine Versionsnummer. Denn es geht nicht mehr darum, uns neue Jobs auszudenken. Es geht darum zu begreifen, was Arbeit eigentlich war: ein Mittel. Nicht mehr. Und wenn Maschinen die Mittel übernehmen (schneller, präziser, unermüdlich), bleibt als menschlicher Wertbeitrag nur noch das, was keine Maschine kann: Bedeutung schaffen. Intention haben. Wollen."
+                  data-en="We are experiencing the greatest economic revolution in human history. This time something is different. A pattern break. For decades we spoke of Work 2.0, Work 3.0, Work 4.0, as if the future were just a software update to the familiar. But the headline of what comes next carries neither the word work nor a version number. Because it's no longer about inventing new jobs. It's about understanding what work actually was: a means to an end. Nothing more. And when machines take over the means (faster, more precise, tireless), the only remaining human value contribution is what no machine can do: create meaning. Have intention. Want."
                 >
-                  Wir verstehen KI nicht als künstliche Intelligenz. Denn was
-                  sollte an Intelligenz künstlich sein? Im Kern ist sie keine
-                  Nachbildung des Menschen, sondern eine Erweiterung seiner
-                  Fähigkeiten – eine neue Form der Zusammenarbeit zwischen
-                  Denken, Sprache und Technologie. KI ist weniger ein Ersatz als
-                  ein Verstärker: Sie erweitert, was wir wissen, schaffen und
-                  verstehen können. Und sie spricht in der ersten
-                  Programmiersprache, die wir alle beherrschen – unserer
-                  menschlichen Sprache. Entwickelt von Menschen, für Menschen.
-                  <span class="text-slate-200 font-medium lang-text" data-de="Nicht künstlich. Augmentiert." data-en="Not artificial. Augmented."
-                    >Nicht künstlich. Augmentiert.</span
+                  Wir erleben die größte Wirtschaftsrevolution der Menschheitsgeschichte. Diesmal ist etwas anders. Ein Musterbruch. Jahrzehnte lang sprachen wir von Arbeit 2.0, Arbeit 3.0, Arbeit 4.0, als wäre die Zukunft ein Software Update auf das Bekannte. Doch die Überschrift dessen, was jetzt kommt, trägt weder das Wort Arbeit noch eine Versionsnummer. Denn es geht nicht mehr darum, uns neue Jobs auszudenken. Es geht darum zu begreifen, was Arbeit eigentlich war: ein Mittel. Nicht mehr. Und wenn Maschinen die Mittel übernehmen (schneller, präziser, unermüdlich), bleibt als menschlicher Wertbeitrag nur noch das, was keine Maschine kann: Bedeutung schaffen. Intention haben. Wollen.
+                  <span class="text-slate-200 font-medium lang-text block mt-4" data-de="Willkommen in der Ära des Zwecks." data-en="Welcome to the Era of Purpose."
+                    >Willkommen in der Ära des Zwecks.</span
                   >
                 </p>
               </div>
@@ -381,8 +375,8 @@
                     mit dieser Beschleunigung umgehen.
                   </p>
                   <p class="text-lg text-structure-grey dark:text-slate-300 text-center lang-text"
-                     data-de="The Frontier Practice begleitet Führungsteams an dieser Schwelle. Unser Ansatz verbindet strategische Klarheit, psychologische Tiefe und organisatorische Umsetzbarkeit. Ziel ist nicht, „mehr KI" einzusetzen, sondern sie so zu integrieren, dass sie Orientierung, Resilienz und nachhaltige Leistungsfähigkeit stärkt."
-                     data-en="The Frontier Practice accompanies leadership teams at this threshold. Our approach combines strategic clarity, psychological depth, and organizational feasibility. The goal is not to deploy 'more AI', but to integrate it in a way that strengthens orientation, resilience, and sustainable performance."
+                     data-de="The Frontier Practice begleitet Führungsteams an dieser Schwelle. Unser Ansatz verbindet strategische Klarheit, psychologische Tiefe und organisatorische Umsetzbarkeit. Ziel ist nicht, mehr KI einzusetzen, sondern sie so zu integrieren, dass sie Orientierung, Resilienz und nachhaltige Leistungsfähigkeit stärkt."
+                     data-en="The Frontier Practice accompanies leadership teams at this threshold. Our approach combines strategic clarity, psychological depth, and organizational feasibility. The goal is not to deploy more AI, but to integrate it in a way that strengthens orientation, resilience, and sustainable performance."
                   >
                     The Frontier Practice begleitet Führungsteams an dieser
                     Schwelle. Unser Ansatz verbindet strategische Klarheit,
